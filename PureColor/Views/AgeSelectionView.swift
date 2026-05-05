@@ -18,6 +18,7 @@ struct AgeSelectionView: View {
     @State private var showDailyReward = false
     @State private var showMagicBoxSurprise = false
     @State private var showTimerPicker = false
+    @State private var showTimesUp = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -144,7 +145,17 @@ struct AgeSelectionView: View {
             .fullScreenCover(isPresented: $showGallery) { GalleryView() }
             .onAppear { checkDailyReward() }
             .onReceive(timer) { _ in
-                if timerActive, let remaining = timerSecondsRemaining, remaining > 0 { timerSecondsRemaining = remaining - 1 }
+                if timerActive, let remaining = timerSecondsRemaining {
+                    if remaining > 0 {
+                        timerSecondsRemaining = remaining - 1
+                    } else if !showTimesUp {
+                        withAnimation { showTimesUp = true }
+                        timerActive = false
+                    }
+                }
+            }
+            .fullScreenCover(isPresented: $showTimesUp) {
+                TimesUpView(isPresented: $showTimesUp, timerSecondsRemaining: $timerSecondsRemaining, timerActive: $timerActive)
             }
         }
     }
@@ -372,6 +383,50 @@ struct TimerSelectionPopup: View {
                     Text("Turn Off Timer").font(.system(size: 16, weight: .bold)).foregroundColor(.red).padding(.vertical, 10).padding(.horizontal, 20).background(Capsule().stroke(Color.red, lineWidth: 2))
                 }
             }.padding(30).background(RoundedRectangle(cornerRadius: 35).fill(Color.white).shadow(radius: 20)).frame(maxWidth: 400).padding(20)
+        }
+    }
+}
+
+
+// MARK: - TimesUpView
+struct TimesUpView: View {
+    @Binding var isPresented: Bool; @Binding var timerSecondsRemaining: Int?; @Binding var timerActive: Bool
+    @State private var showParentalGate = false
+    
+    var body: some View {
+        ZStack {
+            Color.white.ignoresSafeArea()
+            DoodleBackgroundView().opacity(0.3)
+            
+            VStack(spacing: 30) {
+                ZStack {
+                    Circle().fill(Color.orange.opacity(0.1)).frame(width: 200, height: 200)
+                    Image(systemName: "moon.stars.fill").font(.system(size: 100)).foregroundColor(.orange).symbolEffect(.bounce, options: .repeat(3))
+                }
+                
+                VStack(spacing: 15) {
+                    Text("Time to Rest!").font(.system(size: 40, weight: .black, design: .rounded)).foregroundColor(.black)
+                    Text("Great job coloring today.\nLet's take a little break.").font(.title3.bold()).foregroundColor(.gray).multilineTextAlignment(.center).padding(.horizontal)
+                }
+                
+                Button {
+                    showParentalGate = true
+                } label: {
+                    HStack {
+                        Image(systemName: "lock.fill")
+                        Text("Parents Only").font(.headline)
+                    }
+                    .foregroundColor(.white).padding(.horizontal, 40).padding(.vertical, 15).background(Capsule().fill(Color.blue))
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $showParentalGate) {
+            ParentalGateView {
+                timerSecondsRemaining = nil
+                timerActive = false
+                isPresented = false
+            }
+            .presentationBackground(.clear)
         }
     }
 }
