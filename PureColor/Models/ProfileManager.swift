@@ -11,7 +11,7 @@ struct UserProfile: Identifiable, Codable {
     var collectedStickers: [String]
     
     static var defaultProfile: UserProfile {
-        UserProfile(id: UUID(), name: "Guest", avatar: "person.circle.fill", ageGroup: nil, stars: 0, lastDailyRewardClaimed: nil, collectedStickers: [])
+        UserProfile(id: UUID(), name: "", avatar: "person.circle.fill", ageGroup: nil, stars: 0, lastDailyRewardClaimed: nil, collectedStickers: [])
     }
 }
 

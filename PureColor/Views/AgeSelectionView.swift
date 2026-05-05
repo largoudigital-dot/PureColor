@@ -19,6 +19,7 @@ struct AgeSelectionView: View {
     @State private var showMagicBoxSurprise = false
     @State private var showTimerPicker = false
     @State private var showTimesUp = false
+    @State private var showProfilePicker = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -73,9 +74,11 @@ struct AgeSelectionView: View {
                     VStack(spacing: 20) {
                         VStack(spacing: 6) {
                             HeaderCircleButton(icon: profileManager.currentProfile.avatar, color: .blue) {
-                                withAnimation { profileManager.currentProfileIndex = (profileManager.currentProfileIndex + 1) % profileManager.profiles.count }
+                                withAnimation(.spring()) { showProfilePicker = true }
                             }
-                            Text(profileManager.currentProfile.name).font(.system(size: 11, weight: .black, design: .rounded)).foregroundColor(.blue)
+                            if !profileManager.currentProfile.name.isEmpty {
+                                Text(profileManager.currentProfile.name).font(.system(size: 11, weight: .black, design: .rounded)).foregroundColor(.blue)
+                            }
                         }
                         HeaderCircleButton(icon: "photo.on.rectangle.angled", color: .green) { showGallery = true }
                         Button { withAnimation(.spring()) { showMagicBoxSurprise = true } } label: {
@@ -132,6 +135,7 @@ struct AgeSelectionView: View {
                     }
                     if showMagicBoxSurprise { MagicBoxSurpriseView(isPresented: $showMagicBoxSurprise) }
                     if showTimerPicker { TimerSelectionPopup(isPresented: $showTimerPicker, timerSecondsRemaining: $timerSecondsRemaining, timerActive: $timerActive) }
+                    if showProfilePicker { ProfileSelectionPopup(isPresented: $showProfilePicker) }
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 
@@ -427,6 +431,47 @@ struct TimesUpView: View {
                 isPresented = false
             }
             .presentationBackground(.clear)
+        }
+    }
+}
+
+// MARK: - ProfileSelectionPopup
+struct ProfileSelectionPopup: View {
+    @Binding var isPresented: Bool
+    @StateObject private var profileManager = ProfileManager.shared
+    
+    var body: some View {
+        ZStack {
+            Rectangle().fill(.ultraThinMaterial).overlay(Color.black.opacity(0.2)).ignoresSafeArea().onTapGesture { isPresented = false }
+            
+            VStack(spacing: 20) {
+                Text("Who is coloring?").font(.system(size: 22, weight: .black, design: .rounded)).foregroundColor(.blue)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        ForEach(0..<profileManager.profiles.count, id: \.self) { index in
+                            let profile = profileManager.profiles[index]
+                            Button {
+                                profileManager.currentProfileIndex = index
+                                withAnimation { isPresented = false }
+                            } label: {
+                                VStack(spacing: 10) {
+                                    ZStack {
+                                        Circle().fill(profileManager.currentProfileIndex == index ? Color.blue : Color.white).frame(width: 80, height: 80).shadow(radius: 5)
+                                        Image(systemName: profile.avatar).font(.title).foregroundColor(profileManager.currentProfileIndex == index ? .white : .blue)
+                                    }
+                                    .overlay(Circle().stroke(Color.blue.opacity(0.1), lineWidth: 2))
+                                    
+                                    Text(profile.name.isEmpty ? "Standard" : profile.name).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundColor(.black.opacity(0.7))
+                                }
+                            }
+                        }
+                    }.padding(.horizontal, 20)
+                }
+                
+                Button("Close") { withAnimation { isPresented = false } }.font(.subheadline.bold()).foregroundColor(.gray)
+            }
+            .padding(.vertical, 30).background(RoundedRectangle(cornerRadius: 30).fill(Color.white)).padding(30).frame(maxWidth: 500)
         }
     }
 }
