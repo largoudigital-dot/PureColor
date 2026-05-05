@@ -15,7 +15,9 @@ struct GalleryView: View {
                 Color(red: 0.05, green: 0.02, blue: 0.12).ignoresSafeArea()
                 
                 ScrollView {
-                    if galleryManager.savedArtworks.isEmpty {
+                    let profileArtworks = galleryManager.savedArtworks.filter { $0.profileId == ProfileManager.shared.currentProfile.id }
+                    
+                    if profileArtworks.isEmpty {
                         VStack(spacing: 20) {
                             Image(systemName: "paintbrush.fill")
                                 .font(.system(size: 60))
@@ -27,7 +29,7 @@ struct GalleryView: View {
                         .padding(.top, 100)
                     } else {
                         LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(galleryManager.savedArtworks) { artwork in
+                            ForEach(profileArtworks) { artwork in
                                 ArtworkCard(artwork: artwork)
                             }
                         }

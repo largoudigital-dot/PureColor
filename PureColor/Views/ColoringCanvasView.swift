@@ -140,7 +140,9 @@ struct ColoringCanvasView: View {
                     Spacer()
                     
                     // Done/Checkmark
-                    Button { dismiss() } label: {
+                    Button {
+                        saveAndExit()
+                    } label: {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 60))
                             .foregroundColor(.green)
@@ -152,6 +154,35 @@ struct ColoringCanvasView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+    }
+    
+    @MainActor
+    func saveAndExit() {
+        let renderer = ImageRenderer(content: 
+            ZStack {
+                CanvasLayer(color: bodyColor, icon: category.icon)
+                Canvas { context, size in
+                    for stroke in engine.strokes {
+                        var path = Path()
+                        path.addLines(stroke.points)
+                        context.stroke(path, with: .color(stroke.color), style: StrokeStyle(lineWidth: stroke.lineWidth, lineCap: .round, lineJoin: .round))
+                    }
+                }
+                Image(systemName: category.icon)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.black)
+            }.frame(width: 500, height: 500)
+        )
+        
+        if let image = renderer.uiImage {
+            GalleryManager.shared.saveArtwork(
+                image: image,
+                category: category.name,
+                profileId: ProfileManager.shared.currentProfile.id
+            )
+        }
+        dismiss()
     }
     
     func addParticle(at point: CGPoint) {

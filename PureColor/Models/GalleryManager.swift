@@ -3,6 +3,7 @@ import Combine
 
 struct SavedArtwork: Identifiable, Codable {
     let id: UUID
+    let profileId: UUID
     let categoryName: String
     let date: Date
     let fileName: String
@@ -21,7 +22,7 @@ class GalleryManager: ObservableObject {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
-    func saveArtwork(image: UIImage, category: String) {
+    func saveArtwork(image: UIImage, category: String, profileId: UUID) {
         let id = UUID()
         let fileName = "\(id.uuidString).png"
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
@@ -29,7 +30,7 @@ class GalleryManager: ObservableObject {
         if let data = image.pngData() {
             try? data.write(to: fileURL)
             
-            let artwork = SavedArtwork(id: id, categoryName: category, date: Date(), fileName: fileName)
+            let artwork = SavedArtwork(id: id, profileId: profileId, categoryName: category, date: Date(), fileName: fileName)
             savedArtworks.insert(artwork, at: 0)
             saveArtworksMetadata()
         }
