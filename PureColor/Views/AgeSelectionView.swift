@@ -17,6 +17,7 @@ struct AgeSelectionView: View {
     @State private var timerActive = false
     @State private var showDailyReward = false
     @State private var showMagicBoxSurprise = false
+    @State private var showTimerPicker = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -102,10 +103,7 @@ struct AgeSelectionView: View {
                         
                         // Timer
                         HeaderSquareButton(icon: "timer", color: timerSecondsRemaining != nil ? .red : .orange) {
-                            pendingAction = {
-                                if timerSecondsRemaining == nil { timerSecondsRemaining = 20 * 60; timerActive = true }
-                                else { timerSecondsRemaining = nil; timerActive = false }
-                            }
+                            pendingAction = { showTimerPicker = true }
                             showParentalGate = true
                         }
                         
@@ -132,6 +130,7 @@ struct AgeSelectionView: View {
                             .transition(.move(edge: .trailing).combined(with: .opacity))
                     }
                     if showMagicBoxSurprise { MagicBoxSurpriseView(isPresented: $showMagicBoxSurprise) }
+                    if showTimerPicker { TimerSelectionPopup(isPresented: $showTimerPicker, timerSecondsRemaining: $timerSecondsRemaining, timerActive: $timerActive) }
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 
@@ -151,8 +150,13 @@ struct AgeSelectionView: View {
     }
     
     func timeString(from seconds: Int) -> String {
-        let m = seconds / 60, s = seconds % 60
-        return String(format: "%d:%02d", m, s)
+        let h = seconds / 3600
+        let m = (seconds % 3600) / 60
+        let s = seconds % 60
+        if h > 0 {
+            return String(format: "%d:%02d:%02d", h, m, s)
+        }
+        return String(format: "%02d:%02d", m, s)
     }
     func checkDailyReward() {
         let lastClaim = profileManager.currentProfile.lastDailyRewardClaimed ?? Date.distantPast
@@ -342,6 +346,33 @@ struct DailyRewardPopup: View {
     @Binding var isPresented: Bool; @StateObject private var profileManager = ProfileManager.shared
     var body: some View {
         ZStack { Color.black.opacity(0.8).ignoresSafeArea(); VStack(spacing: 25) { Text("Daily Prize!").font(.system(size: 32, weight: .black, design: .rounded)).foregroundColor(.white); ZStack { Circle().fill(Color.yellow.gradient).frame(width: 150, height: 150); Image(systemName: "star.fill").font(.system(size: 80)).foregroundColor(.white).shadow(radius: 10) }; Text("You earned 5 Stars!").font(.title2.bold()).foregroundColor(.white); Button { profileManager.currentProfile.stars += 5; profileManager.currentProfile.lastDailyRewardClaimed = Date(); profileManager.save(); withAnimation { isPresented = false } } label: { Text("Collect").font(.headline).foregroundColor(.white).padding(.horizontal, 40).padding(.vertical, 15).background(Capsule().fill(Color.blue)) } }.padding(40).background(RoundedRectangle(cornerRadius: 30).fill(Color.white.opacity(0.1)).background(.ultraThinMaterial)).cornerRadius(30).padding(40) }
+    }
+}
+
+// MARK: - TimerSelectionPopup
+struct TimerSelectionPopup: View {
+    @Binding var isPresented: Bool; @Binding var timerSecondsRemaining: Int?; @Binding var timerActive: Bool
+    var body: some View {
+        ZStack {
+            Rectangle().fill(.ultraThinMaterial).overlay(Color.black.opacity(0.2)).ignoresSafeArea().onTapGesture { isPresented = false }
+            VStack(spacing: 25) {
+                Text("Set Screen Time").font(.system(size: 24, weight: .black, design: .rounded)).foregroundColor(.black)
+                HStack(spacing: 15) {
+                    ForEach([20, 60, 120], id: \.self) { mins in
+                        Button { timerSecondsRemaining = mins * 60; timerActive = true; isPresented = false } label: {
+                            VStack(spacing: 8) {
+                                Text("\(mins >= 60 ? mins/60 : mins)").font(.system(size: 28, weight: .black, design: .rounded))
+                                Text(mins >= 60 ? "HOUR\(mins > 60 ? "S" : "")" : "MIN").font(.system(size: 12, weight: .bold))
+                            }
+                            .frame(width: 80, height: 90).background(RoundedRectangle(cornerRadius: 20).fill(timerSecondsRemaining == mins * 60 ? Color.blue : Color.white).shadow(color: .black.opacity(0.1), radius: 5)).foregroundColor(timerSecondsRemaining == mins * 60 ? .white : .blue)
+                        }
+                    }
+                }
+                Button { timerSecondsRemaining = nil; timerActive = false; isPresented = false } label: {
+                    Text("Turn Off Timer").font(.system(size: 16, weight: .bold)).foregroundColor(.red).padding(.vertical, 10).padding(.horizontal, 20).background(Capsule().stroke(Color.red, lineWidth: 2))
+                }
+            }.padding(30).background(RoundedRectangle(cornerRadius: 35).fill(Color.white).shadow(radius: 20)).frame(maxWidth: 400).padding(20)
+        }
     }
 }
 
