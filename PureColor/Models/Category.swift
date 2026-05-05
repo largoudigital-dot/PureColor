@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum AgeGroup: String, CaseIterable, Identifiable {
+enum AgeGroup: String, CaseIterable, Identifiable, Codable {
     case toddlers = "2-4 Years"
     case kids = "5-7 Years"
     case bigKids = "8+ Years"
