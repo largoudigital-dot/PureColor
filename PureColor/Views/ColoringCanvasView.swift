@@ -1,14 +1,14 @@
 import SwiftUI
-import Combine
+import PencilKit
 
 struct ColoringCanvasView: View {
     let category: Category
+    let drawingItem: DrawingItem // Added this
     @Environment(\.dismiss) var dismiss
     
-    @StateObject private var engine = DrawingEngine()
-    @State private var selectedColor: Color = .red
+    // PencilKit State
+    @State private var canvasView = PKCanvasView()
     @State private var bodyColor: Color = .white
-    @State private var brushSize: CGFloat = 12
     
     // Magic Particles
     @State private var particles: [MagicParticle] = []
@@ -33,62 +33,27 @@ struct ColoringCanvasView: View {
             }
             
             VStack(spacing: 0) {
-                // TOP BAR: Crayons & Markers (Match Screenshot 3)
-                HStack(spacing: 15) {
-                    ForEach([Color.red, .orange, .yellow, .green, .blue, .purple, .pink, .brown, .black], id: \.self) { color in
-                        CrayonButton(color: color, isSelected: selectedColor == color) {
-                            selectedColor = color
-                            provideHapticFeedback()
-                        }
-                    }
+                // TOP BAR: PencilKit handles tools now
+                HStack {
+                    Text(category.name.uppercased())
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundColor(category.color)
+                        .padding(.top, 10)
                 }
-                .padding(.top, 20)
-                .padding(.bottom, 10)
-                .background(
-                    Rectangle()
-                        .fill(Color.white.opacity(0.8))
-                        .shadow(radius: 5)
-                )
                 
                 Spacer()
                 
-                // CENTER: The Canvas with Thick Border (Match Screenshot 2/3)
+                // CENTER: The PencilKit Canvas with Overlay Outline
                 ZStack {
-                    // 1. Illustrative Layers
-                    CanvasLayer(color: bodyColor, icon: category.icon)
-                        .onTapGesture {
-                            withAnimation(.spring()) { bodyColor = selectedColor }
-                            createExplosion(at: CGPoint(x: 200, y: 200))
-                            provideHapticFeedback()
-                        }
+                    // 1. Illustrative Background Layer
+                    CanvasLayer(color: bodyColor, icon: drawingItem.imageName) // Use drawingItem icon
                     
-                    // 2. Free Drawing Layer
-                    Canvas { context, size in
-                        for stroke in engine.strokes {
-                            var path = Path()
-                            path.addLines(stroke.points)
-                            context.stroke(path, with: .color(stroke.color), style: StrokeStyle(lineWidth: stroke.lineWidth, lineCap: .round, lineJoin: .round))
-                        }
-                        
-                        if let current = engine.currentStroke {
-                            var path = Path()
-                            path.addLines(current.points)
-                            context.stroke(path, with: .color(current.color), style: StrokeStyle(lineWidth: current.lineWidth, lineCap: .round, lineJoin: .round))
-                        }
-                    }
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { value in
-                                engine.addPoint(value.location, color: selectedColor, lineWidth: brushSize)
-                                addParticle(at: value.location)
-                            }
-                            .onEnded { _ in
-                                engine.endStroke()
-                            }
-                    )
+                    // 2. PencilKit Drawing Layer
+                    PencilKitView(canvasView: $canvasView)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    // 3. The Outline
-                    Image(systemName: category.icon)
+                    // 3. The Outline (Overlay)
+                    Image(systemName: drawingItem.imageName) // Use drawingItem icon
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 280, height: 280)
@@ -101,17 +66,20 @@ struct ColoringCanvasView: View {
                         .fill(Color.white)
                         .overlay(
                             RoundedRectangle(cornerRadius: 30)
-                                .stroke(category.color, lineWidth: 15) // Thick Border (Match Screenshot)
+                                .stroke(category.color, lineWidth: 15)
                         )
                 )
                 .padding(30)
                 
                 Spacer()
                 
-                // BOTTOM BAR: Navigation (Match Screenshot 3)
+                // BOTTOM BAR: Navigation & PencilKit Controls
                 HStack {
                     // Back/Cancel
-                    Button { dismiss() } label: {
+                    Button { 
+                        AudioManager.shared.playPop()
+                        dismiss() 
+                    } label: {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 50))
                             .foregroundColor(.red)
@@ -122,14 +90,20 @@ struct ColoringCanvasView: View {
                     
                     // Tools Cluster
                     HStack(spacing: 30) {
-                        Button(action: { engine.undo() }) {
+                        Button(action: { 
+                            undo()
+                            AudioManager.shared.playPop()
+                        }) {
                             Image(systemName: "arrow.uturn.backward.circle.fill")
                                 .font(.system(size: 50))
                                 .foregroundColor(.orange)
                         }
                         .handDrawn()
                         
-                        Button(action: { engine.clear() }) {
+                        Button(action: { 
+                            clear()
+                            AudioManager.shared.playPop()
+                        }) {
                             Image(systemName: "trash.circle.fill")
                                 .font(.system(size: 50))
                                 .foregroundColor(.gray)
@@ -142,6 +116,7 @@ struct ColoringCanvasView: View {
                     // Done/Checkmark
                     Button {
                         saveAndExit()
+                        AudioManager.shared.playSuccess()
                     } label: {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 60))
@@ -156,47 +131,27 @@ struct ColoringCanvasView: View {
         .navigationBarBackButtonHidden(true)
     }
     
+    // MARK: - PencilKit Actions
+    func undo() {
+        canvasView.undoManager?.undo()
+    }
+    
+    func clear() {
+        canvasView.drawing = PKDrawing()
+    }
+    
     @MainActor
     func saveAndExit() {
-        let renderer = ImageRenderer(content: 
-            ZStack {
-                CanvasLayer(color: bodyColor, icon: category.icon)
-                Canvas { context, size in
-                    for stroke in engine.strokes {
-                        var path = Path()
-                        path.addLines(stroke.points)
-                        context.stroke(path, with: .color(stroke.color), style: StrokeStyle(lineWidth: stroke.lineWidth, lineCap: .round, lineJoin: .round))
-                    }
-                }
-                Image(systemName: category.icon)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.black)
-            }.frame(width: 500, height: 500)
+        let image = canvasView.drawing.image(from: canvasView.bounds, scale: 1.0)
+        
+        GalleryManager.shared.saveArtwork(
+            image: image,
+            category: category.name,
+            profileId: ProfileManager.shared.currentProfile.id
         )
         
-        if let image = renderer.uiImage {
-            GalleryManager.shared.saveArtwork(
-                image: image,
-                category: category.name,
-                profileId: ProfileManager.shared.currentProfile.id
-            )
-            // Reward: Add a star
-            ProfileManager.shared.addStar()
-        }
+        ProfileManager.shared.addStar()
         dismiss()
-    }
-    
-    func addParticle(at point: CGPoint) {
-        let new = MagicParticle(pos: point, color: selectedColor)
-        particles.append(new)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            particles.removeAll { $0.id == new.id }
-        }
-    }
-    
-    func createExplosion(at point: CGPoint) {
-        for _ in 0..<15 { addParticle(at: point) }
     }
     
     func provideHapticFeedback() {
@@ -205,31 +160,7 @@ struct ColoringCanvasView: View {
     }
 }
 
-struct CrayonButton: View {
-    let color: Color
-    let isSelected: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack {
-                Rectangle()
-                    .fill(color)
-                    .frame(width: 30, height: isSelected ? 100 : 80) // Crayon popping up
-                    .overlay(
-                        VStack(spacing: 0) {
-                            Circle().fill(Color.white.opacity(0.3)).frame(width: 20, height: 20).padding(.top, 10)
-                            Spacer()
-                        }
-                    )
-                    .clipShape(UnevenRoundedRectangle(topLeadingRadius: 15, topTrailingRadius: 15))
-                    .shadow(radius: 3)
-            }
-        }
-        .animation(.spring(), value: isSelected)
-    }
-}
-
+// Helper Views
 struct CanvasLayer: View {
     let color: Color
     let icon: String
@@ -242,7 +173,6 @@ struct CanvasLayer: View {
     }
 }
 
-// MARK: - Magic Particles Components
 struct MagicParticle: Identifiable {
     let id = UUID()
     var pos: CGPoint
@@ -272,5 +202,5 @@ struct SparkleView: View {
 }
 
 #Preview {
-    ColoringCanvasView(category: mockCategories[0])
+    ColoringCanvasView(category: mockCategories[0], drawingItem: mockCategories[0].drawings[0])
 }

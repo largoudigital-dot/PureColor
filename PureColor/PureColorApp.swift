@@ -12,6 +12,9 @@ struct PureColorApp: App {
     var body: some Scene {
         WindowGroup {
             AgeSelectionView()
+                .onAppear {
+                    AudioManager.shared.playBackgroundMusic()
+                }
         }
     }
 }

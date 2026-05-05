@@ -1,10 +1,17 @@
 import SwiftUI
 import Combine
 
+// Professional Navigation Targets
+enum NavigationTarget: Hashable {
+    case categoryWheel(AgeGroup)
+    case drawingGrid(Category)
+}
+
 struct AgeSelectionView: View {
     @StateObject private var profileManager = ProfileManager.shared
     @StateObject private var galleryManager = GalleryManager.shared
     
+    @State private var path = [NavigationTarget]()
     @State private var showParentalGate = false
     @State private var pendingAction: (() -> Void)? = nil
     @State private var showGallery = false
@@ -24,7 +31,7 @@ struct AgeSelectionView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             GeometryReader { geo in
                 let isIPad = UIDevice.current.userInterfaceIdiom == .pad
                 let isLandscape = geo.size.width > geo.size.height
@@ -38,7 +45,7 @@ struct AgeSelectionView: View {
                     // 2. CENTER CONTENT
                     VStack(spacing: isLandscape ? 15 : 40) {
                         if profileManager.currentProfile.ageGroup != nil {
-                            // Star Counter (Premium Reward Look)
+                            // Star Counter
                             HStack(spacing: 8) {
                                 Image(systemName: "star.fill")
                                     .foregroundStyle(LinearGradient(colors: [.yellow, .orange], startPoint: .top, endPoint: .bottom))
@@ -55,6 +62,7 @@ struct AgeSelectionView: View {
                             .background(Capsule().fill(Color.white).shadow(color: .black.opacity(0.05), radius: 5))
                             .transition(.move(edge: .top).combined(with: .opacity))
                         }
+                        
                         if profileManager.currentProfile.ageGroup == nil {
                             Text("PureColor")
                                 .font(.system(size: isLandscape ? 44 : 60, weight: .black, design: .rounded))
@@ -65,7 +73,10 @@ struct AgeSelectionView: View {
                         if let childAge = profileManager.currentProfile.ageGroup {
                             VStack(spacing: 20) {
                                 Text("Hello, \(profileManager.currentProfile.name)!").font(.system(size: 24, weight: .bold, design: .rounded)).foregroundColor(.black.opacity(0.6))
-                                NavigationLink(destination: CategoryGridView(ageGroup: childAge)) {
+                                Button {
+                                    AudioManager.shared.playPop()
+                                    path.append(.categoryWheel(childAge))
+                                } label: {
                                     VStack(spacing: 15) {
                                         AgeGroupCard(age: childAge, isIPad: isIPad, isLandscape: isLandscape).scaleEffect(1.2)
                                         Text("TAP TO PLAY").font(.system(size: 20, weight: .black, design: .rounded)).foregroundColor(.white).padding(.horizontal, 40).padding(.vertical, 12).background(Capsule().fill(childAge.color.gradient)).shadow(color: childAge.color.opacity(0.3), radius: 10, y: 5)
@@ -76,7 +87,10 @@ struct AgeSelectionView: View {
                         } else {
                             HStack(spacing: isLandscape ? 60 : 30) {
                                 ForEach(AgeGroup.allCases) { age in
-                                    NavigationLink(destination: CategoryGridView(ageGroup: age)) {
+                                    Button {
+                                        AudioManager.shared.playPop()
+                                        path.append(.categoryWheel(age))
+                                    } label: {
                                         AgeGroupCard(age: age, isIPad: isIPad, isLandscape: isLandscape)
                                     }
                                     .buttonStyle(PlainButtonStyle())
@@ -98,7 +112,10 @@ struct AgeSelectionView: View {
                                 Text(profileManager.currentProfile.name).font(.system(size: 11, weight: .black, design: .rounded)).foregroundColor(.blue)
                             }
                         }
-                        HeaderCircleButton(icon: "photo.on.rectangle.angled", color: .green) { showGallery = true }
+                        HeaderCircleButton(icon: "photo.on.rectangle.angled", color: .green) { 
+                            AudioManager.shared.playPop()
+                            showGallery = true 
+                        }
                         Button { withAnimation(.spring()) { showMagicBoxSurprise = true } } label: {
                             ZStack { RoundedRectangle(cornerRadius: 15).fill(Color.orange.gradient); Image(systemName: "archivebox.fill").font(.title2).foregroundColor(.white) }
                             .frame(width: 50, height: 50).shadow(color: .orange.opacity(0.3), radius: 5, y: 3)
@@ -115,34 +132,30 @@ struct AgeSelectionView: View {
                     }
                     .padding(.leading, 20).padding(.top, 20).frame(maxWidth: .infinity, alignment: .leading)
                     
-                    // 4. RIGHT SIDE CONTROLS (Gear at Top)
+                    // 4. RIGHT SIDE CONTROLS
                     VStack(spacing: 15) {
-                        // Settings Gear (TOP)
                         HeaderCircleButton(icon: "gearshape.fill", color: .gray) {
                             pendingAction = { showParentSettings = true }
                             showParentalGate = true
                         }
-                        
-                        // Timer
                         HeaderSquareButton(icon: "timer", color: timerSecondsRemaining != nil ? .red : .orange) {
                             pendingAction = { showTimerPicker = true }
                             showParentalGate = true
                         }
-                        
-                        
-                        // Music Toggle
-                        HeaderSquareButton(icon: musicEnabled ? "music.note" : "music.note.list", color: .purple) { musicEnabled.toggle() }
-                        
-                        // Sound Toggle
-                        HeaderSquareButton(icon: soundEnabled ? "speaker.wave.3.fill" : "speaker.slash.fill", color: .pink) { soundEnabled.toggle() }
-                        
+                        HeaderSquareButton(icon: musicEnabled ? "music.note" : "music.note.list", color: .purple) { 
+                            musicEnabled.toggle() 
+                            AudioManager.shared.playPop()
+                        }
+                        HeaderSquareButton(icon: soundEnabled ? "speaker.wave.3.fill" : "speaker.slash.fill", color: .pink) { 
+                            soundEnabled.toggle() 
+                            AudioManager.shared.playPop()
+                        }
                         if let remaining = timerSecondsRemaining {
                             VStack(spacing: 2) {
                                 Image(systemName: remaining < 300 ? "moon.stars.fill" : "sun.max.fill").font(.caption).foregroundColor(remaining < 300 ? .indigo : .orange)
                                 Text(timeString(from: remaining)).font(.system(size: 8, weight: .bold, design: .monospaced))
                             }.padding(6).background(Capsule().fill(Color.white).shadow(radius: 3))
                         }
-                        
                         Spacer()
                     }
                     .padding(.trailing, 20).padding(.top, 20).frame(maxWidth: .infinity, alignment: .trailing)
@@ -155,7 +168,14 @@ struct AgeSelectionView: View {
                     if showTimerPicker { TimerSelectionPopup(isPresented: $showTimerPicker, timerSecondsRemaining: $timerSecondsRemaining, timerActive: $timerActive) }
                     if showProfilePicker { ProfileSelectionPopup(isPresented: $showProfilePicker) }
                 }
-                .frame(width: geo.size.width, height: geo.size.height)
+                .navigationDestination(for: NavigationTarget.self) { target in
+                    switch target {
+                    case .categoryWheel(let age):
+                        CategoryGridView(ageGroup: age, path: $path)
+                    case .drawingGrid(let category):
+                        DrawingSelectionView(category: category, path: $path)
+                    }
+                }
                 
                 if showDailyReward { DailyRewardPopup(isPresented: $showDailyReward) }
                 if showAddProfile { AddProfilePopup(isPresented: $showAddProfile, isLandscape: isLandscape) }
@@ -183,14 +203,11 @@ struct AgeSelectionView: View {
     }
     
     func timeString(from seconds: Int) -> String {
-        let h = seconds / 3600
-        let m = (seconds % 3600) / 60
-        let s = seconds % 60
-        if h > 0 {
-            return String(format: "%d:%02d:%02d", h, m, s)
-        }
+        let h = seconds / 3600; let m = (seconds % 3600) / 60; let s = seconds % 60
+        if h > 0 { return String(format: "%d:%02d:%02d", h, m, s) }
         return String(format: "%02d:%02d", m, s)
     }
+    
     func checkDailyReward() {
         let lastClaim = profileManager.currentProfile.lastDailyRewardClaimed ?? Date.distantPast
         if !Calendar.current.isDateInToday(lastClaim) {
@@ -199,57 +216,7 @@ struct AgeSelectionView: View {
     }
 }
 
-// MARK: - ParentSettingsView (REFINED)
-struct ParentSettingsView: View {
-    @Binding var isPresented: Bool; @Binding var soundEnabled: Bool; @Binding var musicEnabled: Bool; @Binding var timerSecondsRemaining: Int?; @Binding var timerActive: Bool
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.4).ignoresSafeArea().onTapGesture { isPresented = false }
-            VStack(spacing: 20) {
-                Text("App Settings").font(.title2.weight(.black)).foregroundColor(.black)
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 15) {
-                        // Standard Parameters
-                        Group {
-                            Toggle("Sound Effects", isOn: $soundEnabled)
-                            Toggle("Background Music", isOn: $musicEnabled)
-                        }.padding(10).background(Color.gray.opacity(0.05)).cornerRadius(12)
-                        
-                        Divider()
-                        
-                        // Support & Legal
-                        VStack(spacing: 12) {
-                            SettingsRow(icon: "questionmark.circle.fill", title: "Support & Help", color: .blue)
-                            SettingsRow(icon: "lock.shield.fill", title: "Privacy Policy", color: .green)
-                            SettingsRow(icon: "doc.text.fill", title: "Terms of Use", color: .orange)
-                        }
-                        
-                        Divider()
-                        
-                        // Restore Purchases (if needed)
-                        SettingsRow(icon: "arrow.clockwise.circle.fill", title: "Restore Purchases", color: .purple)
-                    }
-                }.frame(maxHeight: 250)
-                
-                Button("Done") { withAnimation { isPresented = false } }.font(.headline).foregroundColor(.white).padding(.horizontal, 50).padding(.vertical, 12).background(Capsule().fill(Color.blue))
-            }.padding(25).background(RoundedRectangle(cornerRadius: 30).fill(Color.white)).padding(30).frame(maxWidth: 400)
-        }
-    }
-}
-
-struct SettingsRow: View {
-    let icon: String; let title: String; let color: Color
-    var body: some View {
-        HStack {
-            Image(systemName: icon).foregroundColor(color).font(.title3)
-            Text(title).font(.body.weight(.medium))
-            Spacer()
-            Image(systemName: "chevron.right").font(.caption).foregroundColor(.gray)
-        }.padding(12).background(Color.gray.opacity(0.05)).cornerRadius(12)
-    }
-}
-
-// (Maintaining other structs: DoodleBackgroundView, MagicBoxSurpriseView, HeaderCircleButton, HeaderSquareButton, AgeGroupCard, AddProfilePopup, CategoryGridView, SplashWorldCard, SplashShape, StrokeModifier, DailyRewardPopup)
+// MARK: - PREMIUM COMPONENTS RESTORED
 struct DoodleBackgroundView: View {
     var body: some View {
         ZStack {
@@ -257,21 +224,8 @@ struct DoodleBackgroundView: View {
                 Image(systemName: ["star.fill", "heart.fill", "moon.fill", "cloud.fill", "sparkles"].randomElement()!)
                     .font(.system(size: CGFloat.random(in: 20...50)))
                     .foregroundColor(Color(hue: Double.random(in: 0...1), saturation: 0.2, brightness: 0.9))
-                    .position(x: CGFloat.random(in: 0...1000), y: CGFloat.random(in: 0...800))
+                    .position(x: CGFloat.random(in: 0...1200), y: CGFloat.random(in: 0...900))
                     .rotationEffect(.degrees(Double.random(in: 0...360)))
-            }
-        }
-    }
-}
-
-struct MagicBoxSurpriseView: View {
-    @Binding var isPresented: Bool; @State private var revealed = false
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.8).ignoresSafeArea().onTapGesture { isPresented = false }
-            VStack(spacing: 30) {
-                if !revealed { Text("TAP THE BOX!").font(.system(size: 24, weight: .black, design: .rounded)).foregroundColor(.white); Image(systemName: "archivebox.fill").font(.system(size: 150)).foregroundColor(.orange).symbolEffect(.bounce, options: .repeat(3)).onTapGesture { withAnimation(.spring()) { revealed = true } }
-                } else { Text("YOU GOT A STICKER!").font(.system(size: 24, weight: .black, design: .rounded)).foregroundColor(.white); Image(systemName: "pawprint.fill").font(.system(size: 120)).foregroundColor(.yellow).shadow(color: .white, radius: 20); Button("Cool!") { isPresented = false }.font(.headline).foregroundColor(.white).padding(.horizontal, 40).padding(.vertical, 12).background(Capsule().fill(Color.green)) }
             }
         }
     }
@@ -298,38 +252,8 @@ struct AgeGroupCard: View {
     }
 }
 
-struct AddProfilePopup: View {
-    @Binding var isPresented: Bool; let isLandscape: Bool; @StateObject private var profileManager = ProfileManager.shared
-    @State private var name: String = ""; @State private var selectedAvatar: String = "face.smiling.fill"; @State private var selectedAge: AgeGroup = .toddlers
-    let avatars = ["face.smiling.fill", "star.fill", "heart.fill", "bolt.fill", "pawprint.fill", "leaf.fill", "moon.stars.fill"]
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.7).ignoresSafeArea()
-            VStack(spacing: 0) {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: isLandscape ? 15 : 20) {
-                        Text("New Artist!").font(.system(size: 28, weight: .black, design: .rounded)).foregroundColor(.blue)
-                        TextField("Name", text: $name).textFieldStyle(RoundedBorderTextFieldStyle()).padding(.horizontal)
-                        Text("Age Group").font(.headline).foregroundColor(.gray)
-                        HStack(spacing: 10) {
-                            ForEach(AgeGroup.allCases) { age in
-                                Button { selectedAge = age } label: { VStack { Image(systemName: age.icon); Text(age.rawValue).font(.caption2.bold()) }.frame(width: 75, height: 55).background(RoundedRectangle(cornerRadius: 12).fill(selectedAge == age ? age.color : Color.gray.opacity(0.1))).foregroundColor(selectedAge == age ? .white : .gray) }
-                            }
-                        }
-                        Text("Avatar").font(.headline).foregroundColor(.gray)
-                        HStack { ForEach(avatars.prefix(4), id: \.self) { avatar in Button { selectedAvatar = avatar } label: { Image(systemName: avatar).font(.title2).padding(10).background(Circle().fill(selectedAvatar == avatar ? Color.blue : Color.gray.opacity(0.1))).foregroundColor(selectedAvatar == avatar ? .white : .blue) } } }
-                    }.padding(.top, 20)
-                }.frame(maxHeight: isLandscape ? 220 : 400)
-                Button { let newP = UserProfile(id: UUID(), name: name, avatar: selectedAvatar, ageGroup: selectedAge, stars: 0, lastDailyRewardClaimed: nil, collectedStickers: []); profileManager.profiles.append(newP); profileManager.currentProfileIndex = profileManager.profiles.count - 1; profileManager.save(); withAnimation { isPresented = false }
-                } label: { Text("Create").font(.headline.bold()).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Capsule().fill(Color.blue)) }.padding().disabled(name.isEmpty).opacity(name.isEmpty ? 0.5 : 1.0)
-                Button("Cancel") { withAnimation { isPresented = false } }.font(.caption).foregroundColor(.gray).padding(.bottom, 10)
-            }.background(RoundedRectangle(cornerRadius: 25).fill(Color.white)).padding(30).frame(maxWidth: 450)
-        }
-    }
-}
-
 struct CategoryGridView: View {
-    let ageGroup: AgeGroup; @Environment(\.dismiss) var dismiss; @State private var currentIndex: Int = 0; @State private var dragOffset: CGFloat = 0
+    let ageGroup: AgeGroup; @Binding var path: [NavigationTarget]; @Environment(\.dismiss) var dismiss; @State private var currentIndex: Int = 0; @State private var dragOffset: CGFloat = 0
     var body: some View {
         GeometryReader { geo in
             let filteredCategories = mockCategories.filter { $0.ageGroup == ageGroup }
@@ -341,9 +265,9 @@ struct CategoryGridView: View {
                 ZStack {
                     ForEach(0..<filteredCategories.count, id: \.self) { index in
                         let category = filteredCategories[index]; let relativeIndex = CGFloat(index - currentIndex); let positionOffset = relativeIndex * (geo.size.width * 0.35) + dragOffset; let normalizedDiff = positionOffset / (geo.size.width / 2)
-                        SplashWorldCard(category: category, size: geo.size).frame(width: geo.size.width * 0.45).onTapGesture { if index == currentIndex { WorldManager.shared.selectedCategory = category } else { withAnimation(.spring(response: 0.3, dampingFraction: 1.0)) { currentIndex = index }; provideHapticFeedback() } }.rotation3DEffect(.degrees(Double(-normalizedDiff * 40)), axis: (x: 0, y: 1, z: 0)).scaleEffect(1.6 - (abs(normalizedDiff) * 0.8), anchor: .bottom).opacity(1.0 - abs(Double(normalizedDiff)) * 0.5).brightness(-Double(abs(normalizedDiff)) * 0.4).grayscale(Double(abs(normalizedDiff)) * 0.6).offset(x: positionOffset, y: pow(abs(normalizedDiff), 2.0) * 150 + (geo.size.height * 0.22)).zIndex(100 - abs(Double(relativeIndex)))
+                        SplashWorldCard(category: category, size: geo.size).frame(width: geo.size.width * 0.45).onTapGesture { if index == currentIndex { AudioManager.shared.playPop(); path.append(.drawingGrid(category)) } else { withAnimation(.spring(response: 0.3, dampingFraction: 1.0)) { currentIndex = index }; provideHapticFeedback() } }.rotation3DEffect(.degrees(Double(-normalizedDiff * 40)), axis: (x: 0, y: 1, z: 0)).scaleEffect(1.6 - (abs(normalizedDiff) * 0.8), anchor: .bottom).opacity(1.0 - abs(Double(normalizedDiff)) * 0.5).brightness(-Double(abs(normalizedDiff)) * 0.4).grayscale(Double(abs(normalizedDiff)) * 0.6).offset(x: positionOffset, y: pow(abs(normalizedDiff), 2.0) * 150 + (geo.size.height * 0.22)).zIndex(100 - abs(Double(relativeIndex)))
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity).navigationDestination(for: Category.self) { category in ColoringCanvasView(category: category) }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 Button { dismiss() } label: { Image(systemName: "arrow.left").font(.title.bold()).padding(geo.size.height * 0.02).background(Circle().fill(Color.orange)).foregroundColor(.white).shadow(radius: 5) }.padding(.leading, 30).padding(.top, 20)
             }.onAppear { if !filteredCategories.isEmpty && currentIndex == 0 { currentIndex = filteredCategories.count / 2 } }
         }.navigationBarBackButtonHidden(true)
@@ -375,123 +299,57 @@ struct StrokeModifier: ViewModifier {
     func body(content: Content) -> some View { content.shadow(color: strokeColor, radius: 0, x: lineWidth, y: 0).shadow(color: strokeColor, radius: 0, x: -lineWidth, y: 0).shadow(color: strokeColor, radius: 0, x: 0, y: lineWidth).shadow(color: strokeColor, radius: 0, x: 0, y: -lineWidth) }
 }
 
+struct ParentSettingsView: View {
+    @Binding var isPresented: Bool; @Binding var soundEnabled: Bool; @Binding var musicEnabled: Bool; @Binding var timerSecondsRemaining: Int?; @Binding var timerActive: Bool
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.4).ignoresSafeArea().onTapGesture { isPresented = false }
+            VStack(spacing: 20) {
+                Text("App Settings").font(.title2.weight(.black)).foregroundColor(.black)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 15) {
+                        Group { Toggle("Sound Effects", isOn: $soundEnabled); Toggle("Background Music", isOn: $musicEnabled) }.padding(10).background(Color.gray.opacity(0.05)).cornerRadius(12)
+                        Divider()
+                        VStack(spacing: 12) { SettingsRow(icon: "questionmark.circle.fill", title: "Support", color: .blue); SettingsRow(icon: "lock.shield.fill", title: "Privacy Policy", color: .green); SettingsRow(icon: "doc.text.fill", title: "Terms of Use", color: .orange) }
+                    }
+                }.frame(maxHeight: 250)
+                Button("Done") { withAnimation { isPresented = false } }.font(.headline).foregroundColor(.white).padding(.horizontal, 50).padding(.vertical, 12).background(Capsule().fill(Color.blue))
+            }.padding(25).background(RoundedRectangle(cornerRadius: 30).fill(Color.white)).padding(30).frame(maxWidth: 400)
+        }
+    }
+}
+
+struct SettingsRow: View {
+    let icon: String; let title: String; let color: Color
+    var body: some View { HStack { Image(systemName: icon).foregroundColor(color).font(.title3); Text(title).font(.body.weight(.medium)); Spacer(); Image(systemName: "chevron.right").font(.caption).foregroundColor(.gray) }.padding(12).background(Color.gray.opacity(0.05)).cornerRadius(12) }
+}
+
 struct DailyRewardPopup: View {
     @Binding var isPresented: Bool; @StateObject private var profileManager = ProfileManager.shared
-    var body: some View {
-        ZStack { Color.black.opacity(0.8).ignoresSafeArea(); VStack(spacing: 25) { Text("Daily Prize!").font(.system(size: 32, weight: .black, design: .rounded)).foregroundColor(.white); ZStack { Circle().fill(Color.yellow.gradient).frame(width: 150, height: 150); Image(systemName: "star.fill").font(.system(size: 80)).foregroundColor(.white).shadow(radius: 10) }; Text("You earned 5 Stars!").font(.title2.bold()).foregroundColor(.white); Button { profileManager.currentProfile.stars += 5; profileManager.currentProfile.lastDailyRewardClaimed = Date(); profileManager.save(); withAnimation { isPresented = false } } label: { Text("Collect").font(.headline).foregroundColor(.white).padding(.horizontal, 40).padding(.vertical, 15).background(Capsule().fill(Color.blue)) } }.padding(40).background(RoundedRectangle(cornerRadius: 30).fill(Color.white.opacity(0.1)).background(.ultraThinMaterial)).cornerRadius(30).padding(40) }
-    }
+    var body: some View { ZStack { Color.black.opacity(0.8).ignoresSafeArea(); VStack(spacing: 25) { Text("Daily Prize!").font(.system(size: 32, weight: .black, design: .rounded)).foregroundColor(.white); ZStack { Circle().fill(Color.yellow.gradient).frame(width: 150, height: 150); Image(systemName: "star.fill").font(.system(size: 80)).foregroundColor(.white).shadow(radius: 10) }; Text("You earned 5 Stars!").font(.title2.bold()).foregroundColor(.white); Button { AudioManager.shared.playSuccess(); profileManager.currentProfile.stars += 5; profileManager.currentProfile.lastDailyRewardClaimed = Date(); profileManager.save(); withAnimation { isPresented = false } } label: { Text("Collect").font(.headline).foregroundColor(.white).padding(.horizontal, 40).padding(.vertical, 15).background(Capsule().fill(Color.blue)) } }.padding(40).background(RoundedRectangle(cornerRadius: 30).fill(Color.white.opacity(0.1)).background(.ultraThinMaterial)).cornerRadius(30).padding(40) } }
 }
 
-// MARK: - TimerSelectionPopup
 struct TimerSelectionPopup: View {
     @Binding var isPresented: Bool; @Binding var timerSecondsRemaining: Int?; @Binding var timerActive: Bool
-    var body: some View {
-        ZStack {
-            Rectangle().fill(.ultraThinMaterial).overlay(Color.black.opacity(0.2)).ignoresSafeArea().onTapGesture { isPresented = false }
-            VStack(spacing: 25) {
-                Text("Set Screen Time").font(.system(size: 24, weight: .black, design: .rounded)).foregroundColor(.black)
-                HStack(spacing: 15) {
-                    ForEach([20, 60, 120], id: \.self) { mins in
-                        Button { timerSecondsRemaining = mins * 60; timerActive = true; isPresented = false } label: {
-                            VStack(spacing: 8) {
-                                Text("\(mins >= 60 ? mins/60 : mins)").font(.system(size: 28, weight: .black, design: .rounded))
-                                Text(mins >= 60 ? "HOUR\(mins > 60 ? "S" : "")" : "MIN").font(.system(size: 12, weight: .bold))
-                            }
-                            .frame(width: 80, height: 90).background(RoundedRectangle(cornerRadius: 20).fill(timerSecondsRemaining == mins * 60 ? Color.blue : Color.white).shadow(color: .black.opacity(0.1), radius: 5)).foregroundColor(timerSecondsRemaining == mins * 60 ? .white : .blue)
-                        }
-                    }
-                }
-                Button { timerSecondsRemaining = nil; timerActive = false; isPresented = false } label: {
-                    Text("Turn Off Timer").font(.system(size: 16, weight: .bold)).foregroundColor(.red).padding(.vertical, 10).padding(.horizontal, 20).background(Capsule().stroke(Color.red, lineWidth: 2))
-                }
-            }.padding(30).background(RoundedRectangle(cornerRadius: 35).fill(Color.white).shadow(radius: 20)).frame(maxWidth: 400).padding(20)
-        }
-    }
+    var body: some View { ZStack { Rectangle().fill(.ultraThinMaterial).overlay(Color.black.opacity(0.2)).ignoresSafeArea().onTapGesture { isPresented = false }; VStack(spacing: 25) { Text("Set Screen Time").font(.system(size: 24, weight: .black, design: .rounded)); HStack(spacing: 15) { ForEach([20, 60, 120], id: \.self) { mins in Button { timerSecondsRemaining = mins * 60; timerActive = true; isPresented = false } label: { VStack { Text("\(mins >= 60 ? mins/60 : mins)").font(.system(size: 28, weight: .black)); Text(mins >= 60 ? "HOUR" : "MIN").font(.caption.bold()) }.frame(width: 80, height: 90).background(RoundedRectangle(cornerRadius: 20).fill(timerSecondsRemaining == mins * 60 ? Color.blue : Color.white)).foregroundColor(timerSecondsRemaining == mins * 60 ? .white : .blue) } } }; Button("Turn Off") { timerSecondsRemaining = nil; timerActive = false; isPresented = false }.foregroundColor(.red) }.padding(30).background(RoundedRectangle(cornerRadius: 35).fill(Color.white)).frame(maxWidth: 400).padding(20) } }
 }
 
-
-// MARK: - TimesUpView
 struct TimesUpView: View {
-    @Binding var isPresented: Bool; @Binding var timerSecondsRemaining: Int?; @Binding var timerActive: Bool
-    @State private var showParentalGate = false
-    
-    var body: some View {
-        ZStack {
-            Color.white.ignoresSafeArea()
-            DoodleBackgroundView().opacity(0.3)
-            
-            VStack(spacing: 30) {
-                ZStack {
-                    Circle().fill(Color.orange.opacity(0.1)).frame(width: 200, height: 200)
-                    Image(systemName: "moon.stars.fill").font(.system(size: 100)).foregroundColor(.orange).symbolEffect(.bounce, options: .repeat(3))
-                }
-                
-                VStack(spacing: 15) {
-                    Text("Time to Rest!").font(.system(size: 40, weight: .black, design: .rounded)).foregroundColor(.black)
-                    Text("Great job coloring today.\nLet's take a little break.").font(.title3.bold()).foregroundColor(.gray).multilineTextAlignment(.center).padding(.horizontal)
-                }
-                
-                Button {
-                    showParentalGate = true
-                } label: {
-                    HStack {
-                        Image(systemName: "lock.fill")
-                        Text("Parents Only").font(.headline)
-                    }
-                    .foregroundColor(.white).padding(.horizontal, 40).padding(.vertical, 15).background(Capsule().fill(Color.blue))
-                }
-            }
-        }
-        .fullScreenCover(isPresented: $showParentalGate) {
-            ParentalGateView {
-                timerSecondsRemaining = nil
-                timerActive = false
-                isPresented = false
-            }
-            .presentationBackground(.clear)
-        }
-    }
+    @Binding var isPresented: Bool; @Binding var timerSecondsRemaining: Int?; @Binding var timerActive: Bool; @State private var showParentalGate = false
+    var body: some View { ZStack { Color.white.ignoresSafeArea(); DoodleBackgroundView().opacity(0.3); VStack(spacing: 30) { ZStack { Circle().fill(Color.orange.opacity(0.1)).frame(width: 200, height: 200); Image(systemName: "moon.stars.fill").font(.system(size: 100)).foregroundColor(.orange) }; Text("Time to Rest!").font(.system(size: 40, weight: .black, design: .rounded)); Button { showParentalGate = true } label: { Text("Parents Only").padding(.horizontal, 40).padding(.vertical, 15).background(Capsule().fill(Color.blue)).foregroundColor(.white) } } }.fullScreenCover(isPresented: $showParentalGate) { ParentalGateView { timerSecondsRemaining = nil; timerActive = false; isPresented = false }.presentationBackground(.clear) } }
 }
 
-// MARK: - ProfileSelectionPopup
 struct ProfileSelectionPopup: View {
-    @Binding var isPresented: Bool
-    @StateObject private var profileManager = ProfileManager.shared
-    
-    var body: some View {
-        ZStack {
-            Rectangle().fill(.ultraThinMaterial).overlay(Color.black.opacity(0.2)).ignoresSafeArea().onTapGesture { isPresented = false }
-            
-            VStack(spacing: 20) {
-                Text("Who is coloring?").font(.system(size: 22, weight: .black, design: .rounded)).foregroundColor(.blue)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        ForEach(0..<profileManager.profiles.count, id: \.self) { index in
-                            let profile = profileManager.profiles[index]
-                            Button {
-                                profileManager.currentProfileIndex = index
-                                withAnimation { isPresented = false }
-                            } label: {
-                                VStack(spacing: 10) {
-                                    ZStack {
-                                        Circle().fill(profileManager.currentProfileIndex == index ? Color.blue : Color.white).frame(width: 80, height: 80).shadow(radius: 5)
-                                        Image(systemName: profile.avatar).font(.title).foregroundColor(profileManager.currentProfileIndex == index ? .white : .blue)
-                                    }
-                                    .overlay(Circle().stroke(Color.blue.opacity(0.1), lineWidth: 2))
-                                    
-                                    Text(profile.name.isEmpty ? "Standard" : profile.name).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundColor(.black.opacity(0.7))
-                                }
-                            }
-                        }
-                    }.padding(.horizontal, 20)
-                }
-                
-                Button("Close") { withAnimation { isPresented = false } }.font(.subheadline.bold()).foregroundColor(.gray)
-            }
-            .padding(.vertical, 30).background(RoundedRectangle(cornerRadius: 30).fill(Color.white)).padding(30).frame(maxWidth: 500)
-        }
-    }
+    @Binding var isPresented: Bool; @StateObject private var profileManager = ProfileManager.shared
+    var body: some View { ZStack { Rectangle().fill(.ultraThinMaterial).overlay(Color.black.opacity(0.2)).ignoresSafeArea().onTapGesture { isPresented = false }; VStack(spacing: 20) { Text("Who is coloring?").font(.title2.bold()); ScrollView(.horizontal, showsIndicators: false) { HStack(spacing: 20) { ForEach(0..<profileManager.profiles.count, id: \.self) { i in Button { profileManager.currentProfileIndex = i; withAnimation { isPresented = false } } label: { VStack { ZStack { Circle().fill(profileManager.currentProfileIndex == i ? Color.blue : Color.white).frame(width: 80, height: 80); Image(systemName: profileManager.profiles[i].avatar).font(.title).foregroundColor(profileManager.currentProfileIndex == i ? .white : .blue) }; Text(profileManager.profiles[i].name).font(.caption.bold()) } } } } }.padding(.horizontal, 20); Button("Close") { withAnimation { isPresented = false } }.foregroundColor(.gray) }.padding(.vertical, 30).background(RoundedRectangle(cornerRadius: 30).fill(Color.white)).padding(30).frame(maxWidth: 500) } }
 }
 
-#Preview { AgeSelectionView() }
+struct AddProfilePopup: View {
+    @Binding var isPresented: Bool; let isLandscape: Bool; @StateObject private var profileManager = ProfileManager.shared; @State private var name = ""; @State private var selectedAge: AgeGroup = .toddlers
+    var body: some View { ZStack { Color.black.opacity(0.7).ignoresSafeArea(); VStack(spacing: 20) { Text("New Artist!").font(.title.bold()); TextField("Name", text: $name).textFieldStyle(.roundedBorder).padding(.horizontal); HStack { ForEach(AgeGroup.allCases) { age in Button { selectedAge = age } label: { Text(age.rawValue).font(.caption.bold()).padding(8).background(selectedAge == age ? age.color : Color.gray.opacity(0.1)).foregroundColor(selectedAge == age ? .white : .gray).cornerRadius(8) } } }; Button("Create") { let newP = UserProfile(id: UUID(), name: name, avatar: "face.smiling.fill", ageGroup: selectedAge, stars: 0, lastDailyRewardClaimed: nil, collectedStickers: []); profileManager.profiles.append(newP); profileManager.currentProfileIndex = profileManager.profiles.count - 1; profileManager.save(); isPresented = false }.padding().background(Capsule().fill(Color.blue)).foregroundColor(.white).disabled(name.isEmpty) }.padding(30).background(Color.white.cornerRadius(25)).padding(30).frame(maxWidth: 450) } }
+}
+
+struct MagicBoxSurpriseView: View {
+    @Binding var isPresented: Bool; @State private var revealed = false
+    var body: some View { ZStack { Color.black.opacity(0.8).ignoresSafeArea().onTapGesture { isPresented = false }; VStack(spacing: 30) { if !revealed { Text("TAP THE BOX!").font(.title.bold()).foregroundColor(.white); Image(systemName: "archivebox.fill").font(.system(size: 150)).foregroundColor(.orange).onTapGesture { withAnimation { revealed = true } } } else { Text("YOU GOT A STICKER!").font(.title.bold()).foregroundColor(.white); Image(systemName: "pawprint.fill").font(.system(size: 120)).foregroundColor(.yellow); Button("Cool!") { isPresented = false }.padding().background(Capsule().fill(Color.green)).foregroundColor(.white) } } } }
+}

@@ -22,7 +22,7 @@ struct CategoryCard: View {
                     .font(.system(size: 20, weight: .heavy, design: .rounded))
                     .foregroundColor(.primary)
                 
-                Text("\(category.pageCount) Pages")
+                Text("\(category.drawings.count) Pages")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundColor(.secondary)
             }
