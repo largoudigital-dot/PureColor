@@ -181,6 +181,8 @@ struct ColoringCanvasView: View {
                 category: category.name,
                 profileId: ProfileManager.shared.currentProfile.id
             )
+            // Reward: Add a star
+            ProfileManager.shared.addStar()
         }
         dismiss()
     }

@@ -37,6 +37,24 @@ struct AgeSelectionView: View {
                     
                     // 2. CENTER CONTENT
                     VStack(spacing: isLandscape ? 15 : 40) {
+                        if profileManager.currentProfile.ageGroup != nil {
+                            // Star Counter (Premium Reward Look)
+                            HStack(spacing: 8) {
+                                Image(systemName: "star.fill")
+                                    .foregroundStyle(LinearGradient(colors: [.yellow, .orange], startPoint: .top, endPoint: .bottom))
+                                    .font(.title2)
+                                    .shadow(color: .orange.opacity(0.3), radius: 5)
+                                    .symbolEffect(.bounce, value: profileManager.currentProfile.stars)
+                                
+                                Text("\(profileManager.currentProfile.stars)")
+                                    .font(.system(size: 22, weight: .black, design: .rounded))
+                                    .foregroundColor(.orange)
+                            }
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 6)
+                            .background(Capsule().fill(Color.white).shadow(color: .black.opacity(0.05), radius: 5))
+                            .transition(.move(edge: .top).combined(with: .opacity))
+                        }
                         if profileManager.currentProfile.ageGroup == nil {
                             Text("PureColor")
                                 .font(.system(size: isLandscape ? 44 : 60, weight: .black, design: .rounded))
