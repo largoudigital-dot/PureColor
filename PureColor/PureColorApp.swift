@@ -11,7 +11,7 @@ import SwiftUI
 struct PureColorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AgeSelectionView()
         }
     }
 }
