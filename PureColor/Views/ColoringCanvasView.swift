@@ -62,6 +62,20 @@ struct ColoringCanvasView: View {
             ("Laser", "flashlight.on.fill", .pen, 4, 1.0),
             ("Nebula", "cloud.sun.bolt.fill", .marker, 50, 0.2)
         ],
+        "Magic": [
+            ("Rainbow", "rainbow", .pen, 10, 1.0),
+            ("Fill", "paintbucket.fill", .marker, 80, 1.0)
+        ],
+        "Patterns": [
+            ("Hearts", "heart.fill", .marker, 20, 0.8),
+            ("Stars", "star.fill", .marker, 20, 0.8),
+            ("Dots", "circle.grid.2x2.fill", .marker, 20, 0.8)
+        ],
+        "Stickers": [
+            ("Smiley", "face.smiling.fill", .pen, 15, 1.0),
+            ("Animal", "pawprint.fill", .pen, 15, 1.0),
+            ("Gift", "gift.fill", .pen, 15, 1.0)
+        ],
         "Mélangeur": [
             ("Blender", "circle.dotted.circle", .pen, 20, 0.2),
             ("Mixer", "wind.snow", .marker, 30, 0.1)
@@ -71,6 +85,8 @@ struct ColoringCanvasView: View {
     @State private var currentWidth: CGFloat = 10
     @State private var currentOpacity: CGFloat = 1.0
     @State private var showColorFlyout = false
+    @State private var showSizeFlyout = false
+    @State private var flyoutOffset: CGSize = .zero
     
     let gridColors: [Color] = [
         .red, .orange, .yellow, .green, .blue, .purple, .pink, .brown, .black, .gray,
@@ -148,6 +164,15 @@ struct ColoringCanvasView: View {
                     
                     PencilKitView(canvasView: $canvasView)
                         .cornerRadius(30)
+                        .simultaneousGesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { _ in
+                                    withAnimation(.spring()) {
+                                        activeCategory = nil
+                                        showColorFlyout = false
+                                    }
+                                }
+                        )
                     
                     Image(systemName: drawingItem.imageName)
                         .resizable()
@@ -156,34 +181,22 @@ struct ColoringCanvasView: View {
                         .foregroundColor(.black.opacity(0.8))
                         .allowsHitTesting(false)
                         .opacity(0.9)
-                    
-                    // Size Slider Tooltip (Floating)
-                    if showSizePanel {
-                        VStack {
-                            Text("Size: \(Int(brushWidth))").font(.caption2.bold()).foregroundColor(.white).padding(5).background(Capsule().fill(Color.black.opacity(0.5)))
-                            Slider(value: $brushWidth, in: 1...80) { _ in updateTool() }
-                                .accentColor(.white)
-                                .frame(width: 150)
-                                .rotationEffect(.degrees(-90))
-                        }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 15).fill(.ultraThinMaterial))
-                        .offset(x: 100)
-                    }
                 }
                 .padding(.top, 40)
                 .padding(.bottom, 20)
                 .padding(.horizontal, 10)
                 
                 // RIGHT SIDEBAR (ADVANCED CATEGORIES ONLY)
-                VStack(spacing: 12) {
+                VStack(spacing: 0) {
+                    // 1. Scrollable Categories
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 12) {
-                            // Category Icons
-                            ForEach(["Basic", "Sketch", "Paint", "Ink", "Maquillage", "Shine", "Mélangeur"], id: \.self) { category in
+                            ForEach(["Basic", "Sketch", "Paint", "Ink", "Maquillage", "Shine", "Magic", "Patterns", "Stickers", "Mélangeur"], id: \.self) { category in
                                 CategoryIcon(name: category, isSelected: activeCategory == category) {
                                     withAnimation(.spring()) {
                                         activeCategory = (activeCategory == category) ? nil : category
+                                        showColorFlyout = false
+                                        showSizeFlyout = false
                                     }
                                 }
                             }
@@ -193,34 +206,40 @@ struct ColoringCanvasView: View {
                                 isEraser = true
                                 activeCategory = nil
                                 showColorFlyout = false
-                                canvasView.tool = PKEraserTool(.bitmap, width: brushWidth)
+                                showSizeFlyout = false
+                                canvasView.tool = PKEraserTool(.bitmap, width: currentWidth)
                                 AudioManager.shared.playPop()
                             }
-                            
-                            Divider().padding(.horizontal, 15)
-                            
-                            // COLOR PICKER BUTTON
-                            Button {
-                                withAnimation(.spring()) {
-                                    showColorFlyout.toggle()
-                                    activeCategory = nil
-                                }
-                                AudioManager.shared.playPop()
-                            } label: {
-                                VStack(spacing: 4) {
-                                    ZStack {
-                                        Circle().fill(AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center))
-                                        Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: 14, weight: .bold))
-                                    }
-                                    .frame(width: 45, height: 45)
-                                    .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 3 : 0))
-                                    Text("Colors").font(.system(size: 8, weight: .bold))
-                                }
-                            }
-                            .padding(.bottom, 10)
                         }
                         .padding(.vertical, 15)
                     }
+                    
+                    Divider().padding(.horizontal, 10).background(Color.gray.opacity(0.1))
+                    
+                    // 2. STICKY TOOLS (Always Visible)
+                    VStack(spacing: 12) {
+                        // COLOR PICKER
+                        Button {
+                            withAnimation(.spring()) {
+                                showColorFlyout.toggle()
+                                activeCategory = nil
+                                showSizeFlyout = false
+                            }
+                            AudioManager.shared.playPop()
+                        } label: {
+                            VStack(spacing: 4) {
+                                ZStack {
+                                    Circle().fill(AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center))
+                                    Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: 14, weight: .bold))
+                                }
+                                .frame(width: 45, height: 45)
+                                .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 3 : 0))
+                                Text("Colors").font(.system(size: 8, weight: .bold))
+                            }
+                        }
+                    }
+                    .padding(.top, 10)
+                    .padding(.bottom, 20)
                 }
                 .frame(width: 80)
                 .background(
@@ -234,11 +253,26 @@ struct ColoringCanvasView: View {
             
             // --- OVERLAY: Fly-out Sub-menu (TRUE OVERLAY) ---
             if let category = activeCategory {
-                VStack(spacing: 10) {
-                    Text(category).font(.caption.bold()).foregroundColor(.gray)
+                VStack(spacing: 8) {
+                    // Clean Header
+                    HStack {
+                        Image(systemName: "line.3.horizontal")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white.opacity(0.6))
+                        Spacer()
+                        Button {
+                            withAnimation { activeCategory = nil }
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.white.opacity(0.6))
+                                .font(.system(size: 22))
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.top, 12)
                     
                     ScrollView(showsIndicators: false) {
-                        VStack(spacing: 8) {
+                        VStack(spacing: 12) {
                             if let groupTools = toolGroups[category] {
                                 ForEach(groupTools, id: \.name) { tool in
                                     Button {
@@ -248,40 +282,75 @@ struct ColoringCanvasView: View {
                                         currentOpacity = tool.opacity
                                         isEraser = false
                                         updateTool()
-                                        withAnimation { activeCategory = nil; showColorFlyout = false }
                                         AudioManager.shared.playPop()
                                     } label: {
                                         VStack(spacing: 4) {
                                             Image(systemName: tool.icon)
-                                                .font(.system(size: 22))
-                                            Text(tool.name).font(.system(size: 8, weight: .medium))
+                                                .font(.system(size: 24))
+                                            Text(tool.name).font(.system(size: 9, weight: .bold))
                                         }
-                                        .frame(width: 65, height: 65)
-                                        .background(currentBrushName == tool.name ? Color.blue.opacity(0.1) : Color.white)
-                                        .cornerRadius(15)
-                                        .shadow(color: .black.opacity(0.05), radius: 2)
-                                        .foregroundColor(currentBrushName == tool.name ? .blue : .black)
+                                        .frame(width: 80, height: 75)
+                                        .background(currentBrushName == tool.name ? Color.white.opacity(0.2) : Color.clear)
+                                        .cornerRadius(18)
+                                        .overlay(RoundedRectangle(cornerRadius: 18).stroke(Color.white.opacity(0.1), lineWidth: 1))
+                                        .foregroundColor(.white)
                                     }
                                 }
                             }
                         }
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 5)
                     }
+                    
+                    Divider().background(Color.white.opacity(0.2))
+                    
+                    // Size Presets
+                    VStack(spacing: 10) {
+                        HStack(spacing: 15) {
+                            ForEach([5, 35, 90], id: \.self) { size in
+                                Button {
+                                    currentWidth = CGFloat(size)
+                                    updateTool()
+                                    AudioManager.shared.playPop()
+                                } label: {
+                                    Circle()
+                                        .fill(currentWidth == CGFloat(size) ? Color.white : Color.white.opacity(0.3))
+                                        .frame(width: CGFloat(size / 6 + 12), height: CGFloat(size / 6 + 12))
+                                        .overlay(Circle().stroke(Color.white.opacity(0.5), lineWidth: 1))
+                                }
+                            }
+                        }
+                    }
+                    .padding(.vertical, 15)
                 }
-                .frame(width: 85)
-                .background(RoundedRectangle(cornerRadius: 30).fill(.ultraThinMaterial))
-                .shadow(color: .black.opacity(0.1), radius: 10)
-                .padding(.trailing, 105) // Puts it exactly next to the sidebar
+                .frame(width: 110, height: 320)
+                .background(.ultraThinMaterial)
+                .background(Color.black.opacity(0.4))
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 30)
+                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                )
+                .shadow(color: .black.opacity(0.3), radius: 15)
+                .offset(flyoutOffset)
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            flyoutOffset = gesture.translation
+                        }
+                        .onEnded { _ in }
+                )
+                .padding(.trailing, 100)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
                 .transition(.asymmetric(
                     insertion: .move(edge: .trailing).combined(with: .opacity),
                     removal: .opacity.combined(with: .scale(scale: 0.9))
                 ))
             }
             
-            // --- OVERLAY: Color Fly-out (NEW) ---
+            // --- OVERLAY: Color Fly-out ---
             if showColorFlyout {
                 VStack(spacing: 12) {
-                    Text("Pick a Color").font(.caption.bold()).foregroundColor(.gray)
+                    Text("Colors").font(.caption.bold()).foregroundColor(.gray)
                     
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: [GridItem(.fixed(30)), GridItem(.fixed(30))], spacing: 12) {
@@ -308,6 +377,47 @@ struct ColoringCanvasView: View {
                 .shadow(color: .black.opacity(0.15), radius: 10)
                 .padding(.trailing, 105)
                 .padding(.bottom, 60) // Positioned above the Colors button
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing).combined(with: .opacity),
+                    removal: .opacity.combined(with: .scale(scale: 0.9))
+                ))
+            }
+            
+            // --- OVERLAY: Size Fly-out ---
+            if showSizeFlyout {
+                VStack(spacing: 15) {
+                    Text("Size").font(.caption.bold()).foregroundColor(.gray)
+                    
+                    // Preview Circle
+                    Circle()
+                        .fill(selectedColor)
+                        .frame(width: currentWidth, height: currentWidth)
+                        .frame(width: 50, height: 50)
+                        .background(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
+                    
+                    // Slider
+                    Slider(value: $currentWidth, in: 2...80)
+                        .accentColor(.blue)
+                        .frame(width: 150)
+                        .rotationEffect(.degrees(-90))
+                        .frame(height: 160)
+                        .onChange(of: currentWidth) { _ in
+                            updateTool()
+                        }
+                    
+                    Button("Done") {
+                        withAnimation { showSizeFlyout = false }
+                    }
+                    .font(.caption2.bold())
+                    .foregroundColor(.blue)
+                }
+                .padding(.vertical, 15)
+                .frame(width: 80)
+                .background(RoundedRectangle(cornerRadius: 30).fill(.ultraThinMaterial))
+                .shadow(color: .black.opacity(0.15), radius: 10)
+                .padding(.trailing, 105)
+                .padding(.bottom, 120) // Positioned above the Size button
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                 .transition(.asymmetric(
                     insertion: .move(edge: .trailing).combined(with: .opacity),
@@ -374,6 +484,9 @@ struct CategoryIcon: View {
         case "Ink": return "fountainpen.tip"
         case "Maquillage": return "face.smiling"
         case "Shine": return "sparkles"
+        case "Magic": return "magicmouse"
+        case "Patterns": return "circle.grid.2x2.fill"
+        case "Stickers": return "face.smiling.fill"
         case "Mélangeur": return "circle.dotted.circle"
         default: return "square.grid.2x2"
         }

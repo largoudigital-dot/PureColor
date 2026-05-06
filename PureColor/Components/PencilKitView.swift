@@ -3,14 +3,36 @@ import PencilKit
 
 struct PencilKitView: UIViewRepresentable {
     @Binding var canvasView: PKCanvasView
-    
+    var onDrawingBegan: (() -> Void)? = nil
+
     func makeUIView(context: Context) -> PKCanvasView {
+        canvasView.delegate = context.coordinator
         canvasView.drawingPolicy = .anyInput
-        canvasView.tool = PKInkingTool(.pencil, color: .black, width: 5)
-        canvasView.backgroundColor = .clear
-        canvasView.isOpaque = false
         return canvasView
     }
-    
-    func updateUIView(_ uiView: PKCanvasView, context: Context) {}
+
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+        uiView.delegate = context.coordinator
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, PKCanvasViewDelegate {
+        var parent: PencilKitView
+
+        init(_ parent: PencilKitView) {
+            self.parent = parent
+        }
+
+        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+            // Optional: Handle drawing changes
+        }
+        
+        func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
+            // This is called when the user starts drawing
+            parent.onDrawingBegan?()
+        }
+    }
 }
