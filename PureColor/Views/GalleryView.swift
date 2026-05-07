@@ -30,7 +30,16 @@ struct GalleryView: View {
                     } else {
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(profileArtworks) { artwork in
-                                ArtworkCard(artwork: artwork)
+                                if let category = mockCategories.first(where: { $0.name == artwork.categoryName }),
+                                   let drawing = category.drawings.first(where: { $0.imageName == artwork.drawingItemName }) {
+                                    NavigationLink {
+                                        ColoringCanvasView(category: category, drawingItem: drawing, existingArtwork: artwork)
+                                    } label: {
+                                        ArtworkCard(artwork: artwork)
+                                    }
+                                } else {
+                                    ArtworkCard(artwork: artwork)
+                                }
                             }
                         }
                         .padding(20)

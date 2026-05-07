@@ -6,8 +6,16 @@ struct PencilKitView: UIViewRepresentable {
     var onDrawingBegan: (() -> Void)? = nil
 
     func makeUIView(context: Context) -> PKCanvasView {
-        canvasView.delegate = context.coordinator
         canvasView.drawingPolicy = .anyInput
+        canvasView.delegate = context.coordinator
+        canvasView.isOpaque = false
+        canvasView.backgroundColor = .clear
+        
+        // Enable Zooming
+        canvasView.minimumZoomScale = 1.0
+        canvasView.maximumZoomScale = 5.0
+        canvasView.zoomScale = 1.0
+        
         return canvasView
     }
 
