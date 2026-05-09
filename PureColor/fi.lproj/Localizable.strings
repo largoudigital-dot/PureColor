@@ -124,3 +124,9 @@
 "Happy" = "Iloinen";
 "Animal" = "Eläin";
 "Star" = "Tähti";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "Lopeta piirtäminen?";
+"Yes" = "Kyllä";
+"No" = "Ei";

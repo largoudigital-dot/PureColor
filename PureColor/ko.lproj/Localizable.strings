@@ -124,3 +124,9 @@
 "Happy" = "행복";
 "Animal" = "동물";
 "Star" = "별";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "그림 그리기를 종료할까요?";
+"Yes" = "네";
+"No" = "아니요";

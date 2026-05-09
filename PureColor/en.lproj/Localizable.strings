@@ -126,3 +126,9 @@
 "Animal" = "Animal";
 "Star" = "Star";
 "Happy" = "Happy";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "Exit drawing?";
+"Yes" = "Yes";
+"No" = "No";

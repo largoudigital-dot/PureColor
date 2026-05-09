@@ -23,6 +23,7 @@ struct ColoringCanvasView: View {
     
     // UI State
     @State private var showSizePanel = false
+    @State private var showExitConfirmation = false
     
     // Age-based Config
     private var ageConfig: AgeGroupConfig {
@@ -121,6 +122,7 @@ struct ColoringCanvasView: View {
             // --- OVERLAYS ---
             colorPickerOverlay
             sizePickerOverlay
+            exitConfirmationOverlay
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
@@ -155,7 +157,9 @@ struct ColoringCanvasView: View {
                 // EXIT & AUTO-SAVE
                 HeaderCircleButton(icon: "xmark", color: .red, size: bSize) {
                     AudioManager.shared.playPop()
-                    saveAndExit()
+                    withAnimation(.spring()) {
+                        showExitConfirmation = true
+                    }
                 }
                 
                 Divider().frame(width: 25).background(Color.white.opacity(0.3))
@@ -354,6 +358,76 @@ struct ColoringCanvasView: View {
     }
     
 
+    
+    @ViewBuilder
+    private var exitConfirmationOverlay: some View {
+        if showExitConfirmation {
+            ZStack {
+                Color.black.opacity(0.4)
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture { withAnimation { showExitConfirmation = false } }
+                
+                VStack(spacing: 30) {
+                    Text(LocalizedStringKey("Exit drawing?"))
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                    
+                    HStack(spacing: 50) {
+                        // NO (STAY)
+                        Button {
+                            AudioManager.shared.playPop()
+                            withAnimation(.spring()) { showExitConfirmation = false }
+                        } label: {
+                            VStack(spacing: 10) {
+                                ZStack {
+                                    Circle().fill(Color.white).frame(width: 100, height: 100)
+                                    Image(systemName: "xmark.circle.fill")
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundColor(.red)
+                                }
+                                .shadow(color: .black.opacity(0.2), radius: 10)
+                                
+                                Text(LocalizedStringKey("No"))
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        
+                        // YES (SAVE & EXIT)
+                        Button {
+                            AudioManager.shared.playSuccess()
+                            saveAndExit()
+                        } label: {
+                            VStack(spacing: 10) {
+                                ZStack {
+                                    Circle().fill(Color.white).frame(width: 100, height: 100)
+                                    Image(systemName: "face.smiling.fill")
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundColor(.green)
+                                }
+                                .shadow(color: .black.opacity(0.2), radius: 10)
+                                
+                                Text(LocalizedStringKey("Yes"))
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
+                }
+                .padding(40)
+                .background(
+                    RoundedRectangle(cornerRadius: 40)
+                        .fill(.ultraThinMaterial)
+                        .overlay(RoundedRectangle(cornerRadius: 40).stroke(Color.white.opacity(0.3), lineWidth: 2))
+                )
+                .padding(20)
+                .transition(.scale.combined(with: .opacity))
+            }
+        }
+    }
     
     @ViewBuilder
     private var colorPickerOverlay: some View {

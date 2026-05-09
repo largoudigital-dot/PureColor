@@ -124,3 +124,9 @@
 "Happy" = "ハッピー";
 "Animal" = "アニマル";
 "Star" = "スター";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "お絵かきを終了しますか？";
+"Yes" = "はい";
+"No" = "いいえ";

@@ -124,3 +124,9 @@
 "Happy" = "Senang";
 "Animal" = "Hewan";
 "Star" = "Bintang";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "Keluar dari menggambar?";
+"Yes" = "Ya";
+"No" = "Tidak";

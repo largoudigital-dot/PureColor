@@ -126,3 +126,9 @@
 "Animal" = "حيوان";
 "Star" = "نجمة";
 "Happy" = "سعيد";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "هل تريد الخروج؟";
+"Yes" = "نعم";
+"No" = "لا";

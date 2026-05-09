@@ -124,3 +124,9 @@
 "Happy" = "खुश";
 "Animal" = "जानवर";
 "Star" = "सितारा";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "ड्राइंग से बाहर निकलें?";
+"Yes" = "हाँ";
+"No" = "नहीं";

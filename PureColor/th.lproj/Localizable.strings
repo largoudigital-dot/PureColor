@@ -124,3 +124,9 @@
 "Happy" = "มีความสุข";
 "Animal" = "สัตว์";
 "Star" = "ดาว";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "ออกจากหน้าวาดภาพ?";
+"Yes" = "ใช่";
+"No" = "ไม่ใช่";

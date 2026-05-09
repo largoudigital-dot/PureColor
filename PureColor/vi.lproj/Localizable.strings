@@ -124,3 +124,9 @@
 "Happy" = "Vui vẻ";
 "Animal" = "Động vật";
 "Star" = "Ngôi sao";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "Thoát vẽ?";
+"Yes" = "Có";
+"No" = "Không";

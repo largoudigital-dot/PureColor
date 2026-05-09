@@ -126,3 +126,9 @@
 "Animal" = "动物";
 "Star" = "星星";
 "Happy" = "开心";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "退出绘画？";
+"Yes" = "是";
+"No" = "否";

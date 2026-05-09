@@ -126,3 +126,9 @@
 "Animal" = "Animal";
 "Star" = "Étoile";
 "Happy" = "Heureux";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "Quitter le dessin ?";
+"Yes" = "Oui";
+"No" = "Non";

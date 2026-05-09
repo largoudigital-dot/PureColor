@@ -124,3 +124,9 @@
 "Happy" = "Mutlu";
 "Animal" = "Hayvan";
 "Star" = "Yıldız";
+
+
+/* Exit Confirmation */
+"Exit drawing?" = "Çizimden çıkılsın mı?";
+"Yes" = "Evet";
+"No" = "Hayır";
