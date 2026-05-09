@@ -18,11 +18,11 @@ struct CategoryCard: View {
             }
             
             VStack(spacing: 4) {
-                Text(category.name)
+                Text(LocalizedStringKey(category.name))
                     .font(.system(size: 20, weight: .heavy, design: .rounded))
                     .foregroundColor(.primary)
                 
-                Text("\(category.drawings.count) Pages")
+                Text(String(format: NSLocalizedString("%lld Pages", comment: ""), category.drawings.count))
                     .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundColor(.secondary)
             }

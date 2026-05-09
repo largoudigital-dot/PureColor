@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "アプリ設定";
+"Language" = "言語";
+"Sound Effects" = "効果音";
+"Background Music" = "背景音楽";
+"Support" = "サポート";
+"Privacy Policy" = "プライバシーポリシー";
+"Terms of Use" = "利用規約";
+"Done" = "完了";
+"Time is Up!" = "時間切れです！";
+"Ask your parents to unlock more time." = "保護者の方に時間を延長してもらってください。";
+"Parent Password (e.g., 1234)" = "保護者用パスワード（例：1234）";
+"Incorrect password" = "パスワードが違います";
+"Unlock App" = "アプリを解除";
+"Create Artist Profile" = "アーティストプロフィールを作成";
+"Hello, %@!" = "こんにちは、%@さん！";
+"TAP TO PLAY" = "タップして遊ぶ";
+"Switch Profile" = "プロフィールを切り替え";
+"Who is coloring?" = "誰がぬりえをしますか？";
+"Daily Prize!" = "デイリー賞品！";
+"You earned 5 Stars!" = "星を5つ獲得しました！";
+"Collect" = "受け取る";
+"Set Screen Time" = "スクリーンタイムを設定";
+"HOUR" = "時間";
+"MIN" = "分";
+"Turn Off" = "オフにする";
+"Time to Rest!" = "休憩の時間です！";
+"Parents Only" = "保護者のみ";
+"Choose Your Hero!" = "ヒーローを選ぼう！";
+"How old are you?" = "何歳ですか？";
+"START COLORING!" = "ぬりえを始める！";
+"TAP THE BOX!" = "ボックスをタップ！";
+"YOU GOT A STICKER!" = "ステッカーをゲットしたよ！";
+"Cool!" = "すごい！";
+
+/* Categories */
+"Big Shapes" = "大きな形";
+"My Pets" = "ペット";
+"Faces & Feelings" = "かおと気持ち";
+"Vehicles" = "のりもの";
+"Fruits" = "くだもの";
+"Numbers 1-5" = "すうじ 1-5";
+"Hero World" = "ヒーローの世界";
+"Jungle" = "ジャングル";
+"ABC's" = "ABC";
+"Unicorns" = "ユニコーン";
+"Sweet Shop" = "お菓子屋さん";
+"Space" = "宇宙";
+"Cyber City" = "サイバーシティ";
+"Mandalas" = "マンダラ";
+"Nature Scenery" = "自然の景色";
+"Architecture" = "建築";
+
+/* Age Groups */
+"2-4 Years" = "2-4歳";
+"5-7 Years" = "5-7歳";
+"8+ Years" = "8歳以上";
+"Easy Play" = "かんたん";
+"Creative" = "クリエイティブ";
+"Artist" = "アーティスト";
+
+/* Tools */
+"Pen" = "ペン";
+"Pencil" = "鉛筆";
+"Marker" = "マーカー";
+"Watercolor" = "水彩";
+"Splatter" = "スプラッター";
+"Oil" = "油彩";
+"Flat Brush" = "平筆";
+"Smooth Hair" = "さらさらヘア";
+"Fuzzy Fur" = "ふわふわの毛";
+"Cozy Coat" = "あったかコート";
+"Ink" = "インク";
+"Spray" = "スプレー";
+"Foundation" = "ファンデーション";
+"Blush" = "チーク";
+"Sparkle" = "スパークル";
+"Glitter" = "グリッター";
+"Plasma" = "プラズマ";
+"Laser" = "レーザー";
+"Nebula" = "ネビュラ";
+"Rainbow" = "レインボー";
+"Fill" = "塗りつぶし";
+"Hearts" = "ハート";
+"Stars" = "スター";
+"Dots" = "ドット";
+"Smiley" = "ニコちゃん";
+"Animal" = "アニマル";
+"Gift" = "ギフト";
+"Blender" = "ブレンダー";
+"Mixer" = "ミキサー";
+
+/* Categories (Tools) */
+"Basic" = "基本";
+"Sketch" = "スケッチ";
+"Paint" = "ペイント";
+"Maquillage" = "メイク";
+"Shine" = "シャイン";
+"Magic" = "マジック";
+"Patterns" = "パターン";
+"Stickers" = "ステッカー";
+"Mélangeur" = "ミキサー";
+"Eraser" = "消しゴム";
+
+/* Common UI */
+"Colors" = "カラー";
+"Size" = "サイズ";
+"Solve to continue" = "続けるには問題を解いてください";
+"Cancel" = "キャンセル";
+"Close" = "閉じる";
+"My Gallery" = "ギャラリー";
+"Your gallery is empty.\nStart coloring to see your art here!" = "ギャラリーは空です。\n色塗りを始めて、あなたの作品をここに表示しましょう！";
+"%lld Pages" = "%lld ページ";
+
+/* Avatars */
+"Super Hero" = "スーパーヒーロー";
+"Princess" = "プリンセス";
+"Robot" = "ロボット";
+"Happy" = "ハッピー";
+"Animal" = "アニマル";
+"Star" = "スター";

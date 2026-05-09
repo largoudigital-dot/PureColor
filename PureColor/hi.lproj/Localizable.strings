@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "ऐप सेटिंग्स";
+"Language" = "भाषा";
+"Sound Effects" = "ध्वनि प्रभाव";
+"Background Music" = "पृष्ठभूमि संगीत";
+"Support" = "सहायता";
+"Privacy Policy" = "गोपनीयता नीति";
+"Terms of Use" = "उपयोग की शर्तें";
+"Done" = "हो गया";
+"Time is Up!" = "समय समाप्त!";
+"Ask your parents to unlock more time." = "अधिक समय के लिए अपने माता-पिता से पूछें।";
+"Parent Password (e.g., 1234)" = "माता-पिता का पासवर्ड (उदा. 1234)";
+"Incorrect password" = "गलत पासवर्ड";
+"Unlock App" = "ऐप अनलॉक करें";
+"Create Artist Profile" = "कलाकार प्रोफाइल बनाएं";
+"Hello, %@!" = "नमस्ते, %@!";
+"TAP TO PLAY" = "खेलने के लिए टैप करें";
+"Switch Profile" = "प्रोफ़ाइल बदलें";
+"Who is coloring?" = "कौन रंग भर रहा है?";
+"Daily Prize!" = "दैनिक पुरस्कार!";
+"You earned 5 Stars!" = "आपने 5 सितारे जीते!";
+"Collect" = "इकट्ठा करें";
+"Set Screen Time" = "स्क्रीन समय सेट करें";
+"HOUR" = "घंटा";
+"MIN" = "मिनट";
+"Turn Off" = "बंद करें";
+"Time to Rest!" = "आराम करने का समय!";
+"Parents Only" = "केवल माता-पिता के लिए";
+"Choose Your Hero!" = "अपना हीरो चुनें!";
+"How old are you?" = "आपकी उम्र क्या है?";
+"START COLORING!" = "रंग भरना शुरू करें!";
+"TAP THE BOX!" = "डिब्बे पर टैप करें!";
+"YOU GOT A STICKER!" = "आपको एक स्टिकर मिला!";
+"Cool!" = "बहुत बढ़िया!";
+
+/* Categories */
+"Big Shapes" = "बड़ी आकृतियाँ";
+"My Pets" = "मेरे पालतू जानवर";
+"Faces & Feelings" = "चेहरे और भावनाएं";
+"Vehicles" = "वाहन";
+"Fruits" = "फल";
+"Numbers 1-5" = "नंबर 1-5";
+"Hero World" = "हीरो की दुनिया";
+"Jungle" = "जंगल";
+"ABC's" = "एबीसी";
+"Unicorns" = "यूनीकॉर्न";
+"Sweet Shop" = "मिठाई की दुकान";
+"Space" = "अंतरिक्ष";
+"Cyber City" = "साइबर सिटी";
+"Mandalas" = "मंडला";
+"Nature Scenery" = "प्राकृतिक दृश्य";
+"Architecture" = "वास्तुकला";
+
+/* Age Groups */
+"2-4 Years" = "2-4 साल";
+"5-7 Years" = "5-7 साल";
+"8+ Years" = "8+ साल";
+"Easy Play" = "आसान खेल";
+"Creative" = "रचनात्मक";
+"Artist" = "कलाकार";
+
+/* Tools */
+"Pen" = "पेन";
+"Pencil" = "पेंसिल";
+"Marker" = "मार्कर";
+"Watercolor" = "जल रंग";
+"Splatter" = "छींटे";
+"Oil" = "तैल रंग";
+"Flat Brush" = "फ्लैट ब्रश";
+"Smooth Hair" = "मुलायम बाल";
+"Fuzzy Fur" = "रोएंदार फर";
+"Cozy Coat" = "आरामदायक कोट";
+"Ink" = "स्याही";
+"Spray" = "स्प्रे";
+"Foundation" = "फाउंडेशन";
+"Blush" = "ब्लश";
+"Sparkle" = "चमक";
+"Glitter" = "ग्लिटर";
+"Plasma" = "प्लाज्मा";
+"Laser" = "लेजर";
+"Nebula" = "नेबुला";
+"Rainbow" = "इंद्रधनुष";
+"Fill" = "रंग भरें";
+"Hearts" = "दिल";
+"Stars" = "सितारे";
+"Dots" = "बिंदु";
+"Smiley" = "स्माइली";
+"Animal" = "जानवर";
+"Gift" = "उपहार";
+"Blender" = "ब्लेंडर";
+"Mixer" = "मिक्सर";
+
+/* Categories (Tools) */
+"Basic" = "बुनियादी";
+"Sketch" = "स्केच";
+"Paint" = "पेंट";
+"Maquillage" = "मेकअप";
+"Shine" = "चमक";
+"Magic" = "जादू";
+"Patterns" = "पैटर्न";
+"Stickers" = "स्टिकर";
+"Mélangeur" = "मिक्सर";
+"Eraser" = "इरेज़र";
+
+/* Common UI */
+"Colors" = "रंग";
+"Size" = "आकार";
+"Solve to continue" = "जारी रखने के लिए हल करें";
+"Cancel" = "रद्द करें";
+"Close" = "बंद करें";
+"My Gallery" = "मेरी गैलरी";
+"Your gallery is empty.\nStart coloring to see your art here!" = "आपकी गैलरी खाली है।\nअपनी कला यहाँ देखने के लिए रंग भरना शुरू करें!";
+"%lld Pages" = "%lld पेज";
+
+/* Avatars */
+"Super Hero" = "सुपर हीरो";
+"Princess" = "राजकुमारी";
+"Robot" = "रोबोट";
+"Happy" = "खुश";
+"Animal" = "जानवर";
+"Star" = "सितारा";

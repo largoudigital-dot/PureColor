@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "ตั้งค่าแอป";
+"Language" = "ภาษา";
+"Sound Effects" = "เสียงเอฟเฟกต์";
+"Background Music" = "เพลงประกอบ";
+"Support" = "ช่วยเหลือ";
+"Privacy Policy" = "นโยบายความเป็นส่วนตัว";
+"Terms of Use" = "ข้อกำหนดการใช้งาน";
+"Done" = "เสร็จสิ้น";
+"Time is Up!" = "หมดเวลาแล้ว!";
+"Ask your parents to unlock more time." = "บอกคุณพ่อคุณแม่ให้เพิ่มเวลา";
+"Parent Password (e.g., 1234)" = "รหัสผ่านผู้ปกครอง (เช่น 1234)";
+"Incorrect password" = "รหัสผ่านไม่ถูกต้อง";
+"Unlock App" = "ปลดล็อกแอป";
+"Create Artist Profile" = "สร้างโปรไฟล์ศิลปิน";
+"Hello, %@!" = "สวัสดี %@!";
+"TAP TO PLAY" = "แตะเพื่อเล่น";
+"Switch Profile" = "เปลี่ยนโปรไฟล์";
+"Who is coloring?" = "ใครกำลังระบายสีอยู่?";
+"Daily Prize!" = "รางวัลประจำวัน!";
+"You earned 5 Stars!" = "คุณได้รับ 5 ดาว!";
+"Collect" = "สะสม";
+"Set Screen Time" = "ตั้งเวลาหน้าจอ";
+"HOUR" = "ชั่วโมง";
+"MIN" = "นาที";
+"Turn Off" = "ปิด";
+"Time to Rest!" = "ได้เวลาพักผ่อนแล้ว!";
+"Parents Only" = "สำหรับผู้ปกครองเท่านั้น";
+"Choose Your Hero!" = "เลือกฮีโร่ของคุณ!";
+"How old are you?" = "คุณอายุเท่าไหร่?";
+"START COLORING!" = "เริ่มระบายสี!";
+"TAP THE BOX!" = "แตะที่กล่อง!";
+"YOU GOT A STICKER!" = "คุณได้รับสติกเกอร์!";
+"Cool!" = "เจ๋งไปเลย!";
+
+/* Categories */
+"Big Shapes" = "รูปทรงขนาดใหญ่";
+"My Pets" = "สัตว์เลี้ยงของฉัน";
+"Faces & Feelings" = "ใบหน้าและความรู้สึก";
+"Vehicles" = "ยานพาหนะ";
+"Fruits" = "ผลไม้";
+"Numbers 1-5" = "ตัวเลข 1-5";
+"Hero World" = "โลกฮีโร่";
+"Jungle" = "ป่า";
+"ABC's" = "ตัวอักษร ABC";
+"Unicorns" = "ยูนิคอร์น";
+"Sweet Shop" = "ร้านขนมหวาน";
+"Space" = "อวกาศ";
+"Cyber City" = "ไซเบอร์ซิตี้";
+"Mandalas" = "แมนดาลา";
+"Nature Scenery" = "ทิวทัศน์ธรรมชาติ";
+"Architecture" = "สถาปัตยกรรม";
+
+/* Age Groups */
+"2-4 Years" = "2-4 ปี";
+"5-7 Years" = "5-7 ปี";
+"8+ Years" = "8 ปีขึ้นไป";
+"Easy Play" = "เล่นง่าย";
+"Creative" = "สร้างสรรค์";
+"Artist" = "ศิลปิน";
+
+/* Tools */
+"Pen" = "ปากกา";
+"Pencil" = "ดินสอ";
+"Marker" = "ปากกาเมจิก";
+"Watercolor" = "สีน้ำ";
+"Splatter" = "สีสาด";
+"Oil" = "สีน้ำมัน";
+"Flat Brush" = "แปรงแบน";
+"Smooth Hair" = "ผมเรียบ";
+"Fuzzy Fur" = "ขนฟู";
+"Cozy Coat" = "ขนหนานุ่ม";
+"Ink" = "หมึก";
+"Spray" = "สเปรย์";
+"Foundation" = "รองพื้น";
+"Blush" = "บลัชออน";
+"Sparkle" = "ประกาย";
+"Glitter" = "กลิตเตอร์";
+"Plasma" = "พลาสมา";
+"Laser" = "เลเซอร์";
+"Nebula" = "เนบิวลา";
+"Rainbow" = "สายรุ้ง";
+"Fill" = "เติมสี";
+"Hearts" = "หัวใจ";
+"Stars" = "ดาว";
+"Dots" = "จุด";
+"Smiley" = "ยิ้ม";
+"Animal" = "สัตว์";
+"Gift" = "ของขวัญ";
+"Blender" = "เครื่องปั่น";
+"Mixer" = "เครื่องผสม";
+
+/* Categories (Tools) */
+"Basic" = "พื้นฐาน";
+"Sketch" = "สเก็ตช์";
+"Paint" = "ระบายสี";
+"Maquillage" = "แต่งหน้า";
+"Shine" = "แวววาว";
+"Magic" = "เวทมนตร์";
+"Patterns" = "ลวดลาย";
+"Stickers" = "สติกเกอร์";
+"Mélangeur" = "เครื่องผสม";
+"Eraser" = "ยางลบ";
+
+/* Common UI */
+"Colors" = "สี";
+"Size" = "ขนาด";
+"Solve to continue" = "แก้โจทย์เพื่อไปต่อ";
+"Cancel" = "ยกเลิก";
+"Close" = "ปิด";
+"My Gallery" = "แกลเลอรีของฉัน";
+"Your gallery is empty.\nStart coloring to see your art here!" = "แกลเลอรีของคุณว่างเปล่า\nเริ่มระบายสีเพื่อดูผลงานของคุณที่นี่!";
+"%lld Pages" = "%lld หน้า";
+
+/* Avatars */
+"Super Hero" = "ซูเปอร์ฮีโร่";
+"Princess" = "เจ้าหญิง";
+"Robot" = "หุ่นยนต์";
+"Happy" = "มีความสุข";
+"Animal" = "สัตว์";
+"Star" = "ดาว";

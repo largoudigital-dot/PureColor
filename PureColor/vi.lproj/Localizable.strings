@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "Cài đặt ứng dụng";
+"Language" = "Ngôn ngữ";
+"Sound Effects" = "Hiệu ứng âm thanh";
+"Background Music" = "Nhạc nền";
+"Support" = "Hỗ trợ";
+"Privacy Policy" = "Chính sách bảo mật";
+"Terms of Use" = "Điều khoản sử dụng";
+"Done" = "Xong";
+"Time is Up!" = "Hết giờ rồi!";
+"Ask your parents to unlock more time." = "Nhờ ba mẹ mở thêm thời gian nhé.";
+"Parent Password (e.g., 1234)" = "Mật khẩu phụ huynh (vd: 1234)";
+"Incorrect password" = "Mật khẩu không đúng";
+"Unlock App" = "Mở khóa ứng dụng";
+"Create Artist Profile" = "Tạo hồ sơ nghệ sĩ";
+"Hello, %@!" = "Xin chào, %@!";
+"TAP TO PLAY" = "CHẠM ĐỂ CHƠI";
+"Switch Profile" = "Đổi hồ sơ";
+"Who is coloring?" = "Ai đang tô màu thế?";
+"Daily Prize!" = "Quà tặng hàng ngày!";
+"You earned 5 Stars!" = "Bạn đã nhận được 5 sao!";
+"Collect" = "Nhận quà";
+"Set Screen Time" = "Cài đặt thời gian";
+"HOUR" = "GIỜ";
+"MIN" = "PHÚT";
+"Turn Off" = "Tắt";
+"Time to Rest!" = "Đến giờ nghỉ ngơi rồi!";
+"Parents Only" = "Chỉ dành cho phụ huynh";
+"Choose Your Hero!" = "Chọn anh hùng của bạn!";
+"How old are you?" = "Bạn bao nhiêu tuổi?";
+"START COLORING!" = "BẮT ĐẦU TÔ MÀU!";
+"TAP THE BOX!" = "CHẠM VÀO HỘP!";
+"YOU GOT A STICKER!" = "BẠN ĐÃ NHẬN ĐƯỢC NHÃN DÁN!";
+"Cool!" = "Tuyệt quá!";
+
+/* Categories */
+"Big Shapes" = "Hình khối lớn";
+"My Pets" = "Thú cưng của tôi";
+"Faces & Feelings" = "Khuôn mặt & Cảm xúc";
+"Vehicles" = "Phương tiện";
+"Fruits" = "Trái cây";
+"Numbers 1-5" = "Chữ số 1-5";
+"Hero World" = "Thế giới anh hùng";
+"Jungle" = "Rừng xanh";
+"ABC's" = "Bảng chữ cái";
+"Unicorns" = "Kỳ lân";
+"Sweet Shop" = "Tiệm bánh ngọt";
+"Space" = "Không gian";
+"Cyber City" = "Thành phố Cyber";
+"Mandalas" = "Mandalas";
+"Nature Scenery" = "Phong cảnh thiên nhiên";
+"Architecture" = "Kiến trúc";
+
+/* Age Groups */
+"2-4 Years" = "2-4 tuổi";
+"5-7 Years" = "5-7 tuổi";
+"8+ Years" = "Trên 8 tuổi";
+"Easy Play" = "Dễ chơi";
+"Creative" = "Sáng tạo";
+"Artist" = "Nghệ sĩ";
+
+/* Tools */
+"Pen" = "Bút bi";
+"Pencil" = "Bút chì";
+"Marker" = "Bút dạ";
+"Watercolor" = "Màu nước";
+"Splatter" = "Vết mực rơi";
+"Oil" = "Sơn dầu";
+"Flat Brush" = "Cọ bẹt";
+"Smooth Hair" = "Tóc mượt";
+"Fuzzy Fur" = "Lông xù";
+"Cozy Coat" = "Lớp phủ ấm áp";
+"Ink" = "Mực";
+"Spray" = "Bình xịt";
+"Foundation" = "Kem nền";
+"Blush" = "Phấn hồng";
+"Sparkle" = "Lấp lánh";
+"Glitter" = "Kim tuyến";
+"Plasma" = "Plasma";
+"Laser" = "Laser";
+"Nebula" = "Tinh vân";
+"Rainbow" = "Cầu vồng";
+"Fill" = "Tô màu";
+"Hearts" = "Trái tim";
+"Stars" = "Ngôi sao";
+"Dots" = "Chấm tròn";
+"Smiley" = "Mặt cười";
+"Animal" = "Động vật";
+"Gift" = "Quà tặng";
+"Blender" = "Máy xay";
+"Mixer" = "Máy trộn";
+
+/* Categories (Tools) */
+"Basic" = "Cơ bản";
+"Sketch" = "Phác thảo";
+"Paint" = "Tô màu";
+"Maquillage" = "Trang điểm";
+"Shine" = "Tỏa sáng";
+"Magic" = "Thần kỳ";
+"Patterns" = "Hoa văn";
+"Stickers" = "Nhãn dán";
+"Mélangeur" = "Máy trộn";
+"Eraser" = "Cục tẩy";
+
+/* Common UI */
+"Colors" = "Màu sắc";
+"Size" = "Kích thước";
+"Solve to continue" = "Giải toán để tiếp tục";
+"Cancel" = "Hủy bỏ";
+"Close" = "Đóng";
+"My Gallery" = "Bộ sưu tập của tôi";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Bộ sưu tập đang trống.\nHãy bắt đầu tô màu để xem tác phẩm ở đây nhé!";
+"%lld Pages" = "%lld Trang";
+
+/* Avatars */
+"Super Hero" = "Siêu anh hùng";
+"Princess" = "Công chúa";
+"Robot" = "Người máy";
+"Happy" = "Vui vẻ";
+"Animal" = "Động vật";
+"Star" = "Ngôi sao";

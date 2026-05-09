@@ -22,7 +22,7 @@ struct GalleryView: View {
                             Image(systemName: "paintbrush.fill")
                                 .font(.system(size: 60))
                                 .foregroundColor(.white.opacity(0.2))
-                            Text("Your gallery is empty.\nStart coloring to see your art here!")
+                            Text(LocalizedStringKey("Your gallery is empty.\nStart coloring to see your art here!"))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.white.opacity(0.5))
                         }
@@ -46,11 +46,11 @@ struct GalleryView: View {
                     }
                 }
             }
-            .navigationTitle("My Gallery")
+            .navigationTitle(LocalizedStringKey("My Gallery"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") { dismiss() }
+                    Button(LocalizedStringKey("Close")) { dismiss() }
                         .foregroundColor(.white)
                 }
             }
@@ -78,7 +78,7 @@ struct ArtworkCard: View {
                     .cornerRadius(15)
             }
             
-            Text(artwork.categoryName)
+            Text(LocalizedStringKey(artwork.categoryName))
                 .font(.caption.bold())
                 .foregroundColor(.white)
             Text(artwork.date, style: .date)

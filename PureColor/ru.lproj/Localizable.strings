@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "Настройки приложения";
+"Language" = "Язык";
+"Sound Effects" = "Звуковые эффекты";
+"Background Music" = "Фоновая музыка";
+"Support" = "Поддержка";
+"Privacy Policy" = "Политика конфиденциальности";
+"Terms of Use" = "Условия использования";
+"Done" = "Готово";
+"Time is Up!" = "Время вышло!";
+"Ask your parents to unlock more time." = "Попросите родителей добавить время.";
+"Parent Password (e.g., 1234)" = "Пароль родителя (напр., 1234)";
+"Incorrect password" = "Неверный пароль";
+"Unlock App" = "Разблокировать";
+"Create Artist Profile" = "Создать профиль";
+"Hello, %@!" = "Привет, %@!";
+"TAP TO PLAY" = "НАЖМИ, ЧТОБЫ ИГРАТЬ";
+"Switch Profile" = "Сменить профиль";
+"Who is coloring?" = "Кто рисует?";
+"Daily Prize!" = "Ежедневный приз!";
+"You earned 5 Stars!" = "Вы заработали 5 звезд!";
+"Collect" = "Забрать";
+"Set Screen Time" = "Экранное время";
+"HOUR" = "ЧАС";
+"MIN" = "МИН";
+"Turn Off" = "Выключить";
+"Time to Rest!" = "Пора отдыхать!";
+"Parents Only" = "Только для родителей";
+"Choose Your Hero!" = "Выбери героя!";
+"How old are you?" = "Сколько тебе лет?";
+"START COLORING!" = "НАЧАТЬ РРИСОВАТЬ!";
+"TAP THE BOX!" = "НАЖМИ НА КОРОБКУ!";
+"YOU GOT A STICKER!" = "ТЫ ПОЛУЧИЛ СТИКЕР!";
+"Cool!" = "Круто!";
+
+/* Categories */
+"Big Shapes" = "Большие фигуры";
+"My Pets" = "Мои питомцы";
+"Faces & Feelings" = "Лица и эмоции";
+"Vehicles" = "Транспорт";
+"Fruits" = "Фрукты";
+"Numbers 1-5" = "Цифры 1-5";
+"Hero World" = "Мир героев";
+"Jungle" = "Джунгли";
+"ABC's" = "Алфавит";
+"Unicorns" = "Единороги";
+"Sweet Shop" = "Магазин сладостей";
+"Space" = "Космос";
+"Cyber City" = "Кибергород";
+"Mandalas" = "Мандалы";
+"Nature Scenery" = "Природа";
+"Architecture" = "Архитектура";
+
+/* Age Groups */
+"2-4 Years" = "2-4 года";
+"5-7 Years" = "5-7 лет";
+"8+ Years" = "8+ лет";
+"Easy Play" = "Легко";
+"Creative" = "Творчество";
+"Artist" = "Художник";
+
+/* Tools */
+"Pen" = "Ручка";
+"Pencil" = "Карандаш";
+"Marker" = "Маркер";
+"Watercolor" = "Акварель";
+"Splatter" = "Брызги";
+"Oil" = "Масло";
+"Flat Brush" = "Плоская кисть";
+"Smooth Hair" = "Гладкие волосы";
+"Fuzzy Fur" = "Пушистый мех";
+"Cozy Coat" = "Уютная шубка";
+"Ink" = "Тушь";
+"Spray" = "Спрей";
+"Foundation" = "Основа";
+"Blush" = "Румяна";
+"Sparkle" = "Искры";
+"Glitter" = "Блестки";
+"Plasma" = "Плазма";
+"Laser" = "Лазер";
+"Nebula" = "Туманность";
+"Rainbow" = "Радуга";
+"Fill" = "Заливка";
+"Hearts" = "Сердечки";
+"Stars" = "Звезды";
+"Dots" = "Точки";
+"Smiley" = "Смайлик";
+"Animal" = "Животное";
+"Gift" = "Подарок";
+"Blender" = "Блендер";
+"Mixer" = "Миксер";
+
+/* Categories (Tools) */
+"Basic" = "Базовые";
+"Sketch" = "Набросок";
+"Paint" = "Краски";
+"Maquillage" = "Макияж";
+"Shine" = "Сияние";
+"Magic" = "Магия";
+"Patterns" = "Узоры";
+"Stickers" = "Стикеры";
+"Mélangeur" = "Миксер";
+"Eraser" = "Ластик";
+
+/* Common UI */
+"Colors" = "Цвета";
+"Size" = "Размер";
+"Solve to continue" = "Решите, чтобы продолжить";
+"Cancel" = "Отмена";
+"Close" = "Закрыть";
+"My Gallery" = "Моя галерея";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Ваша галерея пуста.\nНачните раскрашивать, чтобы увидеть свои работы здесь!";
+"%lld Pages" = "%lld Страниц";
+
+/* Avatars */
+"Super Hero" = "Супергерой";
+"Princess" = "Принцесса";
+"Robot" = "Робот";
+"Happy" = "Счастье";
+"Animal" = "Животное";
+"Star" = "Звезда";

@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "앱 설정";
+"Language" = "언어";
+"Sound Effects" = "효과음";
+"Background Music" = "배경 음악";
+"Support" = "지원";
+"Privacy Policy" = "개인정보 처리방침";
+"Terms of Use" = "이용 약관";
+"Done" = "완료";
+"Time is Up!" = "시간이 다 되었습니다!";
+"Ask your parents to unlock more time." = "부모님께 시간을 더 늘려달라고 요청하세요.";
+"Parent Password (e.g., 1234)" = "부모님용 비밀번호(예: 1234)";
+"Incorrect password" = "비밀번호가 틀렸습니다";
+"Unlock App" = "앱 잠금 해제";
+"Create Artist Profile" = "아티스트 프로필 생성";
+"Hello, %@!" = "안녕하세요, %@님!";
+"TAP TO PLAY" = "탭하여 플레이";
+"Switch Profile" = "프로필 전환";
+"Who is coloring?" = "누가 색칠하나요?";
+"Daily Prize!" = "일일 보상!";
+"You earned 5 Stars!" = "별 5개를 획득했습니다!";
+"Collect" = "받기";
+"Set Screen Time" = "스크린 타임 설정";
+"HOUR" = "시간";
+"MIN" = "분";
+"Turn Off" = "끄기";
+"Time to Rest!" = "휴식 시간입니다!";
+"Parents Only" = "부모님 전용";
+"Choose Your Hero!" = "영웅을 선택하세요!";
+"How old are you?" = "몇 살인가요?";
+"START COLORING!" = "색칠 시작하기!";
+"TAP THE BOX!" = "상자를 탭하세요!";
+"YOU GOT A STICKER!" = "스티커를 얻었습니다!";
+"Cool!" = "멋져요!";
+
+/* Categories */
+"Big Shapes" = "큰 모양";
+"My Pets" = "내 반려동물";
+"Faces & Feelings" = "얼굴과 감정";
+"Vehicles" = "탈것";
+"Fruits" = "과일";
+"Numbers 1-5" = "숫자 1-5";
+"Hero World" = "영웅 세계";
+"Jungle" = "정글";
+"ABC's" = "ABC";
+"Unicorns" = "유니콘";
+"Sweet Shop" = "디저트 가게";
+"Space" = "우주";
+"Cyber City" = "사이버 시티";
+"Mandalas" = "만다라";
+"Nature Scenery" = "자연 풍경";
+"Architecture" = "건축";
+
+/* Age Groups */
+"2-4 Years" = "2-4세";
+"5-7 Years" = "5-7세";
+"8+ Years" = "8세 이상";
+"Easy Play" = "쉬움";
+"Creative" = "창의력";
+"Artist" = "아티스트";
+
+/* Tools */
+"Pen" = "펜";
+"Pencil" = "연필";
+"Marker" = "마커";
+"Watercolor" = "수채화";
+"Splatter" = "튀기기";
+"Oil" = "유채화";
+"Flat Brush" = "납작 붓";
+"Smooth Hair" = "부드러운 머리카락";
+"Fuzzy Fur" = "보송보송한 털";
+"Cozy Coat" = "포근한 코트";
+"Ink" = "잉크";
+"Spray" = "스프레이";
+"Foundation" = "파운데이션";
+"Blush" = "블러셔";
+"Sparkle" = "반짝임";
+"Glitter" = "글리터";
+"Plasma" = "플라즈마";
+"Laser" = "레이저";
+"Nebula" = "성운";
+"Rainbow" = "무지개";
+"Fill" = "채우기";
+"Hearts" = "하트";
+"Stars" = "별";
+"Dots" = "도트";
+"Smiley" = "스마일";
+"Animal" = "동물";
+"Gift" = "선물";
+"Blender" = "블렌더";
+"Mixer" = "믹서";
+
+/* Categories (Tools) */
+"Basic" = "기본";
+"Sketch" = "스케치";
+"Paint" = "페인트";
+"Maquillage" = "메이크업";
+"Shine" = "빛남";
+"Magic" = "마법";
+"Patterns" = "패턴";
+"Stickers" = "스티커";
+"Mélangeur" = "믹서";
+"Eraser" = "지우개";
+
+/* Common UI */
+"Colors" = "색상";
+"Size" = "크기";
+"Solve to continue" = "계속하려면 문제를 푸세요";
+"Cancel" = "취소";
+"Close" = "닫기";
+"My Gallery" = "갤러리";
+"Your gallery is empty.\nStart coloring to see your art here!" = "갤러리가 비어 있습니다.\n색칠을 시작해서 작품을 여기에 보관하세요!";
+"%lld Pages" = "%lld 페이지";
+
+/* Avatars */
+"Super Hero" = "슈퍼히어로";
+"Princess" = "공주";
+"Robot" = "로봇";
+"Happy" = "행복";
+"Animal" = "동물";
+"Star" = "별";

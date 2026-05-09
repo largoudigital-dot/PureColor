@@ -1,0 +1,128 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "应用设置";
+"Language" = "语言";
+"Sound Effects" = "音效";
+"Background Music" = "背景音乐";
+"Support" = "支持";
+"Privacy Policy" = "隐私政策";
+"Terms of Use" = "使用条款";
+"Done" = "完成";
+"Time is Up!" = "时间到！";
+"Ask your parents to unlock more time." = "请让父母解锁更多时间。";
+"Parent Password (e.g., 1234)" = "家长密码 (如: 1234)";
+"Incorrect password" = "密码错误";
+"Unlock App" = "解锁应用";
+"Create Artist Profile" = "创建艺术家档案";
+"Hello, %@!" = "你好, %@!";
+"TAP TO PLAY" = "点击开始游戏";
+"Switch Profile" = "切换档案";
+"Who is coloring?" = "谁在涂色？";
+"Daily Prize!" = "每日奖励！";
+"You earned 5 Stars!" = "你获得了 5 颗星！";
+"Collect" = "领取";
+"Set Screen Time" = "设置屏幕时间";
+"HOUR" = "小时";
+"MIN" = "分钟";
+"Turn Off" = "关闭";
+"Time to Rest!" = "休息时间到了！";
+"Parents Only" = "仅限家长";
+"Choose Your Hero!" = "选择你的英雄！";
+"How old are you?" = "你多大了？";
+"START COLORING!" = "开始涂色！";
+"TAP THE BOX!" = "点击盒子！";
+"YOU GOT A STICKER!" = "你得到了一个贴纸！";
+"Cool!" = "太酷了！";
+
+/* Categories */
+"Big Shapes" = "大形状";
+"My Pets" = "我的宠物";
+"Faces & Feelings" = "脸部与表情";
+"Vehicles" = "交通工具";
+"Fruits" = "水果";
+"Numbers 1-5" = "数字 1-5";
+"Hero World" = "英雄世界";
+"Jungle" = "丛林";
+"ABC's" = "字母表";
+"Unicorns" = "独角兽";
+"Sweet Shop" = "甜品店";
+"Space" = "太空";
+"Cyber City" = "赛博之城";
+"Mandalas" = "曼陀罗";
+"Nature Scenery" = "自然风景";
+"Architecture" = "建筑";
+
+/* Age Groups */
+"1-3 Years" = "1-3 岁";
+"4-7 Years" = "4-7 岁";
+"8-12 Years" = "8-12 岁";
+"13+ Years" = "13+ 岁";
+"Easy Play" = "简单模式";
+"Creative" = "创意模式";
+"Artist" = "艺术家";
+"Relaxation" = "放松模式";
+
+/* Tools */
+"Pen" = "笔";
+"Pencil" = "铅笔";
+"Marker" = "马克笔";
+"Watercolor" = "水彩";
+"Splatter" = "喷溅";
+"Oil" = "油画";
+"Flat Brush" = "扁平刷";
+"Smooth Hair" = "顺滑发丝";
+"Fuzzy Fur" = "蓬松毛发";
+"Cozy Coat" = "舒适涂层";
+"Ink" = "墨水";
+"Spray" = "喷雾";
+"Foundation" = "底色";
+"Blush" = "腮红";
+"Sparkle" = "闪烁";
+"Glitter" = "亮粉";
+"Plasma" = "等离子";
+"Laser" = "激光";
+"Nebula" = "星云";
+"Rainbow" = "彩虹";
+"Fill" = "填充";
+"Hearts" = "爱心";
+"Stars" = "星星";
+"Dots" = "点点";
+"Smiley" = "笑脸";
+"Animal" = "动物";
+"Gift" = "礼物";
+"Blender" = "搅拌器";
+"Mixer" = "混合器";
+
+/* Categories (Tools) */
+"Basic" = "基础";
+"Sketch" = "草图";
+"Paint" = "绘画";
+"Maquillage" = "化妆";
+"Shine" = "光泽";
+"Magic" = "魔法";
+"Patterns" = "图案";
+"Stickers" = "贴纸";
+"Mélangeur" = "混合";
+"Eraser" = "橡皮擦";
+
+/* Common UI */
+"Colors" = "颜色";
+"Size" = "大小";
+"Solve to continue" = "请解答以继续";
+"Cancel" = "取消";
+"Close" = "关闭";
+"My Gallery" = "我的画廊";
+"Your gallery is empty.\nStart coloring to see your art here!" = "您的画廊是空的。\n开始涂色，在这里查看您的作品！";
+"%lld Pages" = "%lld 页";
+
+/* Avatars */
+"Super Hero" = "超级英雄";
+"Princess" = "公主";
+"Robot" = "机器人";
+"Animal" = "动物";
+"Star" = "星星";
+"Happy" = "开心";

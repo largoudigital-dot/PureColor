@@ -9,12 +9,26 @@ import SwiftUI
 
 @main
 struct PureColorApp: App {
+    @StateObject private var languageManager = LanguageManager.shared
+    @StateObject private var screenTimeManager = ScreenTimeManager.shared
+    
     var body: some Scene {
         WindowGroup {
-            AgeSelectionView()
-                .onAppear {
-                    AudioManager.shared.playBackgroundMusic()
+            ZStack {
+                AgeSelectionView()
+                    .onAppear {
+                        AudioManager.shared.playBackgroundMusic()
+                    }
+                
+                if screenTimeManager.isTimeUp {
+                    ScreenTimeGateView()
+                        .transition(.opacity)
                 }
+            }
+            .animation(.easeInOut, value: screenTimeManager.isTimeUp)
+            .environmentObject(languageManager)
+            .environmentObject(screenTimeManager)
+            .environment(\.locale, languageManager.locale) // Applying the manual locale
         }
     }
 }

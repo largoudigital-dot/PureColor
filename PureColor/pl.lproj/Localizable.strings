@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "Ustawienia aplikacji";
+"Language" = "Język";
+"Sound Effects" = "Efekty dźwiękowe";
+"Background Music" = "Muzyka w tle";
+"Support" = "Wsparcie";
+"Privacy Policy" = "Polityka prywatności";
+"Terms of Use" = "Warunki użytkowania";
+"Done" = "Gotowe";
+"Time is Up!" = "Czas minął!";
+"Ask your parents to unlock more time." = "Poproś rodziców o odblokowanie czasu.";
+"Parent Password (e.g., 1234)" = "Hasło rodzica (np. 1234)";
+"Incorrect password" = "Błędne hasło";
+"Unlock App" = "Odblokuj aplikację";
+"Create Artist Profile" = "Utwórz profil artysty";
+"Hello, %@!" = "Cześć, %@!";
+"TAP TO PLAY" = "DOTKNIJ, ABY GRAĆ";
+"Switch Profile" = "Zmień profil";
+"Who is coloring?" = "Kto koloruje?";
+"Daily Prize!" = "Codzienna nagroda!";
+"You earned 5 Stars!" = "Zdobyłeś 5 gwiazdek!";
+"Collect" = "Odbierz";
+"Set Screen Time" = "Ustaw czas ekranu";
+"HOUR" = "GODZ";
+"MIN" = "MIN";
+"Turn Off" = "Wyłącz";
+"Time to Rest!" = "Czas na odpoczynek!";
+"Parents Only" = "Tylko dla rodziców";
+"Choose Your Hero!" = "Wybierz bohatera!";
+"How old are you?" = "Ile masz lat?";
+"START COLORING!" = "ZACZNIJ KOLOROWAĆ!";
+"TAP THE BOX!" = "DOTKNIJ PUDEŁKO!";
+"YOU GOT A STICKER!" = "MASZ NAKLEJKĘ!";
+"Cool!" = "Fajnie!";
+
+/* Categories */
+"Big Shapes" = "Duże kształty";
+"My Pets" = "Moje zwierzaki";
+"Faces & Feelings" = "Twarze i emocje";
+"Vehicles" = "Pojazdy";
+"Fruits" = "Owoce";
+"Numbers 1-5" = "Liczby 1-5";
+"Hero World" = "Świat bohaterów";
+"Jungle" = "Dżungla";
+"ABC's" = "Alfabet";
+"Unicorns" = "Jednorożce";
+"Sweet Shop" = "Sklep ze słodyczami";
+"Space" = "Kosmos";
+"Cyber City" = "Cyber miasto";
+"Mandalas" = "Mandale";
+"Nature Scenery" = "Przyroda";
+"Architecture" = "Architektura";
+
+/* Age Groups */
+"2-4 Years" = "2-4 lata";
+"5-7 Years" = "5-7 lat";
+"8+ Years" = "8+ lat";
+"Easy Play" = "Łatwa zabawa";
+"Creative" = "Kreatywny";
+"Artist" = "Artysta";
+
+/* Tools */
+"Pen" = "Długopis";
+"Pencil" = "Ołówek";
+"Marker" = "Marker";
+"Watercolor" = "Akwarela";
+"Splatter" = "Rozprysk";
+"Oil" = "Olej";
+"Flat Brush" = "Płaski pędzel";
+"Smooth Hair" = "Gładkie włosy";
+"Fuzzy Fur" = "Puszyste futro";
+"Cozy Coat" = "Przytulne futro";
+"Ink" = "Tusz";
+"Spray" = "Spray";
+"Foundation" = "Podkład";
+"Blush" = "Róż";
+"Sparkle" = "Blask";
+"Glitter" = "Brokat";
+"Plasma" = "Plazma";
+"Laser" = "Laser";
+"Nebula" = "Mgławica";
+"Rainbow" = "Tęcza";
+"Fill" = "Wypełnienie";
+"Hearts" = "Serca";
+"Stars" = "Gwiazdy";
+"Dots" = "Kropki";
+"Smiley" = "Buźka";
+"Animal" = "Zwierzę";
+"Gift" = "Prezent";
+"Blender" = "Blender";
+"Mixer" = "Mikser";
+
+/* Categories (Tools) */
+"Basic" = "Podstawowe";
+"Sketch" = "Szkic";
+"Paint" = "Malowanie";
+"Maquillage" = "Makijaż";
+"Shine" = "Blask";
+"Magic" = "Magia";
+"Patterns" = "Wzory";
+"Stickers" = "Naklejki";
+"Mélangeur" = "Mikser";
+"Eraser" = "Gumka";
+
+/* Common UI */
+"Colors" = "Kolory";
+"Size" = "Rozmiar";
+"Solve to continue" = "Rozwiąż, aby kontynuować";
+"Cancel" = "Anuluj";
+"Close" = "Zamknij";
+"My Gallery" = "Moja galeria";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Twoja galeria jest pusta.\nZacznij kolorować, aby zobaczyć swoje prace!";
+"%lld Pages" = "%lld Stron";
+
+/* Avatars */
+"Super Hero" = "Superbohater";
+"Princess" = "Księżniczka";
+"Robot" = "Robot";
+"Happy" = "Wesoły";
+"Animal" = "Zwierzę";
+"Star" = "Gwiazda";

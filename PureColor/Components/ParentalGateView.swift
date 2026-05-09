@@ -21,11 +21,11 @@ struct ParentalGateView: View {
             VStack(spacing: 20) {
                 // Header (Compact)
                 VStack(spacing: 4) {
-                    Text("Parents Only")
+                    Text(LocalizedStringKey("Parents Only"))
                         .font(.system(size: 22, weight: .black, design: .rounded))
                         .foregroundColor(.blue)
                     
-                    Text("Solve to continue")
+                    Text(LocalizedStringKey("Solve to continue"))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundColor(.gray)
                 }
@@ -58,7 +58,7 @@ struct ParentalGateView: View {
                     }
                 }
                 
-                Button("Cancel") {
+                Button(LocalizedStringKey("Cancel")) {
                     dismiss()
                 }
                 .font(.system(size: 14, weight: .bold))

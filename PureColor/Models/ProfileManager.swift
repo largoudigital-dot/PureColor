@@ -9,9 +9,11 @@ struct UserProfile: Identifiable, Codable {
     var stars: Int
     var lastDailyRewardClaimed: Date?
     var collectedStickers: [String]
+    var completedDrawings: [String] // Array of UUID strings for completed drawings
+    var inProgressDrawings: [String] // Array of UUID strings for drawings started but not finished
     
     static var defaultProfile: UserProfile {
-        UserProfile(id: UUID(), name: "", avatar: "person.circle.fill", ageGroup: nil, stars: 0, lastDailyRewardClaimed: nil, collectedStickers: [])
+        UserProfile(id: UUID(), name: "", avatar: "person.circle.fill", ageGroup: nil, stars: 0, lastDailyRewardClaimed: nil, collectedStickers: [], completedDrawings: [], inProgressDrawings: [])
     }
 }
 
@@ -58,5 +60,30 @@ class ProfileManager: ObservableObject {
     func addStar() {
         currentProfile.stars += 1
         save()
+    }
+    
+    // MARK: - Progress Tracking
+    
+    func markDrawingAsCompleted(drawingId: UUID) {
+        let idString = drawingId.uuidString
+        if !currentProfile.completedDrawings.contains(idString) {
+            currentProfile.completedDrawings.append(idString)
+            // Remove from in-progress if it was there
+            currentProfile.inProgressDrawings.removeAll(where: { $0 == idString })
+            addStar() // Reward for completing a drawing!
+            save()
+        }
+    }
+    
+    func markDrawingAsInProgress(drawingId: UUID) {
+        let idString = drawingId.uuidString
+        if !currentProfile.inProgressDrawings.contains(idString) && !currentProfile.completedDrawings.contains(idString) {
+            currentProfile.inProgressDrawings.append(idString)
+            save()
+        }
+    }
+    
+    func isDrawingCompleted(drawingId: UUID) -> Bool {
+        return currentProfile.completedDrawings.contains(drawingId.uuidString)
     }
 }

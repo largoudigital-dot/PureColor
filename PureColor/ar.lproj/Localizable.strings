@@ -1,0 +1,128 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "بيور كلر";
+"App Settings" = "إعدادات التطبيق";
+"Language" = "اللغة";
+"Sound Effects" = "المؤثرات الصوتية";
+"Background Music" = "موسيقى الخلفية";
+"Support" = "الدعم";
+"Privacy Policy" = "سياسة الخصوصية";
+"Terms of Use" = "شروط الاستخدام";
+"Done" = "تم";
+"Time is Up!" = "انتهى الوقت!";
+"Ask your parents to unlock more time." = "اطلب من والديك فتح المزيد من الوقت.";
+"Parent Password (e.g., 1234)" = "كلمة سر الوالدين (مثلاً: 1234)";
+"Incorrect password" = "كلمة السر غير صحيحة";
+"Unlock App" = "فتح التطبيق";
+"Create Artist Profile" = "إنشاء ملف فنان";
+"Hello, %@!" = "أهلاً، %@!";
+"TAP TO PLAY" = "اضغط للعب";
+"Switch Profile" = "تبديل الملف الشخصي";
+"Who is coloring?" = "من يقوم بالتلوين؟";
+"Daily Prize!" = "جائزة يومية!";
+"You earned 5 Stars!" = "لقد حصلت على 5 نجوم!";
+"Collect" = "جمع";
+"Set Screen Time" = "ضبط وقت الشاشة";
+"HOUR" = "ساعة";
+"MIN" = "دقيقة";
+"Turn Off" = "إيقاف";
+"Time to Rest!" = "وقت الراحة!";
+"Parents Only" = "للوالدين فقط";
+"Choose Your Hero!" = "اختر بطلك!";
+"How old are you?" = "كم عمرك؟";
+"START COLORING!" = "ابدأ التلوين!";
+"TAP THE BOX!" = "اضغط على الصندوق!";
+"YOU GOT A STICKER!" = "لقد حصلت على ملصق!";
+"Cool!" = "رائع!";
+
+/* Categories */
+"Big Shapes" = "أشكال كبيرة";
+"My Pets" = "حيواناتي الأليفة";
+"Faces & Feelings" = "وجوه ومشاعر";
+"Vehicles" = "مركبات";
+"Fruits" = "فواكه";
+"Numbers 1-5" = "الأرقام 1-5";
+"Hero World" = "عالم الأبطال";
+"Jungle" = "الغابة";
+"ABC's" = "الحروف الهجائية";
+"Unicorns" = "وحيد القرن";
+"Sweet Shop" = "متجر الحلويات";
+"Space" = "الفضاء";
+"Cyber City" = "مدينة السايبر";
+"Mandalas" = "ماندالا";
+"Nature Scenery" = "مناظر طبيعية";
+"Architecture" = "الهندسة المعمارية";
+
+/* Age Groups */
+"1-3 Years" = "١-٣ سنوات";
+"4-7 Years" = "٤-٧ سنوات";
+"8-12 Years" = "٨-١٢ سنة";
+"13+ Years" = "١٣+ سنة";
+"Easy Play" = "لعب سهل";
+"Creative" = "إبداعي";
+"Artist" = "فنان";
+"Relaxation" = "استرخاء";
+
+/* Tools */
+"Pen" = "قلم";
+"Pencil" = "قلم رصاص";
+"Marker" = "قلم تحديد";
+"Watercolor" = "ألوان مائية";
+"Splatter" = "رشاش";
+"Oil" = "ألوان زيتية";
+"Flat Brush" = "فرشاة مسطحة";
+"Smooth Hair" = "شعر ناعم";
+"Fuzzy Fur" = "فراء زغبي";
+"Cozy Coat" = "معطف مريح";
+"Ink" = "حبر";
+"Spray" = "بخاخ";
+"Foundation" = "كريم أساس";
+"Blush" = "أحمر خدود";
+"Sparkle" = "بريق";
+"Glitter" = "لمعان";
+"Plasma" = "بلازما";
+"Laser" = "ليزر";
+"Nebula" = "سديم";
+"Rainbow" = "قوس قزح";
+"Fill" = "تعبئة";
+"Hearts" = "قلوب";
+"Stars" = "نجوم";
+"Dots" = "نقاط";
+"Smiley" = "مبتسم";
+"Animal" = "حيوان";
+"Gift" = "هدية";
+"Blender" = "خلاط";
+"Mixer" = "مزيج";
+
+/* Categories (Tools) */
+"Basic" = "أساسي";
+"Sketch" = "رسم";
+"Paint" = "تلوين";
+"Maquillage" = "مكياج";
+"Shine" = "لمعان";
+"Magic" = "سحر";
+"Patterns" = "أنماط";
+"Stickers" = "ملصقات";
+"Mélangeur" = "مزيج";
+"Eraser" = "ممحاة";
+
+/* Common UI */
+"Colors" = "ألوان";
+"Size" = "الحجم";
+"Solve to continue" = "حل للمتابعة";
+"Cancel" = "إلغاء";
+"Close" = "إغلاق";
+"My Gallery" = "معرضي";
+"Your gallery is empty.\nStart coloring to see your art here!" = "معرضك فارغ.\nابدأ التلوين لرؤية فنك هنا!";
+"%lld Pages" = "%lld صفحة";
+
+/* Avatars */
+"Super Hero" = "بطل خارق";
+"Princess" = "أميرة";
+"Robot" = "روبوت";
+"Animal" = "حيوان";
+"Star" = "نجمة";
+"Happy" = "سعيد";

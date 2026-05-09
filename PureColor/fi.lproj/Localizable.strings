@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "Sovelluksen asetukset";
+"Language" = "Kieli";
+"Sound Effects" = "Äänitehosteet";
+"Background Music" = "Taustamusiikki";
+"Support" = "Tuki";
+"Privacy Policy" = "Tietosuojakäytäntö";
+"Terms of Use" = "Käyttöehdot";
+"Done" = "Valmis";
+"Time is Up!" = "Aika loppui!";
+"Ask your parents to unlock more time." = "Pyydä vanhempiasi avaamaan lisää aikaa.";
+"Parent Password (e.g., 1234)" = "Vanhempien salasana (esim. 1234)";
+"Incorrect password" = "Väärä salasana";
+"Unlock App" = "Avaa sovellus";
+"Create Artist Profile" = "Luo taiteilijaprofiili";
+"Hello, %@!" = "Hei, %@!";
+"TAP TO PLAY" = "NAPAUTA PELATAKSESI";
+"Switch Profile" = "Vaihda profiilia";
+"Who is coloring?" = "Kuka värittää?";
+"Daily Prize!" = "Päivittäinen palkinto!";
+"You earned 5 Stars!" = "Ansaitsit 5 tähteä!";
+"Collect" = "Kerää";
+"Set Screen Time" = "Aseta ruutuaika";
+"HOUR" = "TUNTI";
+"MIN" = "MIN";
+"Turn Off" = "Sammuta";
+"Time to Rest!" = "Aika levätä!";
+"Parents Only" = "Vain vanhemmille";
+"Choose Your Hero!" = "Valitse sankarisi!";
+"How old are you?" = "Kuinka vanha olet?";
+"START COLORING!" = "ALOITA VÄRITTÄMINEN!";
+"TAP THE BOX!" = "NAPAUTA LAATIKKOA!";
+"YOU GOT A STICKER!" = "SAIT TARRAN!";
+"Cool!" = "Hienoa!";
+
+/* Categories */
+"Big Shapes" = "Isot muodot";
+"My Pets" = "Lemmikkini";
+"Faces & Feelings" = "Kasvot & Tunteet";
+"Vehicles" = "Kulkuneuvot";
+"Fruits" = "Hedelmät";
+"Numbers 1-5" = "Numerot 1-5";
+"Hero World" = "Sankarimaailma";
+"Jungle" = "Viidakko";
+"ABC's" = "Aakkoset";
+"Unicorns" = "Yksisarviset";
+"Sweet Shop" = "Karkkikauppa";
+"Space" = "Avaruus";
+"Cyber City" = "Kyberkaupunki";
+"Mandalas" = "Mandalat";
+"Nature Scenery" = "Luonto";
+"Architecture" = "Arkkitehtuuri";
+
+/* Age Groups */
+"2-4 Years" = "2-4 vuotta";
+"5-7 Years" = "5-7 vuotta";
+"8+ Years" = "8+ vuotta";
+"Easy Play" = "Helppo leikki";
+"Creative" = "Luova";
+"Artist" = "Taiteilija";
+
+/* Tools */
+"Pen" = "Kynä";
+"Pencil" = "Lyijykynä";
+"Marker" = "Tussi";
+"Watercolor" = "Vesiväri";
+"Splatter" = "Roiske";
+"Oil" = "Öljyväri";
+"Flat Brush" = "Litteä sivellin";
+"Smooth Hair" = "Sileät hiukset";
+"Fuzzy Fur" = "Pörröinen turkki";
+"Cozy Coat" = "Lämmin turkki";
+"Ink" = "Muste";
+"Spray" = "Suihke";
+"Foundation" = "Pohjustus";
+"Blush" = "Poskipuna";
+"Sparkle" = "Säihke";
+"Glitter" = "Kimalle";
+"Plasma" = "Plasma";
+"Laser" = "Laser";
+"Nebula" = "Sumu";
+"Rainbow" = "Sateenkaari";
+"Fill" = "Täyttö";
+"Hearts" = "Sydämet";
+"Stars" = "Tähdet";
+"Dots" = "Pisteet";
+"Smiley" = "Hymiö";
+"Animal" = "Eläin";
+"Gift" = "Lahja";
+"Blender" = "Sekoitin";
+"Mixer" = "Miksaaja";
+
+/* Categories (Tools) */
+"Basic" = "Perus";
+"Sketch" = "Luonnos";
+"Paint" = "Maalaus";
+"Maquillage" = "Meikki";
+"Shine" = "Kiilto";
+"Magic" = "Taika";
+"Patterns" = "Kuviot";
+"Stickers" = "Tarrat";
+"Mélangeur" = "Miksaaja";
+"Eraser" = "Pyyhekumi";
+
+/* Common UI */
+"Colors" = "Värit";
+"Size" = "Koko";
+"Solve to continue" = "Ratkaise jatkaaksesi";
+"Cancel" = "Peruuta";
+"Close" = "Sulje";
+"My Gallery" = "Oma galleria";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Galleriasi on tyhjä.\nAloita värittäminen nähdäksesi teoksesi täällä!";
+"%lld Pages" = "%lld Sivua";
+
+/* Avatars */
+"Super Hero" = "Supersankari";
+"Princess" = "Prinsessa";
+"Robot" = "Robotti";
+"Happy" = "Iloinen";
+"Animal" = "Eläin";
+"Star" = "Tähti";

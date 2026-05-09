@@ -1,17 +1,28 @@
 import SwiftUI
 
 enum AgeGroup: String, CaseIterable, Identifiable, Codable {
-    case toddlers = "2-4 Years"
-    case kids = "5-7 Years"
-    case artist = "8+ Years"
+    case toddlers = "1-3 Years"
+    case kids = "4-7 Years"
+    case master = "8-12 Years"
+    case zen = "13+ Years"
     
     var id: String { self.rawValue }
+    
+    var subtitleKey: String {
+        switch self {
+        case .toddlers: return "Easy Play"
+        case .kids: return "Creative"
+        case .master: return "Artist"
+        case .zen: return "Relaxation"
+        }
+    }
     
     var color: Color {
         switch self {
         case .toddlers: return .blue
         case .kids: return .orange
-        case .artist: return .purple
+        case .master: return .purple
+        case .zen: return .teal
         }
     }
     
@@ -19,7 +30,8 @@ enum AgeGroup: String, CaseIterable, Identifiable, Codable {
         switch self {
         case .toddlers: return "face.smiling"
         case .kids: return "star.fill"
-        case .artist: return "paintpalette.fill"
+        case .master: return "paintpalette.fill"
+        case .zen: return "leaf.fill"
         }
     }
 }
@@ -63,7 +75,7 @@ struct Category: Identifiable, Hashable {
 }
 
 let mockCategories = [
-    // --- Toddlers (2-4 Years): Basic & Big ---
+    // --- Toddlers (1-3 Years): Basic & Big ---
     Category(name: "Big Shapes", icon: "square.on.circle.fill", color: .orange, ageGroup: .toddlers, drawings: [
         DrawingItem(imageName: "square.fill"), DrawingItem(imageName: "circle.fill"), DrawingItem(imageName: "triangle.fill"), DrawingItem(imageName: "star.fill")
     ]),
@@ -73,17 +85,11 @@ let mockCategories = [
     Category(name: "Faces & Feelings", icon: "face.smiling.fill", color: .yellow, ageGroup: .toddlers, drawings: [
         DrawingItem(imageName: "face.smiling.fill"), DrawingItem(imageName: "face.dashed.fill"), DrawingItem(imageName: "heart.fill")
     ]),
-    Category(name: "Vehicles", icon: "car.fill", color: .blue, ageGroup: .toddlers, drawings: [
-        DrawingItem(imageName: "car.fill"), DrawingItem(imageName: "bus.fill"), DrawingItem(imageName: "airplane"), DrawingItem(imageName: "ferry.fill")
-    ]),
     Category(name: "Fruits", icon: "applelogo", color: .red, ageGroup: .toddlers, drawings: [
         DrawingItem(imageName: "applelogo"), DrawingItem(imageName: "leaf.fill"), DrawingItem(imageName: "sun.max.fill")
     ]),
-    Category(name: "Numbers 1-5", icon: "1.square.fill", color: .purple, ageGroup: .toddlers, drawings: [
-        DrawingItem(imageName: "1.circle"), DrawingItem(imageName: "2.circle"), DrawingItem(imageName: "3.circle"), DrawingItem(imageName: "4.circle"), DrawingItem(imageName: "5.circle")
-    ]),
 
-    // --- Kids (5-7 Years): Creative & Fun ---
+    // --- Kids (4-7 Years): Creative & Fun ---
     Category(name: "Hero World", icon: "bolt.shield.fill", color: .blue, ageGroup: .kids, drawings: [
         DrawingItem(imageName: "bolt.shield.fill"), DrawingItem(imageName: "shield.fill"), DrawingItem(imageName: "figure.run")
     ]),
@@ -96,24 +102,29 @@ let mockCategories = [
     Category(name: "Unicorns", icon: "sparkles", color: .pink, ageGroup: .kids, drawings: [
         DrawingItem(imageName: "sparkles"), DrawingItem(imageName: "star.fill"), DrawingItem(imageName: "heart.fill")
     ]),
-    Category(name: "Sweet Shop", icon: "mouth.fill", color: .red, ageGroup: .kids, drawings: [
-        DrawingItem(imageName: "birthday.cake.fill"), DrawingItem(imageName: "cup.and.saucer.fill")
-    ]),
-    Category(name: "Space", icon: "star.fill", color: .indigo, ageGroup: .kids, drawings: [
-        DrawingItem(imageName: "moon.fill"), DrawingItem(imageName: "sun.max.fill"), DrawingItem(imageName: "star.fill")
+    Category(name: "Vehicles", icon: "car.fill", color: .blue, ageGroup: .kids, drawings: [
+        DrawingItem(imageName: "car.fill"), DrawingItem(imageName: "bus.fill"), DrawingItem(imageName: "airplane"), DrawingItem(imageName: "ferry.fill")
     ]),
 
-    // --- Artist (8+ Years): Detailed & Advanced ---
-    Category(name: "Cyber City", icon: "cpu", color: .cyan, ageGroup: .artist, drawings: [
+    // --- Master (8-12 Years): Detailed & Advanced ---
+    Category(name: "Cyber City", icon: "cpu", color: .cyan, ageGroup: .master, drawings: [
         DrawingItem(imageName: "cpu"), DrawingItem(imageName: "figure.robot"), DrawingItem(imageName: "bolt.horizontal.circle.fill")
     ]),
-    Category(name: "Mandalas", icon: "sun.max.fill", color: .orange, ageGroup: .artist, drawings: [
-        DrawingItem(imageName: "sun.max.fill"), DrawingItem(imageName: "seal.fill")
-    ]),
-    Category(name: "Nature Scenery", icon: "mountain.2.fill", color: .green, ageGroup: .artist, drawings: [
+    Category(name: "Nature Scenery", icon: "mountain.2.fill", color: .green, ageGroup: .master, drawings: [
         DrawingItem(imageName: "mountain.2.fill"), DrawingItem(imageName: "tree.fill"), DrawingItem(imageName: "cloud.sun.fill")
     ]),
-    Category(name: "Architecture", icon: "building.2.fill", color: .gray, ageGroup: .artist, drawings: [
+    Category(name: "Architecture", icon: "building.2.fill", color: .gray, ageGroup: .master, drawings: [
         DrawingItem(imageName: "building.2.fill"), DrawingItem(imageName: "house.fill")
+    ]),
+
+    // --- Zen (13+ Years): Relaxation & Mandalas ---
+    Category(name: "Mandalas", icon: "sun.max.fill", color: .orange, ageGroup: .zen, drawings: [
+        DrawingItem(imageName: "sun.max.fill"), DrawingItem(imageName: "seal.fill")
+    ]),
+    Category(name: "Sweet Shop", icon: "mouth.fill", color: .red, ageGroup: .zen, drawings: [
+        DrawingItem(imageName: "birthday.cake.fill"), DrawingItem(imageName: "cup.and.saucer.fill")
+    ]),
+    Category(name: "Space", icon: "star.fill", color: .indigo, ageGroup: .zen, drawings: [
+        DrawingItem(imageName: "moon.fill"), DrawingItem(imageName: "sun.max.fill"), DrawingItem(imageName: "star.fill")
     ])
 ]

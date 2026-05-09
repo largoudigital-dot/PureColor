@@ -23,7 +23,6 @@ struct ColoringCanvasView: View {
     
     // UI State
     @State private var showSizePanel = false
-    @State private var isLocked = false
     
     // Age-based Config
     private var ageConfig: AgeGroupConfig {
@@ -120,7 +119,6 @@ struct ColoringCanvasView: View {
             }
             
             // --- OVERLAYS ---
-            toolPickerOverlay
             colorPickerOverlay
             sizePickerOverlay
         }
@@ -145,269 +143,223 @@ struct ColoringCanvasView: View {
                 windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscape))
             }
         }
-    }
+    } 
     
     // MARK: - Subviews
     
     @ViewBuilder
     private var leftSidebar: some View {
-        VStack(spacing: 12) {
-            // EXIT
-            HeaderCircleButton(icon: "xmark", color: isLocked ? .gray : .red) {
-                if !isLocked { AudioManager.shared.playPop(); dismiss() }
-            }
-            .disabled(isLocked)
-            .scaleEffect(0.8)
-            
-            Divider().frame(width: 25).background(Color.white.opacity(0.3))
-            
-            // UNDO/REDO
-            VStack(spacing: 8) {
-                HeaderSquareButton(icon: "arrow.uturn.backward", color: .orange) {
-                    canvasView.undoManager?.undo()
+        GeometryReader { geo in
+            let bSize = min(max(geo.size.height * 0.12, 45), 65)
+            VStack(spacing: geo.size.height * 0.035) {
+                // EXIT & AUTO-SAVE
+                HeaderCircleButton(icon: "xmark", color: .red, size: bSize) {
+                    AudioManager.shared.playPop()
+                    saveAndExit()
                 }
-                HeaderSquareButton(icon: "arrow.uturn.forward", color: .orange) {
-                    canvasView.undoManager?.redo()
-                }
-            }
-            .scaleEffect(0.75)
-            
-            // TRASH
-            HeaderSquareButton(icon: "trash", color: .gray) {
-                canvasView.drawing = PKDrawing()
-                AudioManager.shared.playPop()
-            }
-            .scaleEffect(0.75)
-            
-            Spacer()
-            
-            // LOCK
-            Button {
-                withAnimation(.spring()) { isLocked.toggle(); AudioManager.shared.playPop() }
-            } label: {
-                ZStack {
-                    Circle().fill(isLocked ? Color.orange.gradient : Color.white.gradient).frame(width: 40, height: 40).shadow(radius: 3)
-                    Image(systemName: isLocked ? "lock.fill" : "lock.open.fill").font(.system(size: 12, weight: .bold)).foregroundColor(isLocked ? .white : .orange)
-                }.overlay(Circle().stroke(Color.white, lineWidth: 2))
-            }
-            
-            Divider().frame(width: 25).background(Color.white.opacity(0.3))
-            
-            // DONE
-            HeaderCircleButton(icon: "checkmark", color: isLocked ? .gray : .green) {
-                if !isLocked { saveAndExit(); AudioManager.shared.playSuccess() }
-            }
-            .disabled(isLocked)
-            .scaleEffect(0.9)
-        }
-        .padding(.vertical, 20)
-        .padding(.leading, 10)
-        .frame(width: 70)
-    }
-    
-    @ViewBuilder
-    private var mainCanvasArea: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.1), radius: 10)
-            
-            PencilKitView(canvasView: $canvasView)
-                .cornerRadius(30)
-                .simultaneousGesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { _ in
-                            withAnimation(.spring()) {
-                                activeCategory = nil
-                                showColorFlyout = false
-                            }
-                        }
-                )
-            
-            // --- Reset Zoom Button ---
-            VStack {
-                HStack {
-                    Spacer()
-                    Button {
-                        withAnimation(.spring()) {
-                            canvasView.setZoomScale(1.0, animated: true)
-                        }
-                        AudioManager.shared.playPop()
-                    } label: {
-                        Image(systemName: "minus.magnifyingglass")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.blue)
-                            .padding(10)
-                            .background(Circle().fill(.white).shadow(radius: 3))
+                
+                Divider().frame(width: 25).background(Color.white.opacity(0.3))
+                
+                // ERASER
+                Button {
+                    isEraser = true
+                    currentBrushName = "Eraser"
+                    canvasView.tool = PKEraserTool(.bitmap, width: currentWidth)
+                    AudioManager.shared.playPop()
+                } label: {
+                    ZStack {
+                        Circle()
+                            .fill(isEraser ? Color.blue.opacity(0.15) : Color.white.opacity(0.9))
+                            .frame(width: bSize, height: bSize)
+                            .shadow(radius: 3)
+                        Image(systemName: "eraser.fill")
+                            .font(.system(size: bSize * 0.45, weight: .bold))
+                            .foregroundColor(isEraser ? .blue : .gray)
                     }
-                    .padding(15)
+                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
                 }
-                Spacer()
-            }
-            
-            Image(systemName: drawingItem.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 300, height: 300)
-                .foregroundColor(.black.opacity(0.8))
-                .allowsHitTesting(false)
-                .opacity(0.9)
-        }
-        .padding(.top, 40)
-        .padding(.bottom, 20)
-        .padding(.horizontal, 10)
-    }
-    
-    @ViewBuilder
-    private var rightSidebar: some View {
-        VStack(spacing: 0) {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 12) {
-                    ForEach(filteredCategories, id: \.self) { category in
-                        CategoryIcon(name: category, isSelected: activeCategory == category) {
-                            withAnimation(.spring()) {
-                                activeCategory = (activeCategory == category) ? nil : category
-                                showColorFlyout = false
-                                showSizeFlyout = false
-                            }
-                        }
-                    }
-                    
-                    CategoryIcon(name: "Eraser", icon: "eraser.fill", isSelected: isEraser) {
-                        isEraser = true
-                        activeCategory = nil
-                        showColorFlyout = false
+                .scaleEffect(isEraser ? 1.15 : 1.0)
+                
+                // COLOR PICKER
+                Button {
+                    withAnimation(.spring()) {
+                        showColorFlyout.toggle()
                         showSizeFlyout = false
-                        canvasView.tool = PKEraserTool(.bitmap, width: currentWidth)
-                        AudioManager.shared.playPop()
                     }
-                }
-                .padding(.vertical, 15)
-            }
-            
-            Divider().padding(.horizontal, 10).background(Color.gray.opacity(0.1))
-            
-            Button {
-                withAnimation(.spring()) {
-                    showColorFlyout.toggle()
-                    activeCategory = nil
-                    showSizeFlyout = false
-                }
-                AudioManager.shared.playPop()
-            } label: {
-                VStack(spacing: 4) {
+                    AudioManager.shared.playPop()
+                } label: {
                     ZStack {
                         Circle().fill(AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center))
-                        Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: 14, weight: .bold))
+                        Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: bSize * 0.35, weight: .bold))
                     }
-                    .frame(width: 38, height: 38)
-                    .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 3 : 0))
-                    Text("Colors").font(.system(size: 8, weight: .bold))
-                }
-            }
-            .padding(.top, 10)
-            .padding(.bottom, 20)
-        }
-        .frame(width: 80)
-        .background(
-            RoundedRectangle(cornerRadius: 35)
-                .fill(Color.white.opacity(0.9))
-                .shadow(color: .black.opacity(0.05), radius: 10)
-        )
-        .padding(.vertical, 40)
-        .padding(.trailing, 15)
-    }
-    
-    @ViewBuilder
-    private var toolPickerOverlay: some View {
-        if let category = activeCategory {
-            VStack(spacing: 8) {
-                HStack {
-                    Image(systemName: "line.3.horizontal")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.white.opacity(0.6))
-                    Spacer()
-                    Button { withAnimation { activeCategory = nil } } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.white.opacity(0.6))
-                            .font(.system(size: 22))
-                    }
-                }
-                .padding(.horizontal, 12)
-                .padding(.top, 12)
-                
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 12) {
-                        if let groupTools = toolGroups[category] {
-                            ForEach(groupTools, id: \.name) { tool in
-                                Button {
-                                    currentBrushName = tool.name
-                                    selectedTool = tool.type
-                                    currentWidth = tool.width
-                                    currentOpacity = tool.opacity
-                                    isEraser = false
-                                    updateTool()
-                                    AudioManager.shared.playPop()
-                                } label: {
-                                    VStack(spacing: 4) {
-                                        Image(systemName: tool.icon)
-                                            .font(.system(size: 24))
-                                        Text(tool.name).font(.system(size: 9, weight: .bold))
-                                    }
-                                    .frame(width: 80, height: 75)
-                                    .background(currentBrushName == tool.name ? Color.white.opacity(0.2) : Color.clear)
-                                    .cornerRadius(18)
-                                    .overlay(RoundedRectangle(cornerRadius: 18).stroke(Color.white.opacity(0.1), lineWidth: 1))
-                                    .foregroundColor(.white)
-                                }
-                            }
-                        }
-                    }
-                    .padding(.vertical, 5)
+                    .frame(width: bSize, height: bSize)
+                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                    .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 4 : 0))
+                    .shadow(radius: 5)
                 }
                 
-                Divider().background(Color.white.opacity(0.2))
-                
-                HStack(spacing: 15) {
-                    ForEach([5, 35, 90], id: \.self) { size in
+                // THICKNESS DOTS (VERTICAL)
+                VStack(spacing: 20) {
+                    ForEach([8, 28, 65], id: \.self) { size in
                         Button {
                             currentWidth = CGFloat(size)
                             updateTool()
                             AudioManager.shared.playPop()
                         } label: {
-                            Circle()
-                                .fill(currentWidth == CGFloat(size) ? Color.white : Color.white.opacity(0.3))
-                                .frame(width: CGFloat(size / 6 + 12), height: CGFloat(size / 6 + 12))
-                                .overlay(Circle().stroke(Color.white.opacity(0.5), lineWidth: 1))
+                            ZStack {
+                                Circle()
+                                    .fill(currentWidth == CGFloat(size) ? Color.white : Color.white.opacity(0.4))
+                                    .frame(width: CGFloat(min(size / 3 + 12, 35)), height: CGFloat(min(size / 3 + 12, 35)))
+                                    .shadow(color: .black.opacity(0.1), radius: 3)
+                                    .overlay(Circle().stroke(Color.white, lineWidth: currentWidth == CGFloat(size) ? 3 : 0))
+                            }
                         }
+                        .scaleEffect(currentWidth == CGFloat(size) ? 1.2 : 1.0)
                     }
                 }
                 .padding(.vertical, 15)
+                .padding(.horizontal, 8)
+                .background(Capsule().fill(Color.black.opacity(0.05)))
+                
+                Spacer()
             }
-            .frame(width: 110, height: 320)
-            .background(.ultraThinMaterial)
-            .background(Color.black.opacity(0.4))
-            .clipShape(RoundedRectangle(cornerRadius: 30))
-            .shadow(color: .black.opacity(0.3), radius: 15)
-            .offset(flyoutOffset)
-            .gesture(
-                DragGesture()
-                    .onChanged { gesture in flyoutOffset = gesture.translation }
-            )
-            .padding(.trailing, 100)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
-            .transition(.asymmetric(
-                insertion: .move(edge: .trailing).combined(with: .opacity),
-                removal: .opacity.combined(with: .scale(scale: 0.9))
-            ))
+            .padding(.vertical, 20)
+            .padding(.leading, 10)
+            .frame(width: bSize + 20)
         }
+        .frame(width: 80)
     }
+    
+    @ViewBuilder
+    private var mainCanvasArea: some View {
+        GeometryReader { geo in
+            let bSize = min(max(geo.size.height * 0.1, 40), 55)
+            VStack(spacing: 5) {
+                ZStack(alignment: .top) {
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(Color.white)
+                        .shadow(color: .black.opacity(0.1), radius: 10)
+                    
+                    PencilKitView(canvasView: $canvasView)
+                        .cornerRadius(30)
+                        .simultaneousGesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { _ in
+                                    withAnimation(.spring()) {
+                                        showColorFlyout = false
+                                    }
+                                }
+                        )
+                    
+                    // --- Reset Zoom Button ---
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button {
+                                withAnimation(.spring()) {
+                                    canvasView.setZoomScale(1.0, animated: true)
+                                }
+                                AudioManager.shared.playPop()
+                            } label: {
+                                Image(systemName: "minus.magnifyingglass")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(.blue)
+                                    .padding(10)
+                                    .background(Circle().fill(.white).shadow(radius: 3))
+                            }
+                            .padding(15)
+                        }
+                        Spacer()
+                    }
+                    
+                    Image(systemName: drawingItem.imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 300, height: 300)
+                        .foregroundColor(.black.opacity(0.8))
+                        .allowsHitTesting(false)
+                        .opacity(0.9)
+                }
+                
+                // BOTTOM UTILITY BAR (ZEN MODE)
+                HStack(spacing: 40) {
+                    Spacer()
+                    
+                    WideUtilityButton(icon: "arrow.uturn.backward", color: Color.orange, width: bSize * 2.0, height: bSize * 1.1) {
+                        canvasView.undoManager?.undo()
+                        AudioManager.shared.playPop()
+                    }
+                    
+                    WideUtilityButton(icon: "arrow.uturn.forward", color: Color.orange, width: bSize * 2.0, height: bSize * 1.1) {
+                        canvasView.undoManager?.redo()
+                        AudioManager.shared.playPop()
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 10)
+            }
+        }
+        .padding(.top, 20) // Reduced top padding since bar is now inside VStack
+        .padding(.bottom, 5)
+        .padding(.horizontal, 5)
+    }
+    
+    @ViewBuilder
+    private var rightSidebar: some View {
+        GeometryReader { geo in
+            let iconSize = min(max(geo.size.height * 0.1, 55), 75)
+            VStack(spacing: 0) {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: geo.size.height * 0.02) {
+                        // Flatten all tools into one direct list
+                        let allTools = filteredCategories.flatMap { toolGroups[$0] ?? [] }
+                        
+                        ForEach(allTools, id: \.name) { tool in
+                            Button {
+                                currentBrushName = tool.name
+                                selectedTool = tool.type
+                                currentWidth = tool.width
+                                currentOpacity = tool.opacity
+                                isEraser = false
+                                updateTool()
+                                AudioManager.shared.playPop()
+                            } label: {
+                                ZStack {
+                                    Circle()
+                                        .fill(currentBrushName == tool.name ? Color.blue.opacity(0.15) : Color.clear)
+                                        .frame(width: iconSize, height: iconSize)
+                                    
+                                    Image(systemName: tool.icon)
+                                        .font(.system(size: iconSize * 0.45, weight: .bold))
+                                        .foregroundColor(currentBrushName == tool.name ? .blue : .gray)
+                                }
+                            }
+                            .scaleEffect(currentBrushName == tool.name ? 1.15 : 1.0)
+                        }
+                    }
+                    .padding(.vertical, 15)
+                }
+            }
+            .frame(width: iconSize + 10)
+            .background(
+                RoundedRectangle(cornerRadius: 35)
+                    .fill(Color.white.opacity(0.9))
+                    .shadow(color: .black.opacity(0.05), radius: 10)
+            )
+            .padding(.vertical, geo.size.height * 0.05)
+            .padding(.trailing, 15)
+        }
+        .frame(width: 90)
+    }
+    
+
     
     @ViewBuilder
     private var colorPickerOverlay: some View {
         if showColorFlyout {
             VStack(spacing: 12) {
-                Text("Colors").font(.caption.bold()).foregroundColor(.gray)
+                Text(LocalizedStringKey("Colors")).font(.caption.bold()).foregroundColor(.gray)
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: [GridItem(.fixed(30)), GridItem(.fixed(30))], spacing: 12) {
                         ForEach(filteredColors, id: \.self) { color in
@@ -456,7 +408,7 @@ struct ColoringCanvasView: View {
                     .frame(width: 150)
                     .rotationEffect(.degrees(-90))
                     .frame(height: 160)
-                    .onChange(of: currentWidth) { _ in updateTool() }
+                    .onChange(of: currentWidth) { updateTool() }
                 Button("Done") { withAnimation { showSizeFlyout = false } }
                     .font(.caption2.bold())
                     .foregroundColor(.blue)
@@ -531,22 +483,47 @@ struct ColoringCanvasView: View {
     }
 }
 
+struct WideUtilityButton: View {
+    let icon: String
+    let color: Color
+    var width: CGFloat = 80
+    var height: CGFloat = 46
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            ZStack {
+                RoundedRectangle(cornerRadius: height * 0.3)
+                    .fill(color.gradient)
+                
+                Image(systemName: icon)
+                    .font(.system(size: height * 0.45).bold())
+                    .foregroundColor(.white)
+            }
+            .frame(width: width, height: height)
+            .overlay(RoundedRectangle(cornerRadius: height * 0.3).stroke(Color.white.opacity(0.5), lineWidth: height * 0.05))
+            .shadow(radius: 5)
+        }
+    }
+}
+
 struct CategoryIcon: View {
     let name: String
     var icon: String? = nil
     let isSelected: Bool
+    var size: CGFloat = 60
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {
                 Image(systemName: icon ?? categoryIcon(for: name))
-                    .font(.system(size: 22, weight: .semibold))
-                Text(name).font(.system(size: 9, weight: .bold))
+                    .font(.system(size: size * 0.35, weight: .semibold))
+                Text(LocalizedStringKey(name)).font(.system(size: size * 0.15, weight: .bold))
             }
-            .frame(width: 60, height: 60)
+            .frame(width: size, height: size)
             .background(isSelected ? Color.blue.opacity(0.1) : Color.clear)
-            .cornerRadius(15)
+            .cornerRadius(size * 0.25)
             .foregroundColor(isSelected ? .blue : .gray)
             .scaleEffect(isSelected ? 1.1 : 1.0)
         }

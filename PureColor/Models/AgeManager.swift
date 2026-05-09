@@ -31,11 +31,19 @@ class AgeManager {
                 showComplexity: true
             )
             
-        case .artist:
+        case .master:
             return AgeGroupConfig(
                 availableColors: [], // Empty means show full color picker/all colors
                 toolCategories: ["Basic", "Sketch", "Paint", "Ink"],
                 defaultWidth: 5.0,
+                showComplexity: true
+            )
+            
+        case .zen:
+            return AgeGroupConfig(
+                availableColors: [],
+                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns"],
+                defaultWidth: 2.0,
                 showComplexity: true
             )
         }

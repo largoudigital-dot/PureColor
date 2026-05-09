@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "Appinställningar";
+"Language" = "Språk";
+"Sound Effects" = "Ljudeffekter";
+"Background Music" = "Bakgrundsmusik";
+"Support" = "Support";
+"Privacy Policy" = "Integritetspolicy";
+"Terms of Use" = "Användarvillkor";
+"Done" = "Klar";
+"Time is Up!" = "Tiden är ute!";
+"Ask your parents to unlock more time." = "Be dina föräldrar om mer tid.";
+"Parent Password (e.g., 1234)" = "Föräldralösenord (t.ex. 1234)";
+"Incorrect password" = "Felaktigt lösenord";
+"Unlock App" = "Lås upp appen";
+"Create Artist Profile" = "Skapa artistprofil";
+"Hello, %@!" = "Hej, %@!";
+"TAP TO PLAY" = "TRYCK FÖR ATT SPELA";
+"Switch Profile" = "Byt profil";
+"Who is coloring?" = "Vem färglägger?";
+"Daily Prize!" = "Dagligt pris!";
+"You earned 5 Stars!" = "Du fick 5 stjärnor!";
+"Collect" = "Hämta";
+"Set Screen Time" = "Ställ in skärmtid";
+"HOUR" = "TIM";
+"MIN" = "MIN";
+"Turn Off" = "Stäng av";
+"Time to Rest!" = "Dags att vila!";
+"Parents Only" = "Endast föräldrar";
+"Choose Your Hero!" = "Välj din hjälte!";
+"How old are you?" = "Hur gammal är du?";
+"START COLORING!" = "BÖRJA FÄRGLÄGGA!";
+"TAP THE BOX!" = "TRYCK PÅ LÅDAN!";
+"YOU GOT A STICKER!" = "DU FICK ETT KLISTERMÄRKE!";
+"Cool!" = "Coolt!";
+
+/* Categories */
+"Big Shapes" = "Stora former";
+"My Pets" = "Mina husdjur";
+"Faces & Feelings" = "Ansikten & Känslor";
+"Vehicles" = "Fordon";
+"Fruits" = "Frukter";
+"Numbers 1-5" = "Siffror 1-5";
+"Hero World" = "Hjältevärld";
+"Jungle" = "Djungel";
+"ABC's" = "ABC";
+"Unicorns" = "Enhörningar";
+"Sweet Shop" = "Godisbutik";
+"Space" = "Rymden";
+"Cyber City" = "Cyberstad";
+"Mandalas" = "Mandala";
+"Nature Scenery" = "Natur";
+"Architecture" = "Arkitektur";
+
+/* Age Groups */
+"2-4 Years" = "2-4 år";
+"5-7 Years" = "5-7 år";
+"8+ Years" = "8+ år";
+"Easy Play" = "Enkelt";
+"Creative" = "Kreativt";
+"Artist" = "Konstnär";
+
+/* Tools */
+"Pen" = "Penna";
+"Pencil" = "Blyertspenna";
+"Marker" = "Tuschpenna";
+"Watercolor" = "Akvarell";
+"Splatter" = "Stänk";
+"Oil" = "Olja";
+"Flat Brush" = "Platt pensel";
+"Smooth Hair" = "Slätt hår";
+"Fuzzy Fur" = "Luddig päls";
+"Cozy Coat" = "Mysig päls";
+"Ink" = "Bläck";
+"Spray" = "Spray";
+"Foundation" = "Bas";
+"Blush" = "Rouge";
+"Sparkle" = "Glimma";
+"Glitter" = "Glitter";
+"Plasma" = "Plasma";
+"Laser" = "Laser";
+"Nebula" = "Nebula";
+"Rainbow" = "Regnbåge";
+"Fill" = "Fyll";
+"Hearts" = "Hjärtan";
+"Stars" = "Stjärnor";
+"Dots" = "Prickar";
+"Smiley" = "Smiley";
+"Animal" = "Djur";
+"Gift" = "Present";
+"Blender" = "Mixer";
+"Mixer" = "Mixer";
+
+/* Categories (Tools) */
+"Basic" = "Bas";
+"Sketch" = "Skiss";
+"Paint" = "Måla";
+"Maquillage" = "Smink";
+"Shine" = "Glans";
+"Magic" = "Magi";
+"Patterns" = "Mönster";
+"Stickers" = "Klistermärken";
+"Mélangeur" = "Mixer";
+"Eraser" = "Suddgummi";
+
+/* Common UI */
+"Colors" = "Färger";
+"Size" = "Storlek";
+"Solve to continue" = "Lös för att fortsätta";
+"Cancel" = "Avbryt";
+"Close" = "Stäng";
+"My Gallery" = "Mitt galleri";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Ditt galleri är tomt.\nBörja färglägga för att se din konst här!";
+"%lld Pages" = "%lld Sidor";
+
+/* Avatars */
+"Super Hero" = "Superhjälte";
+"Princess" = "Prinsessa";
+"Robot" = "Robot";
+"Happy" = "Glad";
+"Animal" = "Djur";
+"Star" = "Stjärna";

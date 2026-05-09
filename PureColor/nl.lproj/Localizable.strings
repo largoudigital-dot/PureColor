@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "App-instellingen";
+"Language" = "Taal";
+"Sound Effects" = "Geluidseffecten";
+"Background Music" = "Achtergrondmuziek";
+"Support" = "Ondersteuning";
+"Privacy Policy" = "Privacybeleid";
+"Terms of Use" = "Gebruiksvoorwaarden";
+"Done" = "Klaar";
+"Time is Up!" = "Tijd is om!";
+"Ask your parents to unlock more time." = "Vraag je ouders om meer tijd.";
+"Parent Password (e.g., 1234)" = "Ouderlijk wachtwoord (bijv. 1234)";
+"Incorrect password" = "Onjuist wachtwoord";
+"Unlock App" = "App ontgrendelen";
+"Create Artist Profile" = "Artiestenprofiel aanmaken";
+"Hello, %@!" = "Hallo, %@!";
+"TAP TO PLAY" = "TIK OM TE SPELEN";
+"Switch Profile" = "Profiel wisselen";
+"Who is coloring?" = "Wie is aan het kleuren?";
+"Daily Prize!" = "Dagelijkse prijs!";
+"You earned 5 Stars!" = "Je hebt 5 sterren verdiend!";
+"Collect" = "Verzamelen";
+"Set Screen Time" = "Schermtijd instellen";
+"HOUR" = "UUR";
+"MIN" = "MIN";
+"Turn Off" = "Uitschakelen";
+"Time to Rest!" = "Tijd om te rusten!";
+"Parents Only" = "Alleen voor ouders";
+"Choose Your Hero!" = "Kies je held!";
+"How old are you?" = "Hoe oud ben je?";
+"START COLORING!" = "START MET KLEUREN!";
+"TAP THE BOX!" = "TIK OP DE DOOS!";
+"YOU GOT A STICKER!" = "JE HEBT EEN STICKER!";
+"Cool!" = "Tof!";
+
+/* Categories */
+"Big Shapes" = "Grote vormen";
+"My Pets" = "Mijn huisdieren";
+"Faces & Feelings" = "Gezichten & Gevoelens";
+"Vehicles" = "Voertuigen";
+"Fruits" = "Fruit";
+"Numbers 1-5" = "Cijfers 1-5";
+"Hero World" = "Heldenwereld";
+"Jungle" = "Jungle";
+"ABC's" = "ABC";
+"Unicorns" = "Eenhoorns";
+"Sweet Shop" = "Snoepwinkel";
+"Space" = "Ruimte";
+"Cyber City" = "Cyberstad";
+"Mandalas" = "Mandala's";
+"Nature Scenery" = "Natuur";
+"Architecture" = "Architectuur";
+
+/* Age Groups */
+"2-4 Years" = "2-4 jaar";
+"5-7 Years" = "5-7 jaar";
+"8+ Years" = "8+ jaar";
+"Easy Play" = "Eenvoudig";
+"Creative" = "Creatief";
+"Artist" = "Kunstenaar";
+
+/* Tools */
+"Pen" = "Pen";
+"Pencil" = "Potlood";
+"Marker" = "Stift";
+"Watercolor" = "Waterverf";
+"Splatter" = "Spetters";
+"Oil" = "Olieverf";
+"Flat Brush" = "Platte Penseel";
+"Smooth Hair" = "Glad Haar";
+"Fuzzy Fur" = "Pluizige Vacht";
+"Cozy Coat" = "Warme Vacht";
+"Ink" = "Inkt";
+"Spray" = "Spray";
+"Foundation" = "Basis";
+"Blush" = "Blush";
+"Sparkle" = "Fonkeling";
+"Glitter" = "Glitter";
+"Plasma" = "Plasma";
+"Laser" = "Laser";
+"Nebula" = "Nebula";
+"Rainbow" = "Regenboog";
+"Fill" = "Vullen";
+"Hearts" = "Hartjes";
+"Stars" = "Sterren";
+"Dots" = "Stippen";
+"Smiley" = "Smiley";
+"Animal" = "Dier";
+"Gift" = "Cadeau";
+"Blender" = "Blender";
+"Mixer" = "Mixer";
+
+/* Categories (Tools) */
+"Basic" = "Basis";
+"Sketch" = "Schets";
+"Paint" = "Schilderen";
+"Maquillage" = "Make-up";
+"Shine" = "Glans";
+"Magic" = "Magie";
+"Patterns" = "Patronen";
+"Stickers" = "Stickers";
+"Mélangeur" = "Mixer";
+"Eraser" = "Gummer";
+
+/* Common UI */
+"Colors" = "Kleuren";
+"Size" = "Grootte";
+"Solve to continue" = "Los op om door te gaan";
+"Cancel" = "Annuleren";
+"Close" = "Sluiten";
+"My Gallery" = "Mijn Galerij";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Je galerij is leeg.\nBegin met kleuren om je kunst hier te zien!";
+"%lld Pages" = "%lld Pagina's";
+
+/* Avatars */
+"Super Hero" = "Superheld";
+"Princess" = "Prinses";
+"Robot" = "Robot";
+"Happy" = "Blij";
+"Animal" = "Dier";
+"Star" = "Ster";

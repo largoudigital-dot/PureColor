@@ -1,0 +1,128 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "App Settings";
+"Language" = "Language";
+"Sound Effects" = "Sound Effects";
+"Background Music" = "Background Music";
+"Support" = "Support";
+"Privacy Policy" = "Privacy Policy";
+"Terms of Use" = "Terms of Use";
+"Done" = "Done";
+"Time is Up!" = "Time is Up!";
+"Ask your parents to unlock more time." = "Ask your parents to unlock more time.";
+"Parent Password (e.g., 1234)" = "Parent Password (e.g., 1234)";
+"Incorrect password" = "Incorrect password";
+"Unlock App" = "Unlock App";
+"Create Artist Profile" = "Create Artist Profile";
+"Hello, %@!" = "Hello, %@!";
+"TAP TO PLAY" = "TAP TO PLAY";
+"Switch Profile" = "Switch Profile";
+"Who is coloring?" = "Who is coloring?";
+"Daily Prize!" = "Daily Prize!";
+"You earned 5 Stars!" = "You earned 5 Stars!";
+"Collect" = "Collect";
+"Set Screen Time" = "Set Screen Time";
+"HOUR" = "HOUR";
+"MIN" = "MIN";
+"Turn Off" = "Turn Off";
+"Time to Rest!" = "Time to Rest!";
+"Parents Only" = "Parents Only";
+"Choose Your Hero!" = "Choose Your Hero!";
+"How old are you?" = "How old are you?";
+"START COLORING!" = "START COLORING!";
+"TAP THE BOX!" = "TAP THE BOX!";
+"YOU GOT A STICKER!" = "YOU GOT A STICKER!";
+"Cool!" = "Cool!";
+
+/* Categories */
+"Big Shapes" = "Big Shapes";
+"My Pets" = "My Pets";
+"Faces & Feelings" = "Faces & Feelings";
+"Vehicles" = "Vehicles";
+"Fruits" = "Fruits";
+"Numbers 1-5" = "Numbers 1-5";
+"Hero World" = "Hero World";
+"Jungle" = "Jungle";
+"ABC's" = "ABC's";
+"Unicorns" = "Unicorns";
+"Sweet Shop" = "Sweet Shop";
+"Space" = "Space";
+"Cyber City" = "Cyber City";
+"Mandalas" = "Mandalas";
+"Nature Scenery" = "Nature Scenery";
+"Architecture" = "Architecture";
+
+/* Age Groups */
+"1-3 Years" = "1-3 Years";
+"4-7 Years" = "4-7 Years";
+"8-12 Years" = "8-12 Years";
+"13+ Years" = "13+ Years";
+"Easy Play" = "Easy Play";
+"Creative" = "Creative";
+"Artist" = "Artist";
+"Relaxation" = "Relaxation";
+
+/* Tools */
+"Pen" = "Pen";
+"Pencil" = "Pencil";
+"Marker" = "Marker";
+"Watercolor" = "Watercolor";
+"Splatter" = "Splatter";
+"Oil" = "Oil";
+"Flat Brush" = "Flat Brush";
+"Smooth Hair" = "Smooth Hair";
+"Fuzzy Fur" = "Fuzzy Fur";
+"Cozy Coat" = "Cozy Coat";
+"Ink" = "Ink";
+"Spray" = "Spray";
+"Foundation" = "Foundation";
+"Blush" = "Blush";
+"Sparkle" = "Sparkle";
+"Glitter" = "Glitter";
+"Plasma" = "Plasma";
+"Laser" = "Laser";
+"Nebula" = "Nebula";
+"Rainbow" = "Rainbow";
+"Fill" = "Fill";
+"Hearts" = "Hearts";
+"Stars" = "Stars";
+"Dots" = "Dots";
+"Smiley" = "Smiley";
+"Animal" = "Animal";
+"Gift" = "Gift";
+"Blender" = "Blender";
+"Mixer" = "Mixer";
+
+/* Categories (Tools) */
+"Basic" = "Basic";
+"Sketch" = "Sketch";
+"Paint" = "Paint";
+"Maquillage" = "Makeup";
+"Shine" = "Shine";
+"Magic" = "Magic";
+"Patterns" = "Patterns";
+"Stickers" = "Stickers";
+"Mélangeur" = "Mixer";
+"Eraser" = "Eraser";
+
+/* Common UI */
+"Colors" = "Colors";
+"Size" = "Size";
+"Solve to continue" = "Solve to continue";
+"Cancel" = "Cancel";
+"Close" = "Close";
+"My Gallery" = "My Gallery";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Your gallery is empty.\nStart coloring to see your art here!";
+"%lld Pages" = "%lld Pages";
+
+/* Avatars */
+"Super Hero" = "Super Hero";
+"Princess" = "Princess";
+"Robot" = "Robot";
+"Animal" = "Animal";
+"Star" = "Star";
+"Happy" = "Happy";

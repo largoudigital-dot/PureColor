@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "Uygulama Ayarları";
+"Language" = "Dil";
+"Sound Effects" = "Ses Efektleri";
+"Background Music" = "Arka Plan Müziği";
+"Support" = "Destek";
+"Privacy Policy" = "Gizlilik Politikası";
+"Terms of Use" = "Kullanım Koşulları";
+"Done" = "Bitti";
+"Time is Up!" = "Süre Doldu!";
+"Ask your parents to unlock more time." = "Daha fazla süre için ailene sor.";
+"Parent Password (e.g., 1234)" = "Veli Şifresi (örn. 1234)";
+"Incorrect password" = "Hatalı şifre";
+"Unlock App" = "Kilidi Aç";
+"Create Artist Profile" = "Profil Oluştur";
+"Hello, %@!" = "Merhaba, %@!";
+"TAP TO PLAY" = "OYNAMAK İÇİN TIKLA";
+"Switch Profile" = "Profil Değiştir";
+"Who is coloring?" = "Kim boyama yapıyor?";
+"Daily Prize!" = "Günlük Ödül!";
+"You earned 5 Stars!" = "5 Yıldız kazandın!";
+"Collect" = "Topla";
+"Set Screen Time" = "Ekran Süresi";
+"HOUR" = "SAAT";
+"MIN" = "DAK";
+"Turn Off" = "Kapat";
+"Time to Rest!" = "Dinlenme vakti!";
+"Parents Only" = "Sadece Veliler";
+"Choose Your Hero!" = "Kahramanını Seç!";
+"How old are you?" = "Kaç yaşındasın?";
+"START COLORING!" = "BOYAMAYA BAŞLA!";
+"TAP THE BOX!" = "KUTUYA TIKLA!";
+"YOU GOT A STICKER!" = "BİR ÇIKARTMA KAZANDIN!";
+"Cool!" = "Harika!";
+
+/* Categories */
+"Big Shapes" = "Büyük Şekiller";
+"My Pets" = "Evcil Hayvanlarım";
+"Faces & Feelings" = "Yüzler ve Duygular";
+"Vehicles" = "Araçlar";
+"Fruits" = "Meyveler";
+"Numbers 1-5" = "Sayılar 1-5";
+"Hero World" = "Kahraman Dünyası";
+"Jungle" = "Orman";
+"ABC's" = "Alfabe";
+"Unicorns" = "Tek boynuzlu atlar";
+"Sweet Shop" = "Tatlıcı";
+"Space" = "Uzay";
+"Cyber City" = "Siber Şehir";
+"Mandalas" = "Mandala";
+"Nature Scenery" = "Doğa Manzarası";
+"Architecture" = "Mimari";
+
+/* Age Groups */
+"2-4 Years" = "2-4 Yaş";
+"5-7 Years" = "5-7 Yaş";
+"8+ Years" = "8+ Yaş";
+"Easy Play" = "Kolay Oyun";
+"Creative" = "Yaratıcı";
+"Artist" = "Sanatçı";
+
+/* Tools */
+"Pen" = "Kalem";
+"Pencil" = "Kurşun Kalem";
+"Marker" = "Keçeli Kalem";
+"Watercolor" = "Sulu Boya";
+"Splatter" = "Sıçratma";
+"Oil" = "Yağlı Boya";
+"Flat Brush" = "Yassı Fırça";
+"Smooth Hair" = "Düz Saç";
+"Fuzzy Fur" = "Tüylü Kürk";
+"Cozy Coat" = "Sıcak Kürk";
+"Ink" = "Mürekkep";
+"Spray" = "Sprey";
+"Foundation" = "Temel";
+"Blush" = "Allık";
+"Sparkle" = "Parıltı";
+"Glitter" = "Sim";
+"Plasma" = "Plazma";
+"Laser" = "Lazer";
+"Nebula" = "Bulutsu";
+"Rainbow" = "Gökkuşağı";
+"Fill" = "Doldur";
+"Hearts" = "Kalpler";
+"Stars" = "Yıldızlar";
+"Dots" = "Noktalar";
+"Smiley" = "Gülen Yüz";
+"Animal" = "Hayvan";
+"Gift" = "Hediye";
+"Blender" = "Blender";
+"Mixer" = "Karıştırıcı";
+
+/* Categories (Tools) */
+"Basic" = "Temel";
+"Sketch" = "Eskiz";
+"Paint" = "Boyama";
+"Maquillage" = "Makyaj";
+"Shine" = "Işıltı";
+"Magic" = "Sihir";
+"Patterns" = "Desenler";
+"Stickers" = "Çıkartmalar";
+"Mélangeur" = "Karıştırıcı";
+"Eraser" = "Silgi";
+
+/* Common UI */
+"Colors" = "Renkler";
+"Size" = "Boyut";
+"Solve to continue" = "Devam etmek için çözün";
+"Cancel" = "İptal";
+"Close" = "Kapat";
+"My Gallery" = "Galerim";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Galeriniz boş.\nSanatınızı burada görmek için boyamaya başlayın!";
+"%lld Pages" = "%lld Sayfa";
+
+/* Avatars */
+"Super Hero" = "Süper Kahraman";
+"Princess" = "Prenses";
+"Robot" = "Robot";
+"Happy" = "Mutlu";
+"Animal" = "Hayvan";
+"Star" = "Yıldız";

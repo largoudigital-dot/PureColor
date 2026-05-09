@@ -24,7 +24,7 @@ struct StickerCard: View {
             }
             
             // Text with playful background
-            Text(category.name)
+            Text(LocalizedStringKey(category.name))
                 .font(.system(size: 22, weight: .black, design: .rounded))
                 .foregroundColor(.primary)
                 .padding(.horizontal, 16)

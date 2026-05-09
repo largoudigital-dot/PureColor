@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "Pengaturan Aplikasi";
+"Language" = "Bahasa";
+"Sound Effects" = "Efek Suara";
+"Background Music" = "Musik Latar";
+"Support" = "Dukungan";
+"Privacy Policy" = "Kebijakan Privasi";
+"Terms of Use" = "Ketentuan Penggunaan";
+"Done" = "Selesai";
+"Time is Up!" = "Waktu Habis!";
+"Ask your parents to unlock more time." = "Minta orang tuamu untuk menambah waktu.";
+"Parent Password (e.g., 1234)" = "Kata Sandi Orang Tua (misal: 1234)";
+"Incorrect password" = "Kata sandi salah";
+"Unlock App" = "Buka Kunci Aplikasi";
+"Create Artist Profile" = "Buat Profil Artis";
+"Hello, %@!" = "Halo, %@!";
+"TAP TO PLAY" = "KETUK UNTUK BERMAIN";
+"Switch Profile" = "Ganti Profil";
+"Who is coloring?" = "Siapa yang sedang mewarnai?";
+"Daily Prize!" = "Hadiah Harian!";
+"You earned 5 Stars!" = "Kamu mendapatkan 5 Bintang!";
+"Collect" = "Ambil";
+"Set Screen Time" = "Atur Waktu Layar";
+"HOUR" = "JAM";
+"MIN" = "MENIT";
+"Turn Off" = "Matikan";
+"Time to Rest!" = "Waktunya Istirahat!";
+"Parents Only" = "Hanya Orang Tua";
+"Choose Your Hero!" = "Pilih Pahlawanmu!";
+"How old are you?" = "Berapa usiamu?";
+"START COLORING!" = "MULAI MEWARNAI!";
+"TAP THE BOX!" = "KETUK KOTAKNYA!";
+"YOU GOT A STICKER!" = "KAMU DAPAT STIKER!";
+"Cool!" = "Keren!";
+
+/* Categories */
+"Big Shapes" = "Bentuk Besar";
+"My Pets" = "Hewan Peliharaanku";
+"Faces & Feelings" = "Wajah & Perasaan";
+"Vehicles" = "Kendaraan";
+"Fruits" = "Buah-buahan";
+"Numbers 1-5" = "Angka 1-5";
+"Hero World" = "Dunia Pahlawan";
+"Jungle" = "Hutan";
+"ABC's" = "Huruf ABC";
+"Unicorns" = "Unicorn";
+"Sweet Shop" = "Toko Permen";
+"Space" = "Luar Angkasa";
+"Cyber City" = "Kota Siber";
+"Mandalas" = "Mandala";
+"Nature Scenery" = "Pemandangan Alam";
+"Architecture" = "Arsitektur";
+
+/* Age Groups */
+"2-4 Years" = "2-4 Tahun";
+"5-7 Years" = "5-7 Tahun";
+"8+ Years" = "8+ Tahun";
+"Easy Play" = "Main Mudah";
+"Creative" = "Kreatif";
+"Artist" = "Artis";
+
+/* Tools */
+"Pen" = "Pena";
+"Pencil" = "Pensil";
+"Marker" = "Spidol";
+"Watercolor" = "Cat Air";
+"Splatter" = "Percikan";
+"Oil" = "Cat Minyak";
+"Flat Brush" = "Kuas Datar";
+"Smooth Hair" = "Rambut Halus";
+"Fuzzy Fur" = "Bulu Halus";
+"Cozy Coat" = "Mantel Nyaman";
+"Ink" = "Tinta";
+"Spray" = "Semprotan";
+"Foundation" = "Dasar";
+"Blush" = "Perona Pipi";
+"Sparkle" = "Kilauan";
+"Glitter" = "Gemerlap";
+"Plasma" = "Plasma";
+"Laser" = "Laser";
+"Nebula" = "Nebula";
+"Rainbow" = "Pelangi";
+"Fill" = "Isi Warna";
+"Hearts" = "Hati";
+"Stars" = "Bintang";
+"Dots" = "Titik-titik";
+"Smiley" = "Senyum";
+"Animal" = "Hewan";
+"Gift" = "Hadiah";
+"Blender" = "Blender";
+"Mixer" = "Mixer";
+
+/* Categories (Tools) */
+"Basic" = "Dasar";
+"Sketch" = "Sketsa";
+"Paint" = "Melukis";
+"Maquillage" = "Riasan";
+"Shine" = "Kilau";
+"Magic" = "Ajaib";
+"Patterns" = "Pola";
+"Stickers" = "Stiker";
+"Mélangeur" = "Mixer";
+"Eraser" = "Penghapus";
+
+/* Common UI */
+"Colors" = "Warna";
+"Size" = "Ukuran";
+"Solve to continue" = "Selesaikan untuk lanjut";
+"Cancel" = "Batal";
+"Close" = "Tutup";
+"My Gallery" = "Galeri Saya";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Galeri kamu kosong.\nMulai mewarnai untuk melihat karyamu di sini!";
+"%lld Pages" = "%lld Halaman";
+
+/* Avatars */
+"Super Hero" = "Pahlawan Super";
+"Princess" = "Putri";
+"Robot" = "Robot";
+"Happy" = "Senang";
+"Animal" = "Hewan";
+"Star" = "Bintang";

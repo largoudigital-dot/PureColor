@@ -40,7 +40,7 @@ struct DrawingSelectionView: View {
                     
                     Spacer()
                     
-                    Text(category.name)
+                    Text(LocalizedStringKey(category.name))
                         .font(.system(size: 38, weight: .black, design: .rounded))
                         .foregroundColor(.white)
                         .modifier(StrokeModifier(strokeColor: category.color.opacity(0.8), lineWidth: 8))

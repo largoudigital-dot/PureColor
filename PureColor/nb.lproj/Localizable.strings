@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  PureColor
+*/
+
+"PureColor" = "PureColor";
+"App Settings" = "App-innstillinger";
+"Language" = "Språk";
+"Sound Effects" = "Lydeffekter";
+"Background Music" = "Bakgrunnsmusikk";
+"Support" = "Brukerstøtte";
+"Privacy Policy" = "Personvernerklæring";
+"Terms of Use" = "Vilkår for bruk";
+"Done" = "Ferdig";
+"Time is Up!" = "Tiden er ute!";
+"Ask your parents to unlock more time." = "Be foreldrene dine om mer tid.";
+"Parent Password (e.g., 1234)" = "Foreldrepassord (f.eks. 1234)";
+"Incorrect password" = "Feil passord";
+"Unlock App" = "Lås opp appen";
+"Create Artist Profile" = "Opprett kunstnerprofil";
+"Hello, %@!" = "Hei, %@!";
+"TAP TO PLAY" = "TRYKK FOR Å SPILLE";
+"Switch Profile" = "Bytt profil";
+"Who is coloring?" = "Hvem fargelegger?";
+"Daily Prize!" = "Daglig premie!";
+"You earned 5 Stars!" = "Du fikk 5 stjerner!";
+"Collect" = "Hent";
+"Set Screen Time" = "Still inn skjermtid";
+"HOUR" = "TIME";
+"MIN" = "MIN";
+"Turn Off" = "Slå av";
+"Time to Rest!" = "Tid for å hvile!";
+"Parents Only" = "Kun foreldre";
+"Choose Your Hero!" = "Velg din helt!";
+"How old are you?" = "Hvor gammel er du?";
+"START COLORING!" = "BEGYNN Å FARGELEGGE!";
+"TAP THE BOX!" = "TRYKK PÅ ESKEN!";
+"YOU GOT A STICKER!" = "DU FIKK ET KLISTREMERKE!";
+"Cool!" = "Kult!";
+
+/* Categories */
+"Big Shapes" = "Store former";
+"My Pets" = "Husdyrene mine";
+"Faces & Feelings" = "Ansikter & Følelser";
+"Vehicles" = "Kjøretøy";
+"Fruits" = "Frukter";
+"Numbers 1-5" = "Tall 1-5";
+"Hero World" = "Helteverden";
+"Jungle" = "Jungel";
+"ABC's" = "ABC";
+"Unicorns" = "Enhjørninger";
+"Sweet Shop" = "Godteri-butikk";
+"Space" = "Verdensrommet";
+"Cyber City" = "Cyberby";
+"Mandalas" = "Mandalaer";
+"Nature Scenery" = "Natur";
+"Architecture" = "Arkitektur";
+
+/* Age Groups */
+"2-4 Years" = "2-4 år";
+"5-7 Years" = "5-7 år";
+"8+ Years" = "8+ år";
+"Easy Play" = "Enkel lek";
+"Creative" = "Kreativ";
+"Artist" = "Kunstner";
+
+/* Tools */
+"Pen" = "Penn";
+"Pencil" = "Blyant";
+"Marker" = "Tusj";
+"Watercolor" = "Akvarell";
+"Splatter" = "Sprut";
+"Oil" = "Olje";
+"Flat Brush" = "Flat pensel";
+"Smooth Hair" = "Glatt hår";
+"Fuzzy Fur" = "Loddent pels";
+"Cozy Coat" = "Lun pels";
+"Ink" = "Blekk";
+"Spray" = "Spray";
+"Foundation" = "Base";
+"Blush" = "Blush";
+"Sparkle" = "Glitre";
+"Glitter" = "Glimmer";
+"Plasma" = "Plasma";
+"Laser" = "Laser";
+"Nebula" = "Nebula";
+"Rainbow" = "Regnbue";
+"Fill" = "Fyll";
+"Hearts" = "Hjerter";
+"Stars" = "Stjerner";
+"Dots" = "Prikker";
+"Smiley" = "Smiley";
+"Animal" = "Dyr";
+"Gift" = "Gave";
+"Blender" = "Blender";
+"Mixer" = "Mikser";
+
+/* Categories (Tools) */
+"Basic" = "Basis";
+"Sketch" = "Skisse";
+"Paint" = "Mal";
+"Maquillage" = "Sminke";
+"Shine" = "Glans";
+"Magic" = "Magi";
+"Patterns" = "Mønstre";
+"Stickers" = "Klistremerker";
+"Mélangeur" = "Mikser";
+"Eraser" = "Viskelær";
+
+/* Common UI */
+"Colors" = "Farger";
+"Size" = "Størrelse";
+"Solve to continue" = "Løs for å fortsette";
+"Cancel" = "Avbryt";
+"Close" = "Lukk";
+"My Gallery" = "Mitt galleri";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Galleriet ditt er tomt.\nBegynn å fargelegge for å se kunsten din her!";
+"%lld Pages" = "%lld Sider";
+
+/* Avatars */
+"Super Hero" = "Superhelt";
+"Princess" = "Prinsesse";
+"Robot" = "Robot";
+"Happy" = "Glad";
+"Animal" = "Dyr";
+"Star" = "Stjerne";
