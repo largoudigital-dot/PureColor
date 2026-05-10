@@ -1,5 +1,7 @@
 import SwiftUI
 import PencilKit
+import PhotosUI
+import Combine
 
 typealias ToolConfig = (name: String, icon: String, type: PKInkingTool.InkType, width: CGFloat, opacity: CGFloat)
 
@@ -20,9 +22,36 @@ struct ColoringCanvasView: View {
     @State private var showSizePanel = false
     @State private var showExitConfirmation = false
     
-    private var ageConfig: AgeGroupConfig {
-        AgeManager.shared.config(for: category.ageGroup)
+    // Photo to Canvas
+    @State private var customBackgroundImage: UIImage? = nil
+    @State private var selectedPhotoItem: PhotosPickerItem? = nil
+    @State private var isProcessingPhoto = false
+    
+    // Time-Lapse
+    @ObservedObject private var recorder = TimeLapseRecorder.shared
+    @State private var isExportingVideo = false
+    @State private var showExportSuccess = false
+    
+    // Canvas Customization
+    @State private var canvasBackgroundColor: Color = .white
+    private let bgOptions: [Color] = [.white, Color(white: 0.9), Color(white: 0.2), .black]
+    
+    // Canvas Customization
+    @State private var canvasBackground: CanvasBackground = .solid(.white)
+    @State private var showBackgroundFlyout = false
+    
+    enum CanvasBackground: Equatable {
+        case solid(Color)
+        case gradient([Color])
     }
+    
+    private let backgroundSolidOptions: [Color] = [.white, Color(white: 0.9), Color(white: 0.2), .black, .pink.opacity(0.2), .blue.opacity(0.2)]
+    private let backgroundGradientOptions: [[Color]] = [
+        [.orange, .purple],
+        [.blue, .teal],
+        [.indigo, .black],
+        [.yellow, .red]
+    ]
     
     var filteredCategories: [String] {
         ["Basic", "Sketch", "Paint", "Ink", "Maquillage", "Shine", "Magic", "Patterns", "Stickers", "Mélangeur"]
@@ -127,6 +156,23 @@ struct ColoringCanvasView: View {
             colorPickerOverlay
             sizePickerOverlay
             exitConfirmationOverlay
+            
+            if isExportingVideo {
+                ZStack {
+                    Color.black.opacity(0.6).ignoresSafeArea()
+                    VStack(spacing: 20) {
+                        ProgressView().scaleEffect(2).tint(.white)
+                        Text("Exporting Time-Lapse...")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                    }
+                }
+            }
+        }
+        .alert("Video Saved!", isPresented: $showExportSuccess) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Your speed-paint video has been saved to your Photos.")
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
@@ -148,6 +194,29 @@ struct ColoringCanvasView: View {
         .onChange(of: currentBrushName) { _ in saveGroupState() }
         .onChange(of: currentWidth) { _ in saveGroupState() }
         .onChange(of: activeCategory) { _ in saveGroupState() }
+        .onChange(of: selectedPhotoItem) { newItem in
+            guard let item = newItem else { return }
+            isProcessingPhoto = true
+            item.loadTransferable(type: Data.self) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let data?):
+                        if let uiImage = UIImage(data: data) {
+                            ImageToSketchConverter.shared.convertToLineArt(image: uiImage) { sketch in
+                                if let sketch = sketch {
+                                    self.customBackgroundImage = sketch
+                                }
+                                self.isProcessingPhoto = false
+                            }
+                        } else {
+                            self.isProcessingPhoto = false
+                        }
+                    case .success(nil), .failure:
+                        self.isProcessingPhoto = false
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Persistence
@@ -276,7 +345,7 @@ struct ColoringCanvasView: View {
             VStack(spacing: 5) {
                 ZStack(alignment: .top) {
                     RoundedRectangle(cornerRadius: 30)
-                        .fill(Color.white)
+                        .fill(backgroundView)
                         .shadow(color: .black.opacity(0.1), radius: 10)
                     
                     PencilKitView(canvasView: $canvasView)
@@ -288,14 +357,44 @@ struct ColoringCanvasView: View {
                                 }
                         )
                     
-                    Image(systemName: drawingItem.imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 300, height: 300)
-                        .foregroundColor(.black.opacity(0.8))
-                        .allowsHitTesting(false)
-                        .opacity(0.9)
+                    if let bgImage = customBackgroundImage {
+                        Image(uiImage: bgImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(40)
+                            .allowsHitTesting(false)
+                            .opacity(0.5)
+                    } else if drawingItem.exampleImage != "personalize" {
+                        // Show template guide for regular drawings
+                        Image(uiImage: UIImage(named: drawingItem.imageName) ?? UIImage(systemName: drawingItem.imageName) ?? UIImage())
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(40)
+                            .allowsHitTesting(false)
+                            .opacity(0.3)
+                    }
+                    if isProcessingPhoto {
+                        ZStack {
+                            Color.black.opacity(0.4).cornerRadius(30)
+                            ProgressView()
+                                .scaleEffect(2.0)
+                                .tint(.white)
+                        }
+                    }
                 }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var backgroundView: some View {
+        switch canvasBackground {
+        case .solid(let color):
+            color
+        case .gradient(let colors):
+            LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
+    }
                 
                 if !isPro {
                     HStack(spacing: 40) {
@@ -368,6 +467,131 @@ struct ColoringCanvasView: View {
                     .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 4 : 0))
                     .shadow(radius: 5)
                 }
+                Divider().frame(width: 25).background(Color.white.opacity(0.3))
+                
+                // Photo Import & Background Button - Only visible in Custom/Personalize mode
+                if drawingItem.exampleImage == "personalize" {
+                    // Background Style Button
+                    Button {
+                        withAnimation(.spring()) {
+                            showBackgroundFlyout.toggle()
+                            showColorFlyout = false
+                        }
+                        AudioManager.shared.playPop()
+                    } label: {
+                        ZStack {
+                            Circle().fill(backgroundView)
+                            Circle().stroke(Color.white, lineWidth: 3)
+                            Image(systemName: "paintpalette.fill")
+                                .foregroundColor(.gray)
+                                .font(.system(size: bSize * 0.35))
+                        }
+                        .frame(width: bSize, height: bSize)
+                        .shadow(radius: 5)
+                    }
+                    .overlay(alignment: .trailing) {
+                        if showBackgroundFlyout {
+                            HStack(spacing: 12) {
+                                // Solids
+                                ForEach(backgroundSolidOptions, id: \.self) { color in
+                                    Button {
+                                        canvasBackground = .solid(color)
+                                        AudioManager.shared.playPop()
+                                    } label: {
+                                        Circle().fill(color)
+                                            .frame(width: 40, height: 40)
+                                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                                            .shadow(radius: 2)
+                                    }
+                                }
+                                
+                                Divider().frame(height: 30)
+                                
+                                // Gradients
+                                ForEach(backgroundGradientOptions, id: \.self) { colors in
+                                    Button {
+                                        canvasBackground = .gradient(colors)
+                                        AudioManager.shared.playPop()
+                                    } label: {
+                                        Circle().fill(LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom))
+                                            .frame(width: 40, height: 40)
+                                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                                            .shadow(radius: 2)
+                                    }
+                                }
+                            }
+                            .padding(10)
+                            .background(Color.white.opacity(0.95))
+                            .clipShape(Capsule())
+                            .shadow(radius: 10)
+                            .offset(x: -bSize * 1.5 - 200) // Adjust offset to show flyout
+                            .transition(.move(edge: .trailing).combined(with: .opacity))
+                        }
+                    }
+                    
+                    PhotosPicker(selection: $selectedPhotoItem, matching: .images, photoLibrary: .shared()) {
+                        ZStack {
+                            Circle().fill(Color.purple.opacity(0.8))
+                            Image(systemName: "camera.fill")
+                                .foregroundColor(.white)
+                                .font(.system(size: bSize * 0.4, weight: .bold))
+                        }
+                        .frame(width: bSize, height: bSize)
+                        .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                        .shadow(radius: 5)
+                    }
+                    .disabled(isProcessingPhoto)
+                }
+                
+                // Time-Lapse Button
+                Button(action: {
+                    if recorder.isRecording {
+                        isExportingVideo = true
+                        recorder.stopAndExport { url in
+                            isExportingVideo = false
+                            if let url = url {
+                                UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, nil)
+                                showExportSuccess = true
+                            }
+                        }
+                    } else {
+                        // Correctly load the image (Asset or SystemName)
+                        let bgImage: UIImage? = {
+                            if let custom = customBackgroundImage { return custom }
+                            return UIImage(named: drawingItem.imageName) ?? UIImage(systemName: drawingItem.imageName)
+                        }()
+                        
+                        let colors: [Color] = {
+                            switch canvasBackground {
+                            case .solid(let c): return [c]
+                            case .gradient(let cs): return cs
+                            }
+                        }()
+                        
+                        recorder.startRecording(canvas: canvasView, background: bgImage, bgColors: colors)
+                    }
+                    AudioManager.shared.playPop()
+                }) {
+                    ZStack {
+                        Circle().fill(recorder.isRecording ? Color.red : Color.gray.opacity(0.8))
+                        Image(systemName: recorder.isRecording ? "stop.fill" : "video.fill")
+                            .foregroundColor(.white)
+                            .font(.system(size: bSize * 0.4, weight: .bold))
+                    }
+                    .frame(width: bSize, height: bSize)
+                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                    .shadow(radius: 5)
+                }
+                .overlay(
+                    Group {
+                        if recorder.isRecording {
+                            Circle()
+                                .stroke(Color.red, lineWidth: 2)
+                                .scaleEffect(1.2)
+                                .opacity(0.5)
+                        }
+                    }
+                )
                 
                 if !isPro {
                     VStack(spacing: 25) {

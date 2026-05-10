@@ -55,6 +55,34 @@ struct DrawingSelectionView: View {
                 
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 25) {
+                        // Special Personalize Card for older age groups
+                        if category.ageGroup == .master || category.ageGroup == .zen {
+                            NavigationLink(destination: ColoringCanvasView(category: category, drawingItem: DrawingItem(imageName: "camera.fill", exampleImage: "personalize"))) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .fill(category.color.opacity(0.1))
+                                        .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
+                                    
+                                    VStack(spacing: 10) {
+                                        Image(systemName: "camera.shutter.button.fill")
+                                            .font(.system(size: 50))
+                                            .foregroundColor(category.color)
+                                        
+                                        Text("Custom")
+                                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                                            .foregroundColor(category.color)
+                                    }
+                                }
+                                .frame(height: 160)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(category.color.gradient, lineWidth: 6, antialiased: true)
+                                        .opacity(0.5)
+                                )
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                        
                         ForEach(category.drawings) { drawing in
                             NavigationLink(destination: ColoringCanvasView(category: category, drawingItem: drawing)) {
                                 DrawingCard(drawing: drawing, color: category.color)
