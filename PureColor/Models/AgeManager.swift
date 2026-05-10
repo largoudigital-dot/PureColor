@@ -1,11 +1,14 @@
 import SwiftUI
 import PencilKit
 
+enum UITheme { case playful, professional }
+
 struct AgeGroupConfig {
     let availableColors: [Color]
-    let toolCategories: [String] // e.g. ["Basic"] for toddlers, all for artist
+    let toolCategories: [String] 
     let defaultWidth: CGFloat
-    let showComplexity: Bool // If true, show detailed settings
+    let showComplexity: Bool 
+    let theme: UITheme
 }
 
 class AgeManager {
@@ -17,34 +20,38 @@ class AgeManager {
         switch group {
         case .toddlers:
             return AgeGroupConfig(
-                availableColors: [.red, .blue, .green, .yellow, .orange], // Only 5 basic colors
-                toolCategories: ["Basic"], // Only basic pens
+                availableColors: [.red, .blue, .green, .yellow, .orange],
+                toolCategories: ["Basic"],
                 defaultWidth: 35.0,
-                showComplexity: false
+                showComplexity: false,
+                theme: .playful
             )
             
         case .kids:
             return AgeGroupConfig(
                 availableColors: [.red, .blue, .green, .yellow, .orange, .purple, .pink, .brown, .black],
-                toolCategories: ["Basic", "Sketch"],
+                toolCategories: ["Basic", "Sketch", "Paint"],
                 defaultWidth: 15.0,
-                showComplexity: true
+                showComplexity: true,
+                theme: .playful
             )
             
-        case .master:
+        case .master: // 8-12
             return AgeGroupConfig(
-                availableColors: [], // Empty means show full color picker/all colors
-                toolCategories: ["Basic", "Sketch", "Paint", "Ink"],
-                defaultWidth: 5.0,
-                showComplexity: true
+                availableColors: [], 
+                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns"],
+                defaultWidth: 8.0,
+                showComplexity: true,
+                theme: .professional
             )
             
-        case .zen:
+        case .zen: // 13+
             return AgeGroupConfig(
                 availableColors: [],
-                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns"],
-                defaultWidth: 2.0,
-                showComplexity: true
+                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns", "Shine", "Mélangeur"],
+                defaultWidth: 5.0,
+                showComplexity: true,
+                theme: .professional
             )
         }
     }
