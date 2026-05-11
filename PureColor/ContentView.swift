@@ -24,12 +24,12 @@ struct ContentView: View {
                     // Custom Header
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("PureColor")
+                            Text(LocalizedStringKey("PureColor"))
                                 .font(.system(size: 34, weight: .black, design: .rounded))
                                 .foregroundStyle(
                                     LinearGradient(colors: [.orange, .red], startPoint: .leading, endPoint: .trailing)
                                 )
-                            Text("Ready to paint?")
+                            Text(LocalizedStringKey("Ready to paint?"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundColor(.secondary)
                         }
@@ -51,7 +51,7 @@ struct ContentView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(Array(mockCategories.enumerated()), id: \.element.id) { index, category in
-                                NavigationLink(destination: Text("\(category.name) - Coming Soon!")) {
+                                NavigationLink(destination: Text(String(format: NSLocalizedString("%@ - Coming Soon!", comment: ""), category.name))) {
                                     CategoryCard(category: category)
                                         .animation(.spring().delay(Double(index) * 0.1), value: true)
                                 }

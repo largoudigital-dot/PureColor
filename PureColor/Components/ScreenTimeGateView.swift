@@ -15,16 +15,16 @@ struct ScreenTimeGateView: View {
                     .font(.system(size: 80))
                     .foregroundColor(.orange)
                 
-                Text("Time is Up!")
+                Text(LocalizedStringKey("Time is Up!"))
                     .font(.system(size: 40, weight: .heavy, design: .rounded))
                     .foregroundColor(.white)
                 
-                Text("Ask your parents to unlock more time.")
+                Text(LocalizedStringKey("Ask your parents to unlock more time."))
                     .font(.title2)
                     .foregroundColor(.white.opacity(0.8))
                 
                 VStack(spacing: 15) {
-                    SecureField("Parent Password (e.g., 1234)", text: $password)
+                    SecureField(LocalizedStringKey("Parent Password (e.g., 1234)"), text: $password)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(15)
@@ -34,7 +34,7 @@ struct ScreenTimeGateView: View {
                         .keyboardType(.numberPad)
                     
                     if showError {
-                        Text("Incorrect password")
+                        Text(LocalizedStringKey("Incorrect password"))
                             .foregroundColor(.red)
                             .font(.callout.bold())
                     }
@@ -49,7 +49,7 @@ struct ScreenTimeGateView: View {
                             showError = true
                         }
                     } label: {
-                        Text("Unlock App")
+                        Text(LocalizedStringKey("Unlock App"))
                             .font(.title3.bold())
                             .foregroundColor(.white)
                             .padding(.horizontal, 40)

@@ -57,12 +57,14 @@
 "Architecture" = "Architektur";
 
 /* Age Groups */
-"2-4 Years" = "2-4 Jahre";
-"5-7 Years" = "5-7 Jahre";
-"8+ Years" = "8+ Jahre";
+"1-3 Years" = "1-3 Jahre";
+"4-7 Years" = "4-7 Jahre";
+"8-12 Years" = "8-12 Jahre";
+"13+ Years" = "13+ Jahre";
 "Easy Play" = "Einfach spielen";
 "Creative" = "Kreativ";
 "Artist" = "Künstler";
+"Relaxation" = "Entspannung";
 
 /* Tools */
 "Pen" = "Stift";
@@ -130,3 +132,11 @@
 "Exit drawing?" = "Zeichnung beenden?";
 "Yes" = "Ja";
 "No" = "Nein";
+
+/* New Strings */
+"CREATIVE WORLD FOR EVERYONE" = "KREATIVE WELT FÜR ALLE";
+"Custom" = "Individuell";
+"Ready to paint?" = "Bereit zum Malen?";
+"%@ - Coming Soon!" = "%@ - Demnächst!";
+"Exporting Time-Lapse..." = "Time-Lapse exportieren...";
+"Your speed-paint video has been saved to your Photos." = "Dein Speed-Paint-Video wurde in deinen Fotos gespeichert.";

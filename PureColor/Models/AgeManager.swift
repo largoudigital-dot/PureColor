@@ -30,7 +30,7 @@ class AgeManager {
         case .kids:
             return AgeGroupConfig(
                 availableColors: [.red, .blue, .green, .yellow, .orange, .purple, .pink, .brown, .black],
-                toolCategories: ["Basic", "Sketch", "Paint"],
+                toolCategories: ["Basic", "Sketch", "Paint", "Stickers"],
                 defaultWidth: 15.0,
                 showComplexity: true,
                 theme: .playful
@@ -39,7 +39,7 @@ class AgeManager {
         case .master: // 8-12
             return AgeGroupConfig(
                 availableColors: [], 
-                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns"],
+                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns", "Stickers", "Maquillage"],
                 defaultWidth: 8.0,
                 showComplexity: true,
                 theme: .professional
@@ -48,7 +48,7 @@ class AgeManager {
         case .zen: // 13+
             return AgeGroupConfig(
                 availableColors: [],
-                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns", "Shine", "Mélangeur"],
+                toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns", "Shine", "Mélangeur", "Stickers", "Maquillage"],
                 defaultWidth: 5.0,
                 showComplexity: true,
                 theme: .professional

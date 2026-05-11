@@ -53,6 +53,10 @@ struct ColoringCanvasView: View {
         [.yellow, .red]
     ]
     
+    private var ageConfig: AgeGroupConfig {
+        AgeManager.shared.config(for: category.ageGroup)
+    }
+    
     var filteredCategories: [String] {
         ["Basic", "Sketch", "Paint", "Ink", "Maquillage", "Shine", "Magic", "Patterns", "Stickers", "Mélangeur"]
             .filter { ageConfig.toolCategories.contains($0) }
@@ -162,17 +166,17 @@ struct ColoringCanvasView: View {
                     Color.black.opacity(0.6).ignoresSafeArea()
                     VStack(spacing: 20) {
                         ProgressView().scaleEffect(2).tint(.white)
-                        Text("Exporting Time-Lapse...")
+                        Text(LocalizedStringKey("Exporting Time-Lapse..."))
                             .foregroundColor(.white)
                             .font(.headline)
                     }
                 }
             }
         }
-        .alert("Video Saved!", isPresented: $showExportSuccess) {
-            Button("OK", role: .cancel) { }
+        .alert(LocalizedStringKey("Video Saved!"), isPresented: $showExportSuccess) {
+            Button(LocalizedStringKey("OK"), role: .cancel) { }
         } message: {
-            Text("Your speed-paint video has been saved to your Photos.")
+            Text(LocalizedStringKey("Your speed-paint video has been saved to your Photos."))
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
@@ -190,11 +194,11 @@ struct ColoringCanvasView: View {
                 windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscape))
             }
         }
-        .onChange(of: selectedColor) { _ in saveGroupState() }
-        .onChange(of: currentBrushName) { _ in saveGroupState() }
-        .onChange(of: currentWidth) { _ in saveGroupState() }
-        .onChange(of: activeCategory) { _ in saveGroupState() }
-        .onChange(of: selectedPhotoItem) { newItem in
+        .onChange(of: selectedColor) { saveGroupState() }
+        .onChange(of: currentBrushName) { saveGroupState() }
+        .onChange(of: currentWidth) { saveGroupState() }
+        .onChange(of: activeCategory) { saveGroupState() }
+        .onChange(of: selectedPhotoItem) { _, newItem in
             guard let item = newItem else { return }
             isProcessingPhoto = true
             item.loadTransferable(type: Data.self) { result in
@@ -344,16 +348,18 @@ struct ColoringCanvasView: View {
             let bSize = min(max(geo.size.height * 0.1, 40), 55)
             VStack(spacing: 5) {
                 ZStack(alignment: .top) {
-                    RoundedRectangle(cornerRadius: 30)
-                        .fill(backgroundView)
-                        .shadow(color: .black.opacity(0.1), radius: 10)
-                    
                     PencilKitView(canvasView: $canvasView)
-                        .cornerRadius(30)
+                        .background(backgroundView) // Fix: Ensure background is applied to the canvas area
+                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                        .shadow(color: .black.opacity(0.1), radius: 10)
                         .simultaneousGesture(
                             DragGesture(minimumDistance: 0)
                                 .onChanged { _ in
-                                    withAnimation(.spring()) { showColorFlyout = false }
+                                    withAnimation(.spring()) { 
+                                        showColorFlyout = false
+                                        showBackgroundFlyout = false
+                                        showSizeFlyout = false
+                                    }
                                 }
                         )
                     
@@ -364,8 +370,8 @@ struct ColoringCanvasView: View {
                             .padding(40)
                             .allowsHitTesting(false)
                             .opacity(0.5)
-                    } else if drawingItem.exampleImage != "personalize" {
-                        // Show template guide for regular drawings
+                    } else if drawingItem.exampleImage == nil {
+                        // Show template guide ONLY for regular drawings (where exampleImage is nil)
                         Image(uiImage: UIImage(named: drawingItem.imageName) ?? UIImage(systemName: drawingItem.imageName) ?? UIImage())
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -382,19 +388,6 @@ struct ColoringCanvasView: View {
                         }
                     }
                 }
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private var backgroundView: some View {
-        switch canvasBackground {
-        case .solid(let color):
-            color
-        case .gradient(let colors):
-            LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
-        }
-    }
                 
                 if !isPro {
                     HStack(spacing: 40) {
@@ -418,6 +411,16 @@ struct ColoringCanvasView: View {
         .padding(.top, isPro ? 5 : 25)
         .padding(.bottom, 5)
         .padding(.horizontal, isPro ? 0 : 10)
+    }
+    
+    @ViewBuilder
+    private var backgroundView: some View {
+        switch canvasBackground {
+        case .solid(let color):
+            color
+        case .gradient(let colors):
+            LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
     }
     
     @ViewBuilder
@@ -480,13 +483,14 @@ struct ColoringCanvasView: View {
                         AudioManager.shared.playPop()
                     } label: {
                         ZStack {
-                            Circle().fill(backgroundView)
-                            Circle().stroke(Color.white, lineWidth: 3)
+                            backgroundView
                             Image(systemName: "paintpalette.fill")
                                 .foregroundColor(.gray)
                                 .font(.system(size: bSize * 0.35))
                         }
                         .frame(width: bSize, height: bSize)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.white, lineWidth: 3))
                         .shadow(radius: 5)
                     }
                     .overlay(alignment: .trailing) {
@@ -558,6 +562,8 @@ struct ColoringCanvasView: View {
                         // Correctly load the image (Asset or SystemName)
                         let bgImage: UIImage? = {
                             if let custom = customBackgroundImage { return custom }
+                            // Fix: Don't use the camera icon as a background in the video if we are in personalize mode
+                            if drawingItem.exampleImage == "personalize" { return nil }
                             return UIImage(named: drawingItem.imageName) ?? UIImage(systemName: drawingItem.imageName)
                         }()
                         
@@ -668,8 +674,8 @@ struct ColoringCanvasView: View {
             }
         }
         .padding(.bottom, 5)
-        .onChange(of: currentWidth) { _ in updateTool() }
-        .onChange(of: currentOpacity) { _ in updateTool() }
+        .onChange(of: currentWidth) { updateTool() }
+        .onChange(of: currentOpacity) { updateTool() }
     }
     
     @ViewBuilder
@@ -744,7 +750,7 @@ struct ColoringCanvasView: View {
                     ColorPicker("", selection: $selectedColor)
                         .labelsHidden()
                         .padding(.top, 10)
-                        .onChange(of: selectedColor) { _ in updateTool() }
+                        .onChange(of: selectedColor) { updateTool() }
                     
                     Divider().background(Color.white.opacity(0.3)).padding(.horizontal, 10)
                 }
@@ -783,10 +789,10 @@ struct ColoringCanvasView: View {
     private var sizePickerOverlay: some View {
         if showSizeFlyout {
             VStack(spacing: 15) {
-                Text("Size").font(.caption.bold()).foregroundColor(.gray)
+                Text(LocalizedStringKey("Size")).font(.caption.bold()).foregroundColor(.gray)
                 Circle().fill(selectedColor).frame(width: currentWidth, height: currentWidth).frame(width: 50, height: 50).background(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 1))
                 Slider(value: $currentWidth, in: 2...80).accentColor(.blue).frame(width: 150).rotationEffect(.degrees(-90)).frame(height: 160).onChange(of: currentWidth) { updateTool() }
-                Button("Done") { withAnimation { showSizeFlyout = false } }.font(.caption2.bold()).foregroundColor(.blue)
+                Button(LocalizedStringKey("Done")) { withAnimation { showSizeFlyout = false } }.font(.caption2.bold()).foregroundColor(.blue)
             }
             .padding(.vertical, 15)
             .frame(width: 80)

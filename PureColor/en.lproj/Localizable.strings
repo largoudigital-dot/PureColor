@@ -132,3 +132,11 @@
 "Exit drawing?" = "Exit drawing?";
 "Yes" = "Yes";
 "No" = "No";
+
+/* New Strings */
+"CREATIVE WORLD FOR EVERYONE" = "CREATIVE WORLD FOR EVERYONE";
+"Custom" = "Custom";
+"Ready to paint?" = "Ready to paint?";
+"%@ - Coming Soon!" = "%@ - Coming Soon!";
+"Exporting Time-Lapse..." = "Exporting Time-Lapse...";
+"Your speed-paint video has been saved to your Photos." = "Your speed-paint video has been saved to your Photos.";

@@ -132,3 +132,11 @@
 "Exit drawing?" = "هل تريد الخروج؟";
 "Yes" = "نعم";
 "No" = "لا";
+
+/* New Strings */
+"CREATIVE WORLD FOR EVERYONE" = "عالم إبداعي للجميع";
+"Custom" = "مخصص";
+"Ready to paint?" = "جاهز للتلوين؟";
+"%@ - Coming Soon!" = "%@ - قريباً!";
+"Exporting Time-Lapse..." = "تصدير الفيديو...";
+"Your speed-paint video has been saved to your Photos." = "تم حفظ الفيديو في الصور.";

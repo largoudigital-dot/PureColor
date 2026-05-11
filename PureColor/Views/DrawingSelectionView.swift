@@ -68,7 +68,7 @@ struct DrawingSelectionView: View {
                                             .font(.system(size: 50))
                                             .foregroundColor(category.color)
                                         
-                                        Text("Custom")
+                                        Text(LocalizedStringKey("Custom"))
                                             .font(.system(size: 18, weight: .bold, design: .rounded))
                                             .foregroundColor(category.color)
                                     }
