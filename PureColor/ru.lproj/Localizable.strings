@@ -139,4 +139,24 @@
 "Ready to paint?" = "Готов рисовать?";
 "%@ - Coming Soon!" = "%@ - Скоро!";
 "Exporting Time-Lapse..." = "Экспорт таймлапса...";
-"Your speed-paint video has been saved to your Photos." = "Ваше видео сохранено в Фото.";
+"Your speed-paint video has been saved to your Photos." = "Ваше видео speed-paint сохранено в Фото.";
+
+/* Gallery & Save */
+"Save your work?" = "Сохранить работу?";
+"Done?" = "Готово?";
+"Save and Exit" = "Сохранить и выйти";
+"Finished & Save" = "Завершить и сохранить";
+"Save Draft" = "Сохранить черновик";
+"Discard Changes" = "Отменить изменения";
+"Keep Drawing" = "Продолжить рисовать";
+"Exit without Saving" = "Выйти без сохранения";
+"Guest Artist" = "Приглашенный художник";
+"Creative Studio" = "Творческая студия";
+"Finished" = "Завершено";
+"Draft" = "Черновик";
+"Delete Artwork?" = "Удалить работу?";
+"This cannot be undone." = "Это действие нельзя отменить.";
+"Delete" = "Удалить";
+"All" = "Все";
+"Drafts" = "Черновики";
+"No artwork found here!" = "Работы не найдены!";

@@ -7,7 +7,7 @@
 "App Settings" = "ऐप सेटिंग्स";
 "Language" = "भाषा";
 "Sound Effects" = "ध्वनि प्रभाव";
-"Background Music" = "पृष्ठभूमि संगीत";
+"Background Music" = "पार्श्व संगीत";
 "Support" = "सहायता";
 "Privacy Policy" = "गोपनीयता नीति";
 "Terms of Use" = "उपयोग की शर्तें";
@@ -17,38 +17,38 @@
 "Parent Password (e.g., 1234)" = "माता-पिता का पासवर्ड (उदा. 1234)";
 "Incorrect password" = "गलत पासवर्ड";
 "Unlock App" = "ऐप अनलॉक करें";
-"Create Artist Profile" = "कलाकार प्रोफाइल बनाएं";
+"Create Artist Profile" = "कलाकार प्रोफ़ाइल बनाएं";
 "Hello, %@!" = "नमस्ते, %@!";
 "TAP TO PLAY" = "खेलने के लिए टैप करें";
 "Switch Profile" = "प्रोफ़ाइल बदलें";
 "Who is coloring?" = "कौन रंग भर रहा है?";
 "Daily Prize!" = "दैनिक पुरस्कार!";
-"You earned 5 Stars!" = "आपने 5 सितारे जीते!";
+"You earned 5 Stars!" = "आपने 5 सितारे अर्जित किए!";
 "Collect" = "इकट्ठा करें";
-"Set Screen Time" = "स्क्रीन समय सेट करें";
+"Set Screen Time" = "स्क्रीन टाइम सेट करें";
 "HOUR" = "घंटा";
 "MIN" = "मिनट";
 "Turn Off" = "बंद करें";
 "Time to Rest!" = "आराम करने का समय!";
 "Parents Only" = "केवल माता-पिता के लिए";
-"Choose Your Hero!" = "अपना हीरो चुनें!";
+"Choose Your Hero!" = "अपना नायक चुनें!";
 "How old are you?" = "आपकी उम्र क्या है?";
 "START COLORING!" = "रंग भरना शुरू करें!";
-"TAP THE BOX!" = "डिब्बे पर टैप करें!";
+"TAP THE BOX!" = "बॉक्स पर टैप करें!";
 "YOU GOT A STICKER!" = "आपको एक स्टिकर मिला!";
-"Cool!" = "बहुत बढ़िया!";
+"Cool!" = "शानदार!";
 
 /* Categories */
-"Big Shapes" = "बड़ी आकृतियाँ";
+"Big Shapes" = "बड़े आकार";
 "My Pets" = "मेरे पालतू जानवर";
 "Faces & Feelings" = "चेहरे और भावनाएं";
 "Vehicles" = "वाहन";
 "Fruits" = "फल";
-"Numbers 1-5" = "नंबर 1-5";
-"Hero World" = "हीरो की दुनिया";
+"Numbers 1-5" = "अंक 1-5";
+"Hero World" = "नायक की दुनिया";
 "Jungle" = "जंगल";
 "ABC's" = "एबीसी";
-"Unicorns" = "यूनीकॉर्न";
+"Unicorns" = "यूनिकॉर्न";
 "Sweet Shop" = "मिठाई की दुकान";
 "Space" = "अंतरिक्ष";
 "Cyber City" = "साइबर सिटी";
@@ -57,21 +57,23 @@
 "Architecture" = "वास्तुकला";
 
 /* Age Groups */
-"2-4 Years" = "2-4 साल";
-"5-7 Years" = "5-7 साल";
-"8+ Years" = "8+ साल";
+"1-3 Years" = "1-3 साल";
+"4-7 Years" = "4-7 साल";
+"8-12 Years" = "8-12 साल";
+"13+ Years" = "13+ साल";
 "Easy Play" = "आसान खेल";
 "Creative" = "रचनात्मक";
 "Artist" = "कलाकार";
+"Relaxation" = "विश्राम";
 
 /* Tools */
-"Pen" = "पेन";
+"Pen" = "कलम";
 "Pencil" = "पेंसिल";
 "Marker" = "मार्कर";
-"Watercolor" = "जल रंग";
+"Watercolor" = "जलरंग";
 "Splatter" = "छींटे";
 "Oil" = "तैल रंग";
-"Flat Brush" = "फ्लैट ब्रश";
+"Flat Brush" = "सपाट ब्रश";
 "Smooth Hair" = "मुलायम बाल";
 "Fuzzy Fur" = "रोएंदार फर";
 "Cozy Coat" = "आरामदायक कोट";
@@ -81,11 +83,11 @@
 "Blush" = "ब्लश";
 "Sparkle" = "चमक";
 "Glitter" = "ग्लिटर";
-"Plasma" = "प्लाज्मा";
+"Plasma" = "प्लाज्ما";
 "Laser" = "लेजर";
 "Nebula" = "नेबुला";
 "Rainbow" = "इंद्रधनुष";
-"Fill" = "रंग भरें";
+"Fill" = "भरें";
 "Hearts" = "दिल";
 "Stars" = "सितारे";
 "Dots" = "बिंदु";
@@ -121,12 +123,39 @@
 "Super Hero" = "सुपर हीरो";
 "Princess" = "राजकुमारी";
 "Robot" = "रोबोट";
-"Happy" = "खुश";
 "Animal" = "जानवर";
 "Star" = "सितारा";
-
+"Happy" = "खुश";
 
 /* Exit Confirmation */
-"Exit drawing?" = "ड्राइंग से बाहर निकलें?";
+"Exit drawing?" = "चित्रकारी से बाहर निकलें?";
 "Yes" = "हाँ";
 "No" = "नहीं";
+
+/* New Strings */
+"CREATIVE WORLD FOR EVERYONE" = "सभी के लिए रचनात्मक दुनिया";
+"Custom" = "कस्टम";
+"Ready to paint?" = "पेंट करने के लिए तैयार?";
+"%@ - Coming Soon!" = "%@ - जल्द ही आ रहा है!";
+"Exporting Time-Lapse..." = "टाइम-लैप्स निर्यात किया जा रहा है...";
+"Your speed-paint video has been saved to your Photos." = "आपका स्पीड-पेंट वीडियो आपके फोटो में सहेजा गया है।";
+
+/* Gallery & Save */
+"Save your work?" = "अपना काम सहेजें?";
+"Done?" = "हो गया?";
+"Save and Exit" = "सहेजें और बाहर निकलें";
+"Finished & Save" = "पूरा करें और सहेजें";
+"Save Draft" = "ड्राफ्ट सहेजें";
+"Discard Changes" = "परिवर्तन छोड़ें";
+"Keep Drawing" = "चित्रकारी जारी रखें";
+"Exit without Saving" = "बिना सहेजे बाहर निकलें";
+"Guest Artist" = "अतिथि कलाकार";
+"Creative Studio" = "क्रिएटिव स्टूडियो";
+"Finished" = "पूरा हुआ";
+"Draft" = "ड्राफ्ट";
+"Delete Artwork?" = "कलाकृति हटाएं?";
+"This cannot be undone." = "इसे वापस नहीं लिया जा सकता।";
+"Delete" = "हटाएं";
+"All" = "सभी";
+"Drafts" = "ड्राफ्ट";
+"No artwork found here!" = "यहाँ कोई कलाकृति नहीं मिली!";

@@ -140,3 +140,23 @@
 "%@ - Coming Soon!" = "%@ - Binnenkort beschikbaar!";
 "Exporting Time-Lapse..." = "Time-lapse exporteren...";
 "Your speed-paint video has been saved to your Photos." = "Je speed-paint video is opgeslagen in je Foto's.";
+
+/* Gallery & Save */
+"Save your work?" = "Werk opslaan?";
+"Done?" = "Klaar?";
+"Save and Exit" = "Opslaan en Afsluiten";
+"Finished & Save" = "Voltooien en Opslaan";
+"Save Draft" = "Concept opslaan";
+"Discard Changes" = "Wijzigingen negeren";
+"Keep Drawing" = "Blijven tekenen";
+"Exit without Saving" = "Afsluiten zonder opslaan";
+"Guest Artist" = "Gastkunstenaar";
+"Creative Studio" = "Creatieve Studio";
+"Finished" = "Voltooid";
+"Draft" = "Concept";
+"Delete Artwork?" = "Kunstwerk verwijderen?";
+"This cannot be undone." = "Dit kan niet ongedaan worden gemaakt.";
+"Delete" = "Verwijderen";
+"All" = "Alle";
+"Drafts" = "Concepten";
+"No artwork found here!" = "Geen kunstwerken gevonden!";

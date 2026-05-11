@@ -12,16 +12,16 @@
 "Privacy Policy" = "Privacy Policy";
 "Terms of Use" = "Terms of Use";
 "Done" = "Done";
-"Time is Up!" = "Time's Up!";
+"Time is Up!" = "Time is Up!";
 "Ask your parents to unlock more time." = "Ask your parents to unlock more time.";
-"Parent Password (e.g., 1234)" = "Parental Password (e.g., 1234)";
+"Parent Password (e.g., 1234)" = "Parent Password (e.g., 1234)";
 "Incorrect password" = "Incorrect password";
 "Unlock App" = "Unlock App";
 "Create Artist Profile" = "Create Artist Profile";
 "Hello, %@!" = "Hello, %@!";
 "TAP TO PLAY" = "TAP TO PLAY";
 "Switch Profile" = "Switch Profile";
-"Who is coloring?" = "Who's colouring?";
+"Who is coloring?" = "Who is coloring?";
 "Daily Prize!" = "Daily Prize!";
 "You earned 5 Stars!" = "You earned 5 Stars!";
 "Collect" = "Collect";
@@ -33,7 +33,7 @@
 "Parents Only" = "Parents Only";
 "Choose Your Hero!" = "Choose Your Hero!";
 "How old are you?" = "How old are you?";
-"START COLORING!" = "START COLOURING!";
+"START COLORING!" = "START COLORING!";
 "TAP THE BOX!" = "TAP THE BOX!";
 "YOU GOT A STICKER!" = "YOU GOT A STICKER!";
 "Cool!" = "Cool!";
@@ -57,18 +57,20 @@
 "Architecture" = "Architecture";
 
 /* Age Groups */
-"2-4 Years" = "2-4 Years";
-"5-7 Years" = "5-7 Years";
-"8+ Years" = "8+ Years";
+"1-3 Years" = "1-3 Years";
+"4-7 Years" = "4-7 Years";
+"8-12 Years" = "8-12 Years";
+"13+ Years" = "13+ Years";
 "Easy Play" = "Easy Play";
 "Creative" = "Creative";
 "Artist" = "Artist";
+"Relaxation" = "Relaxation";
 
 /* Tools */
 "Pen" = "Pen";
 "Pencil" = "Pencil";
 "Marker" = "Marker";
-"Watercolor" = "Watercolour";
+"Watercolor" = "Watercolor";
 "Splatter" = "Splatter";
 "Oil" = "Oil";
 "Flat Brush" = "Flat Brush";
@@ -108,25 +110,53 @@
 "Eraser" = "Eraser";
 
 /* Common UI */
-"Colors" = "Colours";
+"Colors" = "Colors";
 "Size" = "Size";
 "Solve to continue" = "Solve to continue";
 "Cancel" = "Cancel";
 "Close" = "Close";
 "My Gallery" = "My Gallery";
-"Your gallery is empty.\nStart coloring to see your art here!" = "Your gallery is empty.\nStart colouring to see your art here!";
+"Your gallery is empty.\nStart coloring to see your art here!" = "Your gallery is empty.\nStart coloring to see your art here!";
 "%lld Pages" = "%lld Pages";
 
 /* Avatars */
 "Super Hero" = "Super Hero";
 "Princess" = "Princess";
 "Robot" = "Robot";
-"Happy" = "Happy";
 "Animal" = "Animal";
 "Star" = "Star";
+"Happy" = "Happy";
 
 
 /* Exit Confirmation */
 "Exit drawing?" = "Exit drawing?";
 "Yes" = "Yes";
 "No" = "No";
+
+/* New Strings */
+"CREATIVE WORLD FOR EVERYONE" = "CREATIVE WORLD FOR EVERYONE";
+"Custom" = "Custom";
+"Ready to paint?" = "Ready to paint?";
+"%@ - Coming Soon!" = "%@ - Coming Soon!";
+"Exporting Time-Lapse..." = "Exporting Time-Lapse...";
+"Your speed-paint video has been saved to your Photos." = "Your speed-paint video has been saved to your Photos.";
+
+/* Gallery & Save */
+"Save your work?" = "Save your work?";
+"Done?" = "Done?";
+"Save and Exit" = "Save and Exit";
+"Finished & Save" = "Finished & Save";
+"Save Draft" = "Save Draft";
+"Discard Changes" = "Discard Changes";
+"Keep Drawing" = "Keep Drawing";
+"Exit without Saving" = "Exit without Saving";
+"Guest Artist" = "Guest Artist";
+"Creative Studio" = "Creative Studio";
+"Finished" = "Finished";
+"Draft" = "Draft";
+"Delete Artwork?" = "Delete Artwork?";
+"This cannot be undone." = "This cannot be undone.";
+"Delete" = "Delete";
+"All" = "All";
+"Drafts" = "Drafts";
+"No artwork found here!" = "No artwork found here!";

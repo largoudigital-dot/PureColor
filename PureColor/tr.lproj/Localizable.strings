@@ -115,6 +115,27 @@
 "Close" = "Kapat";
 "My Gallery" = "Galerim";
 "Your gallery is empty.\nStart coloring to see your art here!" = "Galeriniz boş.\nSanatınızı burada görmek için boyamaya başlayın!";
+"Your speed-paint video has been saved to your Photos." = "Speed-paint videonuz Fotoğraflarınıza kaydedildi.";
+
+/* Gallery & Save */
+"Save your work?" = "Çalışmanı kaydet?";
+"Done?" = "Bitti mi?";
+"Save and Exit" = "Kaydet ve Çık";
+"Finished & Save" = "Bitir ve Kaydet";
+"Save Draft" = "Taslağı Kaydet";
+"Discard Changes" = "Değişiklikleri At";
+"Keep Drawing" = "Çizmeye Devam Et";
+"Exit without Saving" = "Kaydetmeden Çık";
+"Guest Artist" = "Konuk Sanatçı";
+"Creative Studio" = "Yaratıcı Stüdyo";
+"Finished" = "Tamamlandı";
+"Draft" = "Taslak";
+"Delete Artwork?" = "Eseri Sil?";
+"This cannot be undone." = "Bu işlem geri alınamaz.";
+"Delete" = "Sil";
+"All" = "Hepsi";
+"Drafts" = "Taslaklar";
+"No artwork found here!" = "Burada eser bulunamadı!";
 "%lld Pages" = "%lld Sayfa";
 
 /* Avatars */

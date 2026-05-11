@@ -12,11 +12,13 @@ class TimeLapseRecorder: ObservableObject {
     
     private var backgroundColors: [UIColor] = [.white]
     private var backgroundImage: UIImage?
+    private var backgroundOpacity: CGFloat = 0.5
 
-    func startRecording(canvas: UIView, background: UIImage?, bgColors: [Color]) {
+    func startRecording(canvas: UIView, background: UIImage?, bgColors: [Color], opacity: CGFloat = 0.5) {
         images.removeAll()
         self.backgroundImage = background
         self.backgroundColors = bgColors.map { UIColor($0) }
+        self.backgroundOpacity = opacity
         isRecording = true
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
@@ -46,7 +48,7 @@ class TimeLapseRecorder: ObservableObject {
                 // 2. Draw the reference drawing if exists
                 if let bg = self.backgroundImage {
                     let aspectRect = self.getAspectFitRect(for: bg, in: canvas.bounds)
-                    bg.draw(in: aspectRect, blendMode: .normal, alpha: 0.3)
+                    bg.draw(in: aspectRect, blendMode: .normal, alpha: self.backgroundOpacity)
                 }
                 
                 // 3. Draw the user's drawing

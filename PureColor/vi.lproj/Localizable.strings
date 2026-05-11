@@ -23,6 +23,27 @@
 "Switch Profile" = "Đổi hồ sơ";
 "Who is coloring?" = "Ai đang tô màu thế?";
 "Daily Prize!" = "Quà tặng hàng ngày!";
+"Your speed-paint video has been saved to your Photos." = "Video vẽ nhanh của bạn đã được lưu vào Ảnh.";
+
+/* Gallery & Save */
+"Save your work?" = "Lưu tác phẩm của bạn?";
+"Done?" = "Hoàn thành?";
+"Save and Exit" = "Lưu và Thoát";
+"Finished & Save" = "Hoàn tất và Lưu";
+"Save Draft" = "Lưu Bản nháp";
+"Discard Changes" = "Hủy thay đổi";
+"Keep Drawing" = "Tiếp tục vẽ";
+"Exit without Saving" = "Thoát không lưu";
+"Guest Artist" = "Họa sĩ khách";
+"Creative Studio" = "Phòng vẽ Sáng tạo";
+"Finished" = "Đã hoàn thành";
+"Draft" = "Bản nháp";
+"Delete Artwork?" = "Xóa tác phẩm?";
+"This cannot be undone." = "Hành động này không thể hoàn tác.";
+"Delete" = "Xóa";
+"All" = "Tất cả";
+"Drafts" = "Bản nháp";
+"No artwork found here!" = "Không tìm thấy tác phẩm nào!";
 "You earned 5 Stars!" = "Bạn đã nhận được 5 sao!";
 "Collect" = "Nhận quà";
 "Set Screen Time" = "Cài đặt thời gian";

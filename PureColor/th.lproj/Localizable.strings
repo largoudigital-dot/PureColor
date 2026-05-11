@@ -13,7 +13,27 @@
 "Terms of Use" = "ข้อกำหนดการใช้งาน";
 "Done" = "เสร็จสิ้น";
 "Time is Up!" = "หมดเวลาแล้ว!";
-"Ask your parents to unlock more time." = "บอกคุณพ่อคุณแม่ให้เพิ่มเวลา";
+"Your speed-paint video has been saved to your Photos." = "วิดีโอวาดภาพเร็วของคุณถูกบันทึกไว้ในรูปภาพแล้ว";
+
+/* Gallery & Save */
+"Save your work?" = "บันทึกผลงานของคุณ?";
+"Done?" = "เสร็จแล้วใช่ไหม?";
+"Save and Exit" = "บันทึกและออก";
+"Finished & Save" = "เสร็จสิ้นและบันทึก";
+"Save Draft" = "บันทึกร่าง";
+"Discard Changes" = "ละทิ้งการเปลี่ยนแปลง";
+"Keep Drawing" = "วาดต่อ";
+"Exit without Saving" = "ออกโดยไม่บันทึก";
+"Guest Artist" = "ศิลปินรับเชิญ";
+"Creative Studio" = "สตูดิโอสร้างสรรค์";
+"Finished" = "เสร็จสิ้น";
+"Draft" = "ร่าง";
+"Delete Artwork?" = "ลบผลงาน?";
+"This cannot be undone." = "ไม่สามารถย้อนคืนได้";
+"Delete" = "ลบ";
+"All" = "ทั้งหมด";
+"Drafts" = "ฉบับร่าง";
+"No artwork found here!" = "ไม่พบผลงานที่นี่!";
 "Parent Password (e.g., 1234)" = "รหัสผ่านผู้ปกครอง (เช่น 1234)";
 "Incorrect password" = "รหัสผ่านไม่ถูกต้อง";
 "Unlock App" = "ปลดล็อกแอป";

@@ -23,7 +23,27 @@
 "Switch Profile" = "Ganti Profil";
 "Who is coloring?" = "Siapa yang sedang mewarnai?";
 "Daily Prize!" = "Hadiah Harian!";
-"You earned 5 Stars!" = "Kamu mendapatkan 5 Bintang!";
+"Your speed-paint video has been saved to your Photos." = "Video speed-paint Anda telah disimpan ke Foto.";
+
+/* Gallery & Save */
+"Save your work?" = "Simpan karya Anda?";
+"Done?" = "Selesai?";
+"Save and Exit" = "Simpan dan Keluar";
+"Finished & Save" = "Selesai & Simpan";
+"Save Draft" = "Simpan Draf";
+"Discard Changes" = "Buang Perubahan";
+"Keep Drawing" = "Lanjut Menggambar";
+"Exit without Saving" = "Keluar tanpa Simpan";
+"Guest Artist" = "Artis Tamu";
+"Creative Studio" = "Studio Kreatif";
+"Finished" = "Selesai";
+"Draft" = "Draf";
+"Delete Artwork?" = "Hapus Karya?";
+"This cannot be undone." = "Tindakan ini tidak dapat dibatalkan.";
+"Delete" = "Hapus";
+"All" = "Semua";
+"Drafts" = "Draf";
+"No artwork found here!" = "Karya tidak ditemukan!";
 "Collect" = "Ambil";
 "Set Screen Time" = "Atur Waktu Layar";
 "HOUR" = "JAM";

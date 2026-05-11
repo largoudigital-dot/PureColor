@@ -140,3 +140,23 @@
 "%@ - Coming Soon!" = "%@ - Wkrótce!";
 "Exporting Time-Lapse..." = "Eksportowanie Time-Lapse...";
 "Your speed-paint video has been saved to your Photos." = "Twój film speed-paint został zapisany w Zdjęciach.";
+
+/* Gallery & Save */
+"Save your work?" = "Zapisać pracę?";
+"Done?" = "Gotowe?";
+"Save and Exit" = "Zapisz i wyjdź";
+"Finished & Save" = "Zakończ i zapisz";
+"Save Draft" = "Zapisz szkic";
+"Discard Changes" = "Odrzuć zmiany";
+"Keep Drawing" = "Rysuj dalej";
+"Exit without Saving" = "Wyjdź bez zapisywania";
+"Guest Artist" = "Gościnny artysta";
+"Creative Studio" = "Studio kreatywne";
+"Finished" = "Ukończone";
+"Draft" = "Szkic";
+"Delete Artwork?" = "Usunąć dzieło?";
+"This cannot be undone." = "Tej operacji nie można cofnąć.";
+"Delete" = "Usuń";
+"All" = "Wszystkie";
+"Drafts" = "Szkice";
+"No artwork found here!" = "Nie znaleziono prac!";

@@ -140,3 +140,23 @@
 "%@ - Coming Soon!" = "%@ - Coming Soon!";
 "Exporting Time-Lapse..." = "Exporting Time-Lapse...";
 "Your speed-paint video has been saved to your Photos." = "Your speed-paint video has been saved to your Photos.";
+
+/* Gallery & Save */
+"Save your work?" = "Save your work?";
+"Done?" = "Done?";
+"Save and Exit" = "Save and Exit";
+"Finished & Save" = "Finished & Save";
+"Save Draft" = "Save Draft";
+"Discard Changes" = "Discard Changes";
+"Keep Drawing" = "Keep Drawing";
+"Exit without Saving" = "Exit without Saving";
+"Guest Artist" = "Guest Artist";
+"Creative Studio" = "Creative Studio";
+"Finished" = "Finished";
+"Draft" = "Draft";
+"Delete Artwork?" = "Delete Artwork?";
+"This cannot be undone." = "This cannot be undone.";
+"Delete" = "Delete";
+"All" = "All";
+"Drafts" = "Drafts";
+"No artwork found here!" = "No artwork found here!";

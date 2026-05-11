@@ -14,6 +14,27 @@
 "Done" = "Klar";
 "Time is Up!" = "Tiden är ute!";
 "Ask your parents to unlock more time." = "Be dina föräldrar om mer tid.";
+"Your speed-paint video has been saved to your Photos." = "Din speed-paint-video har sparats i dina Bilder.";
+
+/* Gallery & Save */
+"Save your work?" = "Spara ditt arbete?";
+"Done?" = "Klar?";
+"Save and Exit" = "Spara och avsluta";
+"Finished & Save" = "Färdigställ och spara";
+"Save Draft" = "Spara utkast";
+"Discard Changes" = "Släng ändringar";
+"Keep Drawing" = "Fortsätt rita";
+"Exit without Saving" = "Avsluta utan att spara";
+"Guest Artist" = "Gästkonstnär";
+"Creative Studio" = "Kreativ studio";
+"Finished" = "Färdig";
+"Draft" = "Utkast";
+"Delete Artwork?" = "Radera konstverk?";
+"This cannot be undone." = "Detta kan inte ångras.";
+"Delete" = "Radera";
+"All" = "Alla";
+"Drafts" = "Utkast";
+"No artwork found here!" = "Inga konstverk hittades!";
 "Parent Password (e.g., 1234)" = "Föräldralösenord (t.ex. 1234)";
 "Incorrect password" = "Felaktigt lösenord";
 "Unlock App" = "Lås upp appen";

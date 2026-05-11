@@ -6,40 +6,40 @@
 "PureColor" = "PureColor";
 "App Settings" = "Ajustes de la App";
 "Language" = "Idioma";
-"Sound Effects" = "Efectos de sonido";
-"Background Music" = "Música de fondo";
+"Sound Effects" = "Efectos de Sonido";
+"Background Music" = "Música de Fondo";
 "Support" = "Soporte";
-"Privacy Policy" = "Política de privacidad";
-"Terms of Use" = "Términos de uso";
+"Privacy Policy" = "Política de Privacidad";
+"Terms of Use" = "Términos de Uso";
 "Done" = "Listo";
 "Time is Up!" = "¡Se acabó el tiempo!";
-"Ask your parents to unlock more time." = "Pide a tus papás que desbloqueen más tiempo.";
+"Ask your parents to unlock more time." = "Pide a tus padres que desbloqueen más tiempo.";
 "Parent Password (e.g., 1234)" = "Contraseña de padres (ej. 1234)";
 "Incorrect password" = "Contraseña incorrecta";
 "Unlock App" = "Desbloquear App";
-"Create Artist Profile" = "Crear perfil de artista";
+"Create Artist Profile" = "Crear Perfil de Artista";
 "Hello, %@!" = "¡Hola, %@!";
 "TAP TO PLAY" = "TOCA PARA JUGAR";
-"Switch Profile" = "Cambiar perfil";
+"Switch Profile" = "Cambiar Perfil";
 "Who is coloring?" = "¿Quién está coloreando?";
-"Daily Prize!" = "¡Premio diario!";
+"Daily Prize!" = "¡Premio Diario!";
 "You earned 5 Stars!" = "¡Ganaste 5 estrellas!";
-"Collect" = "Coleccionar";
-"Set Screen Time" = "Tiempo de pantalla";
+"Collect" = "Cobrar";
+"Set Screen Time" = "Ajustar Tiempo de Pantalla";
 "HOUR" = "HORA";
 "MIN" = "MIN";
 "Turn Off" = "Apagar";
 "Time to Rest!" = "¡Hora de descansar!";
-"Parents Only" = "Solo padres";
-"Choose Your Hero!" = "¡Elige tu héroe!";
+"Parents Only" = "Solo para padres";
+"Choose Your Hero!" = "¡Elige a tu héroe!";
 "How old are you?" = "¿Cuántos años tienes?";
-"START COLORING!" = "¡A COLOREAR!";
+"START COLORING!" = "¡EMPEZAR A COLOREAR!";
 "TAP THE BOX!" = "¡TOCA LA CAJA!";
 "YOU GOT A STICKER!" = "¡TIENES UNA CALCOMANÍA!";
-"Cool!" = "¡Súper!";
+"Cool!" = "¡Genial!";
 
 /* Categories */
-"Big Shapes" = "Figuras Grandes";
+"Big Shapes" = "Formas Grandes";
 "My Pets" = "Mis Mascotas";
 "Faces & Feelings" = "Caras y Sentimientos";
 "Vehicles" = "Vehículos";
@@ -47,22 +47,24 @@
 "Numbers 1-5" = "Números 1-5";
 "Hero World" = "Mundo de Héroes";
 "Jungle" = "Selva";
-"ABC's" = "Abecedario";
+"ABC's" = "ABC";
 "Unicorns" = "Unicornios";
-"Sweet Shop" = "Dulcería";
+"Sweet Shop" = "Tienda de Dulces";
 "Space" = "Espacio";
-"Cyber City" = "Ciber Ciudad";
+"Cyber City" = "Ciudad Ciber";
 "Mandalas" = "Mandalas";
 "Nature Scenery" = "Paisajes Naturales";
 "Architecture" = "Arquitectura";
 
 /* Age Groups */
-"2-4 Years" = "2-4 años";
-"5-7 Years" = "5-7 años";
-"8+ Years" = "8+ años";
-"Easy Play" = "Juego fácil";
+"1-3 Years" = "1-3 Años";
+"4-7 Years" = "4-7 Años";
+"8-12 Years" = "8-12 Años";
+"13+ Years" = "13+ Años";
+"Easy Play" = "Juego Fácil";
 "Creative" = "Creativo";
 "Artist" = "Artista";
+"Relaxation" = "Relajación";
 
 /* Tools */
 "Pen" = "Pluma";
@@ -71,16 +73,16 @@
 "Watercolor" = "Acuarela";
 "Splatter" = "Salpicadura";
 "Oil" = "Óleo";
-"Flat Brush" = "Pincel plano";
-"Smooth Hair" = "Cabello suave";
-"Fuzzy Fur" = "Pelo pachoncito";
-"Cozy Coat" = "Pelaje suave";
+"Flat Brush" = "Pincel Plano";
+"Smooth Hair" = "Pelo Suave";
+"Fuzzy Fur" = "Pelaje Suave";
+"Cozy Coat" = "Pelaje Acogedor";
 "Ink" = "Tinta";
-"Spray" = "Aerosol";
+"Spray" = "Spray";
 "Foundation" = "Base";
 "Blush" = "Rubor";
-"Sparkle" = "Brillo";
-"Glitter" = "Escarcha";
+"Sparkle" = "Chispa";
+"Glitter" = "Brillantina";
 "Plasma" = "Plasma";
 "Laser" = "Láser";
 "Nebula" = "Nebulosa";
@@ -88,11 +90,11 @@
 "Fill" = "Rellenar";
 "Hearts" = "Corazones";
 "Stars" = "Estrellas";
-"Dots" = "Puntitos";
-"Smiley" = "Cara feliz";
+"Dots" = "Puntos";
+"Smiley" = "Smiley";
 "Animal" = "Animal";
 "Gift" = "Regalo";
-"Blender" = "Mezclador";
+"Blender" = "Licuadora";
 "Mixer" = "Mezclador";
 
 /* Categories (Tools) */
@@ -118,15 +120,42 @@
 "%lld Pages" = "%lld Páginas";
 
 /* Avatars */
-"Super Hero" = "Superhéroe";
+"Super Hero" = "Súper Héroe";
 "Princess" = "Princesa";
 "Robot" = "Robot";
 "Happy" = "Feliz";
 "Animal" = "Animal";
 "Star" = "Estrella";
 
-
 /* Exit Confirmation */
 "Exit drawing?" = "¿Salir del dibujo?";
 "Yes" = "Sí";
 "No" = "No";
+
+/* New Strings */
+"CREATIVE WORLD FOR EVERYONE" = "MUNDO CREATIVO PARA TODOS";
+"Custom" = "Personalizado";
+"Ready to paint?" = "¿Listo para pintar?";
+"%@ - Coming Soon!" = "¡%@ - Próximamente!";
+"Exporting Time-Lapse..." = "Exportando Time-Lapse...";
+"Your speed-paint video has been saved to your Photos." = "Tu video de pintura rápida se ha guardado en tus Fotos.";
+
+/* Gallery & Save */
+"Save your work?" = "¿Guardar tu trabajo?";
+"Done?" = "¿Terminado?";
+"Save and Exit" = "Guardar y salir";
+"Finished & Save" = "Terminar y guardar";
+"Save Draft" = "Guardar borrador";
+"Discard Changes" = "Descartar cambios";
+"Keep Drawing" = "Seguir dibujando";
+"Exit without Saving" = "Salir sin guardar";
+"Guest Artist" = "Artista invitado";
+"Creative Studio" = "Estudio creativo";
+"Finished" = "Terminado";
+"Draft" = "Borrador";
+"Delete Artwork?" = "¿Eliminar obra?";
+"This cannot be undone." = "Esta acción no se puede deshacer.";
+"Delete" = "Eliminar";
+"All" = "Todo";
+"Drafts" = "Borradores";
+"No artwork found here!" = "¡No se encontraron obras aquí!";

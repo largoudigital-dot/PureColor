@@ -23,6 +23,27 @@
 "Switch Profile" = "プロフィールを切り替え";
 "Who is coloring?" = "誰がぬりえをしますか？";
 "Daily Prize!" = "デイリー賞品！";
+"Your speed-paint video has been saved to your Photos." = "スピードペイントのビデオが写真に保存されました。";
+
+/* Gallery & Save */
+"Save your work?" = "作品を保存しますか？";
+"Done?" = "完了しましたか？";
+"Save and Exit" = "保存して終了";
+"Finished & Save" = "完了して保存";
+"Save Draft" = "下書きを保存";
+"Discard Changes" = "変更を破棄";
+"Keep Drawing" = "描き続ける";
+"Exit without Saving" = "保存せずに終了";
+"Guest Artist" = "ゲストアーティスト";
+"Creative Studio" = "クリエイティブスタジオ";
+"Finished" = "完了";
+"Draft" = "下書き";
+"Delete Artwork?" = "作品を削除しますか？";
+"This cannot be undone." = "この操作は取り消せません。";
+"Delete" = "削除";
+"All" = "すべて";
+"Drafts" = "下書き";
+"No artwork found here!" = "作品が見つかりません！";
 "You earned 5 Stars!" = "星を5つ獲得しました！";
 "Collect" = "受け取る";
 "Set Screen Time" = "スクリーンタイムを設定";

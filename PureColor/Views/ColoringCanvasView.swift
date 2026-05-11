@@ -119,6 +119,8 @@ struct ColoringCanvasView: View {
     @State private var currentOpacity: CGFloat = 1.0
     @State private var showColorFlyout = false
     @State private var showSizeFlyout = false
+    @State private var photoOpacity: Double = 0.5
+    @State private var showPhotoSettings = false
     
     let gridColors: [Color] = [
         .red, .orange, .yellow, .green, .blue, .purple, .pink, .brown, .black, .gray,
@@ -127,6 +129,10 @@ struct ColoringCanvasView: View {
     
     private var isPro: Bool {
         ageConfig.theme == .professional
+    }
+    
+    private var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
     }
     
     var body: some View {
@@ -297,6 +303,19 @@ struct ColoringCanvasView: View {
                         .padding(.vertical, 10)
                     }
                 }
+                
+                if isPad {
+                    Spacer()
+                    
+                    // Move utilities to the bottom of the left sidebar on iPad (Only for older kids)
+                    if ageConfig.ageGroup == .master || ageConfig.ageGroup == .zen {
+                        VStack(spacing: 15) {
+                            eraserButton
+                            colorPickerButton
+                        }
+                        .padding(.bottom, 20)
+                    }
+                }
             }
             .frame(width: isPro ? 50 : 60)
             .background(isPro ? Color.black.opacity(0.2) : Color.white.opacity(0.1))
@@ -369,7 +388,7 @@ struct ColoringCanvasView: View {
                             .aspectRatio(contentMode: .fit)
                             .padding(40)
                             .allowsHitTesting(false)
-                            .opacity(0.5)
+                            .opacity(photoOpacity) // Use dynamic opacity
                     } else if drawingItem.exampleImage == nil {
                         // Show template guide ONLY for regular drawings (where exampleImage is nil)
                         Image(uiImage: UIImage(named: drawingItem.imageName) ?? UIImage(systemName: drawingItem.imageName) ?? UIImage())
@@ -428,6 +447,7 @@ struct ColoringCanvasView: View {
         GeometryReader { geo in
             let bSize = min(max(geo.size.height * 0.12, 50), 75) // Increased max size for iPad
             VStack(spacing: geo.size.height * 0.035) {
+                // 1. Exit Button (Top)
                 HeaderCircleButton(icon: "xmark", color: .red, size: bSize) {
                     AudioManager.shared.playPop()
                     withAnimation(.spring()) { showExitConfirmation = true }
@@ -435,46 +455,44 @@ struct ColoringCanvasView: View {
                 
                 Divider().frame(width: 25).background(Color.white.opacity(0.3))
                 
-                Button {
-                    isEraser = true
-                    currentBrushName = "Eraser"
-                    canvasView.tool = PKEraserTool(.bitmap, width: currentWidth)
-                    AudioManager.shared.playPop()
-                } label: {
-                    ZStack {
-                        Circle()
-                            .fill(isEraser ? Color.blue.opacity(0.15) : Color.white.opacity(0.9))
-                            .frame(width: bSize, height: bSize)
-                            .shadow(radius: 3)
-                        Image(systemName: "eraser.fill")
-                            .font(.system(size: bSize * 0.45, weight: .bold))
-                            .foregroundColor(isEraser ? .blue : .gray)
-                    }
-                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                // 2. Primary Tools (Color & Eraser)
+                if !isPad || ageConfig.ageGroup == .toddlers || ageConfig.ageGroup == .kids {
+                    colorPickerButton
+                    eraserButton
+                    Divider().frame(width: 25).background(Color.white.opacity(0.3))
                 }
-                .scaleEffect(isEraser ? 1.15 : 1.0)
                 
-                Button {
-                    withAnimation(.spring()) {
-                        showColorFlyout.toggle()
-                        showSizeFlyout = false
+                // 3. Size Dots (Grouped with tools)
+                if !isPro {
+                    VStack(spacing: 20) {
+                        ForEach([8, 28, 65], id: \.self) { size in
+                            Button {
+                                currentWidth = CGFloat(size)
+                                updateTool()
+                                AudioManager.shared.playPop()
+                            } label: {
+                                let dotSize = CGFloat(min(size / 3 + 14, 38))
+                                ZStack {
+                                    Circle()
+                                        .fill(selectedColor.opacity(currentWidth == CGFloat(size) ? 1.0 : 0.8))
+                                        .frame(width: dotSize, height: dotSize)
+                                        .overlay(Circle().stroke(Color.white, lineWidth: currentWidth == CGFloat(size) ? 4 : 0))
+                                        .overlay(Circle().stroke(Color.black.opacity(0.8), lineWidth: 2))
+                                        .shadow(color: .black.opacity(0.1), radius: 2)
+                                }
+                            }
+                            .scaleEffect(currentWidth == CGFloat(size) ? 1.1 : 1.0)
+                        }
                     }
-                    AudioManager.shared.playPop()
-                } label: {
-                    ZStack {
-                        Circle().fill(AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center))
-                        Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: bSize * 0.35, weight: .bold))
-                    }
-                    .frame(width: bSize, height: bSize)
-                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
-                    .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 4 : 0))
-                    .shadow(radius: 5)
+                    .padding(.vertical, 15)
+                    .padding(.horizontal, 10)
+                    .background(Capsule().fill(Color.black.opacity(0.04)))
+                    
+                    Divider().frame(width: 25).background(Color.white.opacity(0.3))
                 }
-                Divider().frame(width: 25).background(Color.white.opacity(0.3))
                 
-                // Photo Import & Background Button - Only visible in Custom/Personalize mode
+                // 4. Custom Mode Options (if any)
                 if drawingItem.exampleImage == "personalize" {
-                    // Background Style Button
                     Button {
                         withAnimation(.spring()) {
                             showBackgroundFlyout.toggle()
@@ -496,7 +514,6 @@ struct ColoringCanvasView: View {
                     .overlay(alignment: .trailing) {
                         if showBackgroundFlyout {
                             HStack(spacing: 12) {
-                                // Solids
                                 ForEach(backgroundSolidOptions, id: \.self) { color in
                                     Button {
                                         canvasBackground = .solid(color)
@@ -508,10 +525,7 @@ struct ColoringCanvasView: View {
                                             .shadow(radius: 2)
                                     }
                                 }
-                                
                                 Divider().frame(height: 30)
-                                
-                                // Gradients
                                 ForEach(backgroundGradientOptions, id: \.self) { colors in
                                     Button {
                                         canvasBackground = .gradient(colors)
@@ -528,7 +542,7 @@ struct ColoringCanvasView: View {
                             .background(Color.white.opacity(0.95))
                             .clipShape(Capsule())
                             .shadow(radius: 10)
-                            .offset(x: -bSize * 1.5 - 200) // Adjust offset to show flyout
+                            .offset(x: -bSize * 1.5 - 200)
                             .transition(.move(edge: .trailing).combined(with: .opacity))
                         }
                     }
@@ -545,9 +559,11 @@ struct ColoringCanvasView: View {
                         .shadow(radius: 5)
                     }
                     .disabled(isProcessingPhoto)
+                    
+                    photoSettingsButton
                 }
                 
-                // Time-Lapse Button
+                // 5. Video Button (Action)
                 Button(action: {
                     if recorder.isRecording {
                         isExportingVideo = true
@@ -559,22 +575,18 @@ struct ColoringCanvasView: View {
                             }
                         }
                     } else {
-                        // Correctly load the image (Asset or SystemName)
                         let bgImage: UIImage? = {
                             if let custom = customBackgroundImage { return custom }
-                            // Fix: Don't use the camera icon as a background in the video if we are in personalize mode
                             if drawingItem.exampleImage == "personalize" { return nil }
                             return UIImage(named: drawingItem.imageName) ?? UIImage(systemName: drawingItem.imageName)
                         }()
-                        
                         let colors: [Color] = {
                             switch canvasBackground {
                             case .solid(let c): return [c]
                             case .gradient(let cs): return cs
                             }
                         }()
-                        
-                        recorder.startRecording(canvas: canvasView, background: bgImage, bgColors: colors)
+                        recorder.startRecording(canvas: canvasView, background: bgImage, bgColors: colors, opacity: CGFloat(photoOpacity))
                     }
                     AudioManager.shared.playPop()
                 }) {
@@ -599,32 +611,6 @@ struct ColoringCanvasView: View {
                     }
                 )
                 
-                if !isPro {
-                    VStack(spacing: 25) {
-                        ForEach([8, 28, 65], id: \.self) { size in
-                            Button {
-                                currentWidth = CGFloat(size)
-                                updateTool()
-                                AudioManager.shared.playPop()
-                            } label: {
-                                let dotSize = CGFloat(min(size / 3 + 14, 38))
-                                ZStack {
-                                    Circle()
-                                        .fill(selectedColor.opacity(currentWidth == CGFloat(size) ? 1.0 : 0.8))
-                                        .frame(width: dotSize, height: dotSize)
-                                        .overlay(Circle().stroke(Color.white, lineWidth: currentWidth == CGFloat(size) ? 4 : 0))
-                                        .overlay(Circle().stroke(Color.black.opacity(0.8), lineWidth: 2))
-                                        .shadow(color: .black.opacity(0.1), radius: 2)
-                                }
-                            }
-                            .scaleEffect(currentWidth == CGFloat(size) ? 1.1 : 1.0)
-                        }
-                    }
-                    .padding(.vertical, 20)
-                    .padding(.horizontal, 10)
-                    .background(Capsule().fill(Color.black.opacity(0.04)))
-                }
-                
                 Spacer()
             }
             .padding(.vertical, 20)
@@ -632,6 +618,102 @@ struct ColoringCanvasView: View {
             .frame(width: bSize + (isPro ? 10 : 20))
         }
         .frame(width: isPro ? 85 : 95)
+    }
+    
+    @ViewBuilder
+    private var eraserButton: some View {
+        let bSize: CGFloat = isPad ? 55 : 65
+        Button {
+            isEraser = true
+            currentBrushName = "Eraser"
+            canvasView.tool = PKEraserTool(.bitmap, width: currentWidth)
+            AudioManager.shared.playPop()
+        } label: {
+            ZStack {
+                Circle()
+                    .fill(isEraser ? Color.blue.opacity(0.15) : Color.white.opacity(0.9))
+                    .frame(width: bSize, height: bSize)
+                    .shadow(radius: 3)
+                Image(systemName: "eraser.fill")
+                    .font(.system(size: bSize * 0.45, weight: .bold))
+                    .foregroundColor(isEraser ? .blue : .gray)
+            }
+            .overlay(Circle().stroke(Color.white, lineWidth: isPad ? 2 : 3))
+        }
+        .scaleEffect(isEraser ? 1.15 : 1.0)
+    }
+    
+    @ViewBuilder
+    private var colorPickerButton: some View {
+        let bSize: CGFloat = isPad ? 55 : 65
+        Button {
+            withAnimation(.spring()) {
+                showColorFlyout.toggle()
+                showSizeFlyout = false
+            }
+            AudioManager.shared.playPop()
+        } label: {
+            ZStack {
+                if ageConfig.ageGroup == .toddlers || ageConfig.ageGroup == .kids {
+                    // Simple color circle for kids
+                    Circle().fill(selectedColor)
+                    if selectedColor == .white {
+                        Circle().stroke(Color.black.opacity(0.1), lineWidth: 1)
+                    }
+                } else {
+                    Circle().fill(AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center))
+                    Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: bSize * 0.35, weight: .bold))
+                }
+            }
+            .frame(width: bSize, height: bSize)
+            .overlay(Circle().stroke(Color.white, lineWidth: isPad ? 3 : 4))
+            .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 4 : 0))
+            .shadow(radius: 5)
+        }
+    }
+    
+    @ViewBuilder
+    private var photoSettingsButton: some View {
+        let bSize: CGFloat = isPad ? 55 : 65
+        if customBackgroundImage != nil {
+            // Photo Controls: Delete and Opacity
+            VStack(spacing: 15) {
+                Button {
+                    customBackgroundImage = nil
+                    AudioManager.shared.playPop()
+                } label: {
+                    Image(systemName: "trash.fill")
+                        .foregroundColor(.white)
+                        .frame(width: bSize * 0.85, height: bSize * 0.85)
+                        .background(Circle().fill(Color.red.opacity(0.8)))
+                }
+                
+                Button {
+                    withAnimation { showPhotoSettings.toggle() }
+                } label: {
+                    Image(systemName: "slider.horizontal.3")
+                        .foregroundColor(.white)
+                        .frame(width: bSize * 0.85, height: bSize * 0.85)
+                        .background(Circle().fill(Color.blue.opacity(0.8)))
+                }
+                .overlay(alignment: .leading) {
+                    if showPhotoSettings {
+                        VStack {
+                            Text(LocalizedStringKey("Photo Opacity"))
+                                .font(.caption2.bold())
+                                .foregroundColor(.white)
+                            Slider(value: $photoOpacity, in: 0.1...1.0)
+                                .tint(.white)
+                                .frame(width: 100)
+                        }
+                        .padding(10)
+                        .background(RoundedRectangle(cornerRadius: 15).fill(Color.blue.opacity(0.9)))
+                        .offset(x: -bSize - 80)
+                    }
+                }
+            }
+            .transition(.move(edge: .trailing).combined(with: .opacity))
+        }
     }
     
     @ViewBuilder
@@ -687,43 +769,106 @@ struct ColoringCanvasView: View {
                     .onTapGesture { withAnimation { showExitConfirmation = false } }
                 
                 VStack(spacing: 30) {
-                    Text(LocalizedStringKey("Exit drawing?"))
+                    let group = ageConfig.ageGroup
+                    let isAdvanced = group == .master || group == .zen
+                    
+                    Text(LocalizedStringKey(isAdvanced ? "Save your work?" : "Done?"))
                         .font(.system(size: 28, weight: .black, design: .rounded))
                         .foregroundColor(.white)
                         .shadow(radius: 5)
                     
-                    HStack(spacing: 50) {
-                        Button {
-                            AudioManager.shared.playPop()
-                            withAnimation(.spring()) { showExitConfirmation = false }
-                        } label: {
-                            VStack(spacing: 10) {
-                                ZStack {
-                                    Circle().fill(Color.white).frame(width: 100, height: 100)
-                                    Image(systemName: "xmark.circle.fill")
-                                        .resizable()
-                                        .frame(width: 80, height: 80)
-                                        .foregroundColor(.red)
+                    if isAdvanced {
+                        // 4 Options for older kids
+                        VStack(spacing: 15) {
+                            Button {
+                                AudioManager.shared.playSuccess()
+                                saveAndExit(shouldSave: true, isFinished: true)
+                            } label: {
+                                HStack {
+                                    Image(systemName: "checkmark.circle.fill")
+                                    Text(LocalizedStringKey("Finished & Save"))
                                 }
-                                .shadow(color: .black.opacity(0.2), radius: 10)
-                                Text(LocalizedStringKey("No")).font(.system(size: 20, weight: .bold)).foregroundColor(.white)
+                                .font(.headline.bold())
+                                .foregroundColor(.white)
+                                .frame(width: 250, height: 55)
+                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.green))
+                                .shadow(radius: 5)
+                            }
+                            
+                            Button {
+                                AudioManager.shared.playSuccess()
+                                saveAndExit(shouldSave: true, isFinished: false)
+                            } label: {
+                                HStack {
+                                    Image(systemName: "pencil.and.outline")
+                                    Text(LocalizedStringKey("Save Draft"))
+                                }
+                                .font(.headline.bold())
+                                .foregroundColor(.white)
+                                .frame(width: 250, height: 55)
+                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.orange))
+                                .shadow(radius: 5)
+                            }
+                            
+                            Button {
+                                AudioManager.shared.playPop()
+                                saveAndExit(shouldSave: false)
+                            } label: {
+                                HStack {
+                                    Image(systemName: "trash.fill")
+                                    Text(LocalizedStringKey("Discard Changes"))
+                                }
+                                .font(.headline.bold())
+                                .foregroundColor(.white)
+                                .frame(width: 250, height: 55)
+                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.red.opacity(0.8)))
+                                .shadow(radius: 5)
+                            }
+                            
+                            Button {
+                                withAnimation { showExitConfirmation = false }
+                                AudioManager.shared.playPop()
+                            } label: {
+                                Text(LocalizedStringKey("Keep Drawing"))
+                                    .font(.subheadline.bold())
+                                    .foregroundColor(.white.opacity(0.8))
                             }
                         }
-                        
-                        Button {
-                            AudioManager.shared.playSuccess()
-                            saveAndExit()
-                        } label: {
-                            VStack(spacing: 10) {
-                                ZStack {
-                                    Circle().fill(Color.white).frame(width: 100, height: 100)
-                                    Image(systemName: "face.smiling.fill")
-                                        .resizable()
-                                        .frame(width: 80, height: 80)
-                                        .foregroundColor(.green)
+                    } else {
+                        // 2 Options for younger kids (Yes auto-saves)
+                        HStack(spacing: 50) {
+                            Button {
+                                AudioManager.shared.playPop()
+                                withAnimation(.spring()) { showExitConfirmation = false }
+                            } label: {
+                                VStack(spacing: 10) {
+                                    ZStack {
+                                        Circle().fill(Color.white).frame(width: 100, height: 100)
+                                        Image(systemName: "xmark.circle.fill")
+                                            .resizable()
+                                            .frame(width: 80, height: 80)
+                                            .foregroundColor(.red)
+                                    }
+                                    .shadow(color: .black.opacity(0.2), radius: 10)
+                                    Text(LocalizedStringKey("No")).font(.system(size: 20, weight: .bold)).foregroundColor(.white)
                                 }
-                                .shadow(color: .black.opacity(0.2), radius: 10)
-                                Text(LocalizedStringKey("Yes")).font(.system(size: 20, weight: .bold)).foregroundColor(.white)
+                            }
+                            
+                            Button {
+                                AudioManager.shared.playSuccess()
+                                saveAndExit(shouldSave: true, isFinished: true)
+                            } label: {
+                                VStack(spacing: 10) {
+                                    ZStack {
+                                        Circle().fill(Color.white).frame(width: 100, height: 100)
+                                        Image(systemName: "face.smiling.fill")
+                                            .resizable()
+                                            .frame(width: 80, height: 80)
+                                            .foregroundColor(.green)
+                                    }
+                                    .shadow(color: .black.opacity(0.2), radius: 10)
+                                    Text(LocalizedStringKey("Yes")).font(.system(size: 20, weight: .bold)).foregroundColor(.white)
+                                }
                             }
                         }
                     }
@@ -811,21 +956,23 @@ struct ColoringCanvasView: View {
     }
     
     @MainActor
-    func saveAndExit() {
-        let drawingImage = canvasView.drawing.image(from: canvasView.bounds, scale: 1.0)
-        let templateImage = UIImage(systemName: drawingItem.imageName) ?? UIImage()
-        let size = canvasView.bounds.size
-        let renderer = UIGraphicsImageRenderer(size: size)
-        let compositeImage = renderer.image { context in
-            UIColor.white.setFill()
-            context.fill(CGRect(origin: .zero, size: size))
-            let templateSize = CGSize(width: 300, height: 300)
-            let templateRect = CGRect(x: (size.width - templateSize.width) / 2, y: (size.height - templateSize.height) / 2, width: templateSize.width, height: templateSize.height)
-            templateImage.withTintColor(.black.withAlphaComponent(0.8)).draw(in: templateRect)
-            drawingImage.draw(in: CGRect(origin: .zero, size: size))
+    func saveAndExit(shouldSave: Bool = true, isFinished: Bool = true) {
+        if shouldSave {
+            let drawingImage = canvasView.drawing.image(from: canvasView.bounds, scale: 1.0)
+            let templateImage = UIImage(systemName: drawingItem.imageName) ?? UIImage()
+            let size = canvasView.bounds.size
+            let renderer = UIGraphicsImageRenderer(size: size)
+            let compositeImage = renderer.image { context in
+                UIColor.white.setFill()
+                context.fill(CGRect(origin: .zero, size: size))
+                let templateSize = CGSize(width: 300, height: 300)
+                let templateRect = CGRect(x: (size.width - templateSize.width) / 2, y: (size.height - templateSize.height) / 2, width: templateSize.width, height: templateSize.height)
+                templateImage.withTintColor(.black.withAlphaComponent(0.8)).draw(in: templateRect)
+                drawingImage.draw(in: CGRect(origin: .zero, size: size))
+            }
+            GalleryManager.shared.saveArtwork(image: compositeImage, drawing: canvasView.drawing, category: category.name, drawingItemName: drawingItem.imageName, profileId: ProfileManager.shared.currentProfile.id, isFinished: isFinished, ageGroup: ageConfig.ageGroup, existingId: existingId)
+            ProfileManager.shared.addStar()
         }
-        GalleryManager.shared.saveArtwork(image: compositeImage, drawing: canvasView.drawing, category: category.name, drawingItemName: drawingItem.imageName, profileId: ProfileManager.shared.currentProfile.id, existingId: existingId)
-        ProfileManager.shared.addStar()
         dismiss()
     }
 }

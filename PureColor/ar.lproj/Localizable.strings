@@ -3,7 +3,7 @@
   PureColor
 */
 
-"PureColor" = "بيور كلر";
+"PureColor" = "PureColor";
 "App Settings" = "إعدادات التطبيق";
 "Language" = "اللغة";
 "Sound Effects" = "المؤثرات الصوتية";
@@ -14,21 +14,21 @@
 "Done" = "تم";
 "Time is Up!" = "انتهى الوقت!";
 "Ask your parents to unlock more time." = "اطلب من والديك فتح المزيد من الوقت.";
-"Parent Password (e.g., 1234)" = "كلمة سر الوالدين (مثلاً: 1234)";
-"Incorrect password" = "كلمة السر غير صحيحة";
+"Parent Password (e.g., 1234)" = "كلمة مرور الوالدين (مثلاً 1234)";
+"Incorrect password" = "كلمة المرور غير صحيحة";
 "Unlock App" = "فتح التطبيق";
 "Create Artist Profile" = "إنشاء ملف فنان";
-"Hello, %@!" = "أهلاً، %@!";
+"Hello, %@!" = "مرحباً، %@!";
 "TAP TO PLAY" = "اضغط للعب";
 "Switch Profile" = "تبديل الملف الشخصي";
 "Who is coloring?" = "من يقوم بالتلوين؟";
 "Daily Prize!" = "جائزة يومية!";
-"You earned 5 Stars!" = "لقد حصلت على 5 نجوم!";
+"You earned 5 Stars!" = "لقد ربحت 5 نجوم!";
 "Collect" = "جمع";
-"Set Screen Time" = "ضبط وقت الشاشة";
+"Set Screen Time" = "تحديد وقت الشاشة";
 "HOUR" = "ساعة";
 "MIN" = "دقيقة";
-"Turn Off" = "إيقاف";
+"Turn Off" = "إيقاف التشغيل";
 "Time to Rest!" = "وقت الراحة!";
 "Parents Only" = "للوالدين فقط";
 "Choose Your Hero!" = "اختر بطلك!";
@@ -44,17 +44,17 @@
 "Faces & Feelings" = "وجوه ومشاعر";
 "Vehicles" = "مركبات";
 "Fruits" = "فواكه";
-"Numbers 1-5" = "الأرقام 1-5";
+"Numbers 1-5" = "الأرقام ١-٥";
 "Hero World" = "عالم الأبطال";
 "Jungle" = "الغابة";
-"ABC's" = "الحروف الهجائية";
-"Unicorns" = "وحيد القرن";
+"ABC's" = "الأبجدية";
+"Unicorns" = "يونيكورن";
 "Sweet Shop" = "متجر الحلويات";
 "Space" = "الفضاء";
-"Cyber City" = "مدينة السايبر";
+"Cyber City" = "مدينة سايبر";
 "Mandalas" = "ماندالا";
 "Nature Scenery" = "مناظر طبيعية";
-"Architecture" = "الهندسة المعمارية";
+"Architecture" = "عمارة";
 
 /* Age Groups */
 "1-3 Years" = "١-٣ سنوات";
@@ -68,14 +68,14 @@
 
 /* Tools */
 "Pen" = "قلم";
-"Pencil" = "قلم رصاص";
+"Pencil" = "مرسام";
 "Marker" = "قلم تحديد";
 "Watercolor" = "ألوان مائية";
 "Splatter" = "رشاش";
-"Oil" = "ألوان زيتية";
+"Oil" = "زيت";
 "Flat Brush" = "فرشاة مسطحة";
 "Smooth Hair" = "شعر ناعم";
-"Fuzzy Fur" = "فراء زغبي";
+"Fuzzy Fur" = "فراء وبري";
 "Cozy Coat" = "معطف مريح";
 "Ink" = "حبر";
 "Spray" = "بخاخ";
@@ -95,29 +95,29 @@
 "Animal" = "حيوان";
 "Gift" = "هدية";
 "Blender" = "خلاط";
-"Mixer" = "مزيج";
+"Mixer" = "مازج";
 
 /* Categories (Tools) */
 "Basic" = "أساسي";
-"Sketch" = "رسم";
-"Paint" = "تلوين";
+"Sketch" = "رسم سريع";
+"Paint" = "رسم";
 "Maquillage" = "مكياج";
 "Shine" = "لمعان";
 "Magic" = "سحر";
 "Patterns" = "أنماط";
 "Stickers" = "ملصقات";
-"Mélangeur" = "مزيج";
+"Mélangeur" = "مازج";
 "Eraser" = "ممحاة";
 
 /* Common UI */
-"Colors" = "ألوان";
+"Colors" = "الألوان";
 "Size" = "الحجم";
 "Solve to continue" = "حل للمتابعة";
 "Cancel" = "إلغاء";
 "Close" = "إغلاق";
 "My Gallery" = "معرضي";
 "Your gallery is empty.\nStart coloring to see your art here!" = "معرضك فارغ.\nابدأ التلوين لرؤية فنك هنا!";
-"%lld Pages" = "%lld صفحة";
+"%lld Pages" = "%lld صفحات";
 
 /* Avatars */
 "Super Hero" = "بطل خارق";
@@ -127,9 +127,8 @@
 "Star" = "نجمة";
 "Happy" = "سعيد";
 
-
 /* Exit Confirmation */
-"Exit drawing?" = "هل تريد الخروج؟";
+"Exit drawing?" = "الخروج من الرسم؟";
 "Yes" = "نعم";
 "No" = "لا";
 
@@ -139,4 +138,24 @@
 "Ready to paint?" = "جاهز للتلوين؟";
 "%@ - Coming Soon!" = "%@ - قريباً!";
 "Exporting Time-Lapse..." = "تصدير الفيديو...";
-"Your speed-paint video has been saved to your Photos." = "تم حفظ الفيديو في الصور.";
+"Your speed-paint video has been saved to your Photos." = "تم حفظ فيديو الرسم السريع في الصور الخاصة بك.";
+
+/* Gallery & Save */
+"Save your work?" = "هل تريد حفظ عملك؟";
+"Done?" = "هل انتهيت؟";
+"Save and Exit" = "حفظ وخروج";
+"Finished & Save" = "إنهاء وحفظ";
+"Save Draft" = "حفظ مسودة";
+"Discard Changes" = "تجاهل التغييرات";
+"Keep Drawing" = "استمرار الرسم";
+"Exit without Saving" = "خروج بدون حفظ";
+"Guest Artist" = "فنان ضيف";
+"Creative Studio" = "استوديو الإبداع";
+"Finished" = "منتهي";
+"Draft" = "مسودة";
+"Delete Artwork?" = "حذف العمل الفني؟";
+"This cannot be undone." = "لا يمكن التراجع عن هذا الإجراء.";
+"Delete" = "حذف";
+"All" = "الكل";
+"Drafts" = "المسودات";
+"No artwork found here!" = "لا توجد أعمال فنية هنا!";

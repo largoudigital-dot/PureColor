@@ -14,6 +14,27 @@
 "Done" = "Færdig";
 "Time is Up!" = "Tiden er gået!";
 "Ask your parents to unlock more time." = "Bed dine forældre om mere tid.";
+"Your speed-paint video has been saved to your Photos." = "Din speed-paint video er blevet gemt i dine Fotos.";
+
+/* Gallery & Save */
+"Save your work?" = "Gem dit arbejde?";
+"Done?" = "Færdig?";
+"Save and Exit" = "Gem og afslut";
+"Finished & Save" = "Færdiggør og gem";
+"Save Draft" = "Gem kladde";
+"Discard Changes" = "Annuller ændringer";
+"Keep Drawing" = "Fortsæt med at tegne";
+"Exit without Saving" = "Afslut uden at gemme";
+"Guest Artist" = "Gæstekunstner";
+"Creative Studio" = "Kreativt studie";
+"Finished" = "Færdig";
+"Draft" = "Kladde";
+"Delete Artwork?" = "Slet kunstværk?";
+"This cannot be undone." = "Dette kan ikke fortrydes.";
+"Delete" = "Slet";
+"All" = "Alle";
+"Drafts" = "Kladdere";
+"No artwork found here!" = "Ingen kunstværker fundet her!";
 "Parent Password (e.g., 1234)" = "Forældreadgangskode (f.eks. 1234)";
 "Incorrect password" = "Forkert adgangskode";
 "Unlock App" = "Lås app op";

@@ -13,6 +13,27 @@
 "Terms of Use" = "Vilkår for bruk";
 "Done" = "Ferdig";
 "Time is Up!" = "Tiden er ute!";
+"Your speed-paint video has been saved to your Photos." = "Din speed-paint-video har blitt lagret i dine Bilder.";
+
+/* Gallery & Save */
+"Save your work?" = "Lagre arbeidet ditt?";
+"Done?" = "Ferdig?";
+"Save and Exit" = "Lagre og avslutt";
+"Finished & Save" = "Fullfør og lagre";
+"Save Draft" = "Lagre utkast";
+"Discard Changes" = "Forkast endringer";
+"Keep Drawing" = "Fortsett å tegne";
+"Exit without Saving" = "Avslutt uten å lagre";
+"Guest Artist" = "Gjestekunstner";
+"Creative Studio" = "Kreativt studio";
+"Finished" = "Fullført";
+"Draft" = "Utkast";
+"Delete Artwork?" = "Slett kunstverk?";
+"This cannot be undone." = "Dette kan ikke angres.";
+"Delete" = "Slett";
+"All" = "Alle";
+"Drafts" = "Utkast";
+"No artwork found here!" = "Ingen kunstverk funnet!";
 "Ask your parents to unlock more time." = "Be foreldrene dine om mer tid.";
 "Parent Password (e.g., 1234)" = "Foreldrepassord (f.eks. 1234)";
 "Incorrect password" = "Feil passord";

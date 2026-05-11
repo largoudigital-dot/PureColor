@@ -13,6 +13,27 @@
 "Terms of Use" = "Conditions d'utilisation";
 "Done" = "Terminé";
 "Time is Up!" = "Le temps est écoulé !";
+"Your speed-paint video has been saved to your Photos." = "Votre vidéo de peinture rapide a été enregistrée dans vos Photos.";
+
+/* Gallery & Save */
+"Save your work?" = "Enregistrer votre travail ?";
+"Done?" = "Terminé ?";
+"Save and Exit" = "Enregistrer et quitter";
+"Finished & Save" = "Terminer et enregistrer";
+"Save Draft" = "Enregistrer le brouillon";
+"Discard Changes" = "Annuler les modifications";
+"Keep Drawing" = "Continuer à dessiner";
+"Exit without Saving" = "Quitter sans enregistrer";
+"Guest Artist" = "Artiste invité";
+"Creative Studio" = "Studio créatif";
+"Finished" = "Terminé";
+"Draft" = "Brouillon";
+"Delete Artwork?" = "Supprimer l'œuvre ?";
+"This cannot be undone." = "Cette action est irréversible.";
+"Delete" = "Supprimer";
+"All" = "Tout";
+"Drafts" = "Brouillons";
+"No artwork found here!" = "Aucune œuvre trouvée ici !";
 "Ask your parents to unlock more time." = "Demande à tes parents de débloquer plus de temps.";
 "Parent Password (e.g., 1234)" = "Mot de passe parent (ex: 1234)";
 "Incorrect password" = "Mot de passe incorrect";

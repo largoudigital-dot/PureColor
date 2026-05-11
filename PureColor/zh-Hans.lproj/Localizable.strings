@@ -14,6 +14,27 @@
 "Done" = "完成";
 "Time is Up!" = "时间到！";
 "Ask your parents to unlock more time." = "请让父母解锁更多时间。";
+"Your speed-paint video has been saved to your Photos." = "您的延时绘画视频已保存到相册。";
+
+/* Gallery & Save */
+"Save your work?" = "保存作品吗？";
+"Done?" = "完成了吗？";
+"Save and Exit" = "保存并退出";
+"Finished & Save" = "完成并保存";
+"Save Draft" = "保存草稿";
+"Discard Changes" = "放弃更改";
+"Keep Drawing" = "继续绘画";
+"Exit without Saving" = "不保存退出";
+"Guest Artist" = "访客艺术家";
+"Creative Studio" = "创意工作室";
+"Finished" = "已完成";
+"Draft" = "草稿";
+"Delete Artwork?" = "删除作品吗？";
+"This cannot be undone." = "此操作无法撤销。";
+"Delete" = "删除";
+"All" = "全部";
+"Drafts" = "草稿";
+"No artwork found here!" = "未找到作品！";
 "Parent Password (e.g., 1234)" = "家长密码 (如: 1234)";
 "Incorrect password" = "密码错误";
 "Unlock App" = "解锁应用";

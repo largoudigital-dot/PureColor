@@ -14,6 +14,27 @@
 "Done" = "Concluído";
 "Time is Up!" = "O tempo acabou!";
 "Ask your parents to unlock more time." = "Peça aos seus pais para desbloquearem mais tempo.";
+"Your speed-paint video has been saved to your Photos." = "Seu vídeo speed-paint foi salvo em suas Fotos.";
+
+/* Gallery & Save */
+"Save your work?" = "Salvar seu trabalho?";
+"Done?" = "Concluído?";
+"Save and Exit" = "Salvar e Sair";
+"Finished & Save" = "Terminar e Salvar";
+"Save Draft" = "Salvar Rascunho";
+"Discard Changes" = "Descartar Alterações";
+"Keep Drawing" = "Continuar Desenhando";
+"Exit without Saving" = "Sair sem Salvar";
+"Guest Artist" = "Artista Convidado";
+"Creative Studio" = "Estúdio Criativo";
+"Finished" = "Concluído";
+"Draft" = "Rascunho";
+"Delete Artwork?" = "Excluir Arte?";
+"This cannot be undone." = "Isso não pode ser desfeito.";
+"Delete" = "Excluir";
+"All" = "Tudo";
+"Drafts" = "Rascunhos";
+"No artwork found here!" = "Nenhuma arte encontrada aqui!";
 "Parent Password (e.g., 1234)" = "Senha dos Pais (ex: 1234)";
 "Incorrect password" = "Senha incorreta";
 "Unlock App" = "Desbloquear App";

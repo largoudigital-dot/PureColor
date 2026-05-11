@@ -4,6 +4,7 @@ import PencilKit
 enum UITheme { case playful, professional }
 
 struct AgeGroupConfig {
+    let ageGroup: AgeGroup
     let availableColors: [Color]
     let toolCategories: [String] 
     let defaultWidth: CGFloat
@@ -20,6 +21,7 @@ class AgeManager {
         switch group {
         case .toddlers:
             return AgeGroupConfig(
+                ageGroup: group,
                 availableColors: [.red, .blue, .green, .yellow, .orange],
                 toolCategories: ["Basic"],
                 defaultWidth: 35.0,
@@ -29,6 +31,7 @@ class AgeManager {
             
         case .kids:
             return AgeGroupConfig(
+                ageGroup: group,
                 availableColors: [.red, .blue, .green, .yellow, .orange, .purple, .pink, .brown, .black],
                 toolCategories: ["Basic", "Sketch", "Paint", "Stickers"],
                 defaultWidth: 15.0,
@@ -38,6 +41,7 @@ class AgeManager {
             
         case .master: // 8-12
             return AgeGroupConfig(
+                ageGroup: group,
                 availableColors: [], 
                 toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns", "Stickers", "Maquillage"],
                 defaultWidth: 8.0,
@@ -47,6 +51,7 @@ class AgeManager {
             
         case .zen: // 13+
             return AgeGroupConfig(
+                ageGroup: group,
                 availableColors: [],
                 toolCategories: ["Basic", "Sketch", "Paint", "Ink", "Magic", "Patterns", "Shine", "Mélangeur", "Stickers", "Maquillage"],
                 defaultWidth: 5.0,

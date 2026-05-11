@@ -14,6 +14,27 @@
 "Done" = "Valmis";
 "Time is Up!" = "Aika loppui!";
 "Ask your parents to unlock more time." = "Pyydä vanhempiasi avaamaan lisää aikaa.";
+"Your speed-paint video has been saved to your Photos." = "Speed-paint-videosi on tallennettu Kuviin.";
+
+/* Gallery & Save */
+"Save your work?" = "Tallennetaanko työsi?";
+"Done?" = "Valmis?";
+"Save and Exit" = "Tallenna ja poistu";
+"Finished & Save" = "Viimeistele ja tallenna";
+"Save Draft" = "Tallenna luonnos";
+"Discard Changes" = "Hylkää muutokset";
+"Keep Drawing" = "Jatka piirtämistä";
+"Exit without Saving" = "Poistu tallentamatta";
+"Guest Artist" = "Vieraileva taiteilija";
+"Creative Studio" = "Luova studio";
+"Finished" = "Valmis";
+"Draft" = "Luonnos";
+"Delete Artwork?" = "Poistetaanko teos?";
+"This cannot be undone." = "Tätä ei voi peruuttaa.";
+"Delete" = "Poista";
+"All" = "Kaikki";
+"Drafts" = "Luonnokset";
+"No artwork found here!" = "Teoksia ei löytynyt!";
 "Parent Password (e.g., 1234)" = "Vanhempien salasana (esim. 1234)";
 "Incorrect password" = "Väärä salasana";
 "Unlock App" = "Avaa sovellus";

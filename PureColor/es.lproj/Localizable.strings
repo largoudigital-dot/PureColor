@@ -139,4 +139,24 @@
 "Ready to paint?" = "¿Listo para pintar?";
 "%@ - Coming Soon!" = "¡%@ - Próximamente!";
 "Exporting Time-Lapse..." = "Exportando Time-Lapse...";
-"Your speed-paint video has been saved to your Photos." = "Tu vídeo speed-paint se ha guardado en tus Fotos.";
+"Your speed-paint video has been saved to your Photos." = "Tu video de pintura rápida se ha guardado en tus Fotos.";
+
+/* Gallery & Save */
+"Save your work?" = "¿Guardar tu trabajo?";
+"Done?" = "¿Terminado?";
+"Save and Exit" = "Guardar y salir";
+"Finished & Save" = "Terminar y guardar";
+"Save Draft" = "Guardar borrador";
+"Discard Changes" = "Descartar cambios";
+"Keep Drawing" = "Seguir dibujando";
+"Exit without Saving" = "Salir sin guardar";
+"Guest Artist" = "Artista invitado";
+"Creative Studio" = "Estudio creativo";
+"Finished" = "Terminado";
+"Draft" = "Borrador";
+"Delete Artwork?" = "¿Eliminar obra?";
+"This cannot be undone." = "Esta acción no se puede deshacer.";
+"Delete" = "Eliminar";
+"All" = "Todo";
+"Drafts" = "Borradores";
+"No artwork found here!" = "¡No se encontraron obras aquí!";

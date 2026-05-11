@@ -6,10 +6,12 @@ struct SavedArtwork: Identifiable, Codable {
     let id: UUID
     let profileId: UUID
     let categoryName: String
-    let drawingItemName: String // Added: to know which template was used
+    let drawingItemName: String
     let date: Date
     let fileName: String
-    let drawingFileName: String // Added: to store PKDrawing data
+    let drawingFileName: String
+    var isFinished: Bool
+    let ageGroup: AgeGroup // Added: to know which age group it belongs to
 }
 
 class GalleryManager: ObservableObject {
@@ -25,7 +27,7 @@ class GalleryManager: ObservableObject {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
-    func saveArtwork(image: UIImage, drawing: PKDrawing, category: String, drawingItemName: String, profileId: UUID, existingId: UUID? = nil) {
+    func saveArtwork(image: UIImage, drawing: PKDrawing, category: String, drawingItemName: String, profileId: UUID, isFinished: Bool, ageGroup: AgeGroup, existingId: UUID? = nil) {
         let id = existingId ?? UUID()
         let fileName = "\(id.uuidString).png"
         let drawingFileName = "\(id.uuidString).pkdrawing"
@@ -49,7 +51,9 @@ class GalleryManager: ObservableObject {
             drawingItemName: drawingItemName,
             date: Date(),
             fileName: fileName,
-            drawingFileName: drawingFileName
+            drawingFileName: drawingFileName,
+            isFinished: isFinished,
+            ageGroup: ageGroup
         )
         
         if let index = savedArtworks.firstIndex(where: { $0.id == id }) {
@@ -88,5 +92,19 @@ class GalleryManager: ObservableObject {
             return try? PKDrawing(data: data)
         }
         return nil
+    }
+    
+    func deleteArtwork(_ artwork: SavedArtwork) {
+        // 1. Delete Image File
+        let imageURL = documentsDirectory.appendingPathComponent(artwork.fileName)
+        try? FileManager.default.removeItem(at: imageURL)
+        
+        // 2. Delete Drawing File
+        let drawingURL = documentsDirectory.appendingPathComponent(artwork.drawingFileName)
+        try? FileManager.default.removeItem(at: drawingURL)
+        
+        // 3. Remove from Metadata
+        savedArtworks.removeAll(where: { $0.id == artwork.id })
+        saveArtworksMetadata()
     }
 }

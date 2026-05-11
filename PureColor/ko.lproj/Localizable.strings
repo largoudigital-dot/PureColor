@@ -23,6 +23,27 @@
 "Switch Profile" = "프로필 전환";
 "Who is coloring?" = "누가 색칠하나요?";
 "Daily Prize!" = "일일 보상!";
+"Your speed-paint video has been saved to your Photos." = "스피드 페인팅 비디오가 사진 앱에 저장되었습니다.";
+
+/* Gallery & Save */
+"Save your work?" = "작업을 저장할까요?";
+"Done?" = "다 하셨나요?";
+"Save and Exit" = "저장 후 나가기";
+"Finished & Save" = "완료 및 저장";
+"Save Draft" = "초안 저장";
+"Discard Changes" = "변경사항 취소";
+"Keep Drawing" = "계속 그리기";
+"Exit without Saving" = "저장하지 않고 나가기";
+"Guest Artist" = "게스트 아티스트";
+"Creative Studio" = "크리에이티브 스튜디오";
+"Finished" = "완료됨";
+"Draft" = "초안";
+"Delete Artwork?" = "작품을 삭제할까요?";
+"This cannot be undone." = "이 작업은 되돌릴 수 없습니다.";
+"Delete" = "삭제";
+"All" = "전체";
+"Drafts" = "초안";
+"No artwork found here!" = "작품을 찾을 수 없습니다!";
 "You earned 5 Stars!" = "별 5개를 획득했습니다!";
 "Collect" = "받기";
 "Set Screen Time" = "스크린 타임 설정";
