@@ -275,8 +275,8 @@ struct ColoringCanvasView: View {
     
     @ViewBuilder
     private var leftSidebar: some View {
-        let brushWidth: CGFloat = isPro ? 65 : 85
-        let brushHeight: CGFloat = isPro ? 44 : 55
+        let brushWidth: CGFloat = isPad ? (isPro ? 65 : 85) : (isPro ? 50 : 65)
+        let brushHeight: CGFloat = isPad ? (isPro ? 44 : 55) : (isPro ? 38 : 45)
         
         HStack(spacing: 0) {
             // 1. Vertical Category Selector (Sleek Bar)
@@ -290,9 +290,9 @@ struct ColoringCanvasView: View {
                                     AudioManager.shared.playPop()
                                 } label: {
                                     Image(systemName: CategoryIcon.iconName(for: cat))
-                                        .font(.system(size: isPro ? 18 : 22, weight: .bold))
+                                        .font(.system(size: isPad ? (isPro ? 18 : 22) : (isPro ? 14 : 16), weight: .bold))
                                         .foregroundColor(activeCategory == cat ? .white : (isPro ? .white.opacity(0.4) : .black.opacity(0.3)))
-                                        .frame(width: isPro ? 40 : 48, height: isPro ? 40 : 48)
+                                        .frame(width: isPad ? (isPro ? 40 : 48) : (isPro ? 32 : 36), height: isPad ? (isPro ? 40 : 48) : (isPro ? 32 : 36))
                                         .background(
                                             Circle()
                                                 .fill(activeCategory == cat ? Color.blue : (isPro ? Color.white.opacity(0.1) : Color.black.opacity(0.05)))
@@ -310,14 +310,14 @@ struct ColoringCanvasView: View {
                     // Move utilities to the bottom of the left sidebar on iPad (Only for older kids)
                     if ageConfig.ageGroup == .master || ageConfig.ageGroup == .zen {
                         VStack(spacing: 15) {
-                            eraserButton
-                            colorPickerButton
+                            eraserButton(size: 55)
+                            colorPickerButton(size: 55)
                         }
                         .padding(.bottom, 20)
                     }
                 }
             }
-            .frame(width: isPro ? 50 : 60)
+            .frame(width: isPad ? (isPro ? 50 : 60) : (isPro ? 40 : 45))
             .background(isPro ? Color.black.opacity(0.2) : Color.white.opacity(0.1))
             
             // 2. Brushes for the Active Category
@@ -350,10 +350,10 @@ struct ColoringCanvasView: View {
                     .padding(.vertical, 20)
                 }
             }
-            .frame(width: brushWidth + (isPro ? 10 : 20))
-            .offset(x: isPro ? 0 : -15) 
+            .frame(width: brushWidth + (isPad ? (isPro ? 10 : 20) : 5))
+            .offset(x: isPad ? (isPro ? 0 : -15) : 0) 
         }
-        .frame(width: isPro ? 115 : 150)
+        .frame(width: isPad ? (isPro ? 115 : 150) : (isPro ? 85 : 100))
         .onAppear {
             if activeCategory == nil {
                 activeCategory = filteredCategories.first
@@ -411,11 +411,11 @@ struct ColoringCanvasView: View {
                 if !isPro {
                     HStack(spacing: 40) {
                         Spacer()
-                        WideUtilityButton(icon: "arrow.uturn.backward", color: Color.orange.opacity(0.8), width: bSize * 1.8, height: bSize * 1.0) {
+                        WideUtilityButton(icon: "arrow.uturn.backward", color: Color.orange.opacity(0.8), width: isPad ? bSize * 1.8 : bSize * 1.4, height: isPad ? bSize * 1.0 : bSize * 0.85) {
                             canvasView.undoManager?.undo()
                             AudioManager.shared.playPop()
                         }
-                        WideUtilityButton(icon: "arrow.uturn.forward", color: Color.orange.opacity(0.8), width: bSize * 1.8, height: bSize * 1.0) {
+                        WideUtilityButton(icon: "arrow.uturn.forward", color: Color.orange.opacity(0.8), width: isPad ? bSize * 1.8 : bSize * 1.4, height: isPad ? bSize * 1.0 : bSize * 0.85) {
                             canvasView.undoManager?.redo()
                             AudioManager.shared.playPop()
                         }
@@ -445,7 +445,7 @@ struct ColoringCanvasView: View {
     @ViewBuilder
     private var rightSidebar: some View {
         GeometryReader { geo in
-            let bSize = min(max(geo.size.height * 0.12, 50), 75) // Increased max size for iPad
+            let bSize = isPad ? min(max(geo.size.height * 0.12, 50), 75) : min(max(geo.size.height * 0.12, 38), 45)
             VStack(spacing: geo.size.height * 0.035) {
                 // 1. Exit Button (Top)
                 HeaderCircleButton(icon: "xmark", color: .red, size: bSize) {
@@ -457,8 +457,8 @@ struct ColoringCanvasView: View {
                 
                 // 2. Primary Tools (Color & Eraser)
                 if !isPad || ageConfig.ageGroup == .toddlers || ageConfig.ageGroup == .kids {
-                    colorPickerButton
-                    eraserButton
+                    colorPickerButton(size: bSize)
+                    eraserButton(size: bSize)
                     Divider().frame(width: 25).background(Color.white.opacity(0.3))
                 }
                 
@@ -615,14 +615,13 @@ struct ColoringCanvasView: View {
             }
             .padding(.vertical, 20)
             .padding(.trailing, isPro ? 0 : 5)
-            .frame(width: bSize + (isPro ? 10 : 20))
+            .frame(width: bSize + (isPad ? (isPro ? 10 : 20) : 8))
         }
-        .frame(width: isPro ? 85 : 95)
+        .frame(width: isPad ? (isPro ? 85 : 95) : (isPro ? 65 : 75))
     }
     
     @ViewBuilder
-    private var eraserButton: some View {
-        let bSize: CGFloat = isPad ? 55 : 65
+    private func eraserButton(size: CGFloat) -> some View {
         Button {
             isEraser = true
             currentBrushName = "Eraser"
@@ -632,10 +631,10 @@ struct ColoringCanvasView: View {
             ZStack {
                 Circle()
                     .fill(isEraser ? Color.blue.opacity(0.15) : Color.white.opacity(0.9))
-                    .frame(width: bSize, height: bSize)
+                    .frame(width: size, height: size)
                     .shadow(radius: 3)
                 Image(systemName: "eraser.fill")
-                    .font(.system(size: bSize * 0.45, weight: .bold))
+                    .font(.system(size: size * 0.45, weight: .bold))
                     .foregroundColor(isEraser ? .blue : .gray)
             }
             .overlay(Circle().stroke(Color.white, lineWidth: isPad ? 2 : 3))
@@ -644,8 +643,7 @@ struct ColoringCanvasView: View {
     }
     
     @ViewBuilder
-    private var colorPickerButton: some View {
-        let bSize: CGFloat = isPad ? 55 : 65
+    private func colorPickerButton(size: CGFloat) -> some View {
         Button {
             withAnimation(.spring()) {
                 showColorFlyout.toggle()
@@ -662,10 +660,10 @@ struct ColoringCanvasView: View {
                     }
                 } else {
                     Circle().fill(AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center))
-                    Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: bSize * 0.35, weight: .bold))
+                    Image(systemName: "eyedropper").foregroundColor(.white).font(.system(size: size * 0.35, weight: .bold))
                 }
             }
-            .frame(width: bSize, height: bSize)
+            .frame(width: size, height: size)
             .overlay(Circle().stroke(Color.white, lineWidth: isPad ? 3 : 4))
             .overlay(Circle().stroke(Color.blue, lineWidth: showColorFlyout ? 4 : 0))
             .shadow(radius: 5)
@@ -720,7 +718,7 @@ struct ColoringCanvasView: View {
     private var professionalControlsOverlay: some View {
         HStack(spacing: 15) {
             // Undo
-            WideUtilityButton(icon: "arrow.uturn.backward", color: Color.white.opacity(0.15), width: 55, height: 35) {
+            WideUtilityButton(icon: "arrow.uturn.backward", color: Color.white.opacity(0.15), width: isPad ? 55 : 40, height: isPad ? 35 : 30) {
                 canvasView.undoManager?.undo()
                 AudioManager.shared.playPop()
             }
@@ -730,27 +728,29 @@ struct ColoringCanvasView: View {
                 Image(systemName: "line.horizontal.3").foregroundColor(.white.opacity(0.6)).font(.system(size: 12))
                 Slider(value: $currentWidth, in: 1...80)
                     .tint(.blue)
-                    .frame(width: 120)
+                    .frame(width: isPad ? 120 : 90)
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, isPad ? 12 : 8)
             .padding(.vertical, 5)
             .background(.ultraThinMaterial)
             .cornerRadius(12)
+            .scaleEffect(isPad ? 1.0 : 0.9)
             
             // Opacity Slider
             HStack(spacing: 8) {
                 Image(systemName: "circle.lefthalf.filled").foregroundColor(.white.opacity(0.6)).font(.system(size: 12))
                 Slider(value: $currentOpacity, in: 0.1...1.0)
                     .tint(.blue)
-                    .frame(width: 120)
+                    .frame(width: isPad ? 120 : 90)
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, isPad ? 12 : 8)
             .padding(.vertical, 5)
             .background(.ultraThinMaterial)
             .cornerRadius(12)
+            .scaleEffect(isPad ? 1.0 : 0.9)
             
             // Redo
-            WideUtilityButton(icon: "arrow.uturn.forward", color: Color.white.opacity(0.15), width: 55, height: 35) {
+            WideUtilityButton(icon: "arrow.uturn.forward", color: Color.white.opacity(0.15), width: isPad ? 55 : 40, height: isPad ? 35 : 30) {
                 canvasView.undoManager?.redo()
                 AudioManager.shared.playPop()
             }
@@ -768,12 +768,12 @@ struct ColoringCanvasView: View {
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture { withAnimation { showExitConfirmation = false } }
                 
-                VStack(spacing: 30) {
+                VStack(spacing: isPad ? 30 : 15) {
                     let group = ageConfig.ageGroup
                     let isAdvanced = group == .master || group == .zen
                     
                     Text(LocalizedStringKey(isAdvanced ? "Save your work?" : "Done?"))
-                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .font(.system(size: isPad ? 28 : 22, weight: .black, design: .rounded))
                         .foregroundColor(.white)
                         .shadow(radius: 5)
                     
@@ -788,10 +788,10 @@ struct ColoringCanvasView: View {
                                     Image(systemName: "checkmark.circle.fill")
                                     Text(LocalizedStringKey("Finished & Save"))
                                 }
-                                .font(.headline.bold())
+                                .font(isPad ? .headline.bold() : .subheadline.bold())
                                 .foregroundColor(.white)
-                                .frame(width: 250, height: 55)
-                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.green))
+                                .frame(width: isPad ? 250 : 200, height: isPad ? 55 : 45)
+                                .background(RoundedRectangle(cornerRadius: 15).fill(Color.green))
                                 .shadow(radius: 5)
                             }
                             
@@ -803,10 +803,10 @@ struct ColoringCanvasView: View {
                                     Image(systemName: "pencil.and.outline")
                                     Text(LocalizedStringKey("Save Draft"))
                                 }
-                                .font(.headline.bold())
+                                .font(isPad ? .headline.bold() : .subheadline.bold())
                                 .foregroundColor(.white)
-                                .frame(width: 250, height: 55)
-                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.orange))
+                                .frame(width: isPad ? 250 : 200, height: isPad ? 55 : 45)
+                                .background(RoundedRectangle(cornerRadius: 15).fill(Color.orange))
                                 .shadow(radius: 5)
                             }
                             
@@ -818,10 +818,10 @@ struct ColoringCanvasView: View {
                                     Image(systemName: "trash.fill")
                                     Text(LocalizedStringKey("Discard Changes"))
                                 }
-                                .font(.headline.bold())
+                                .font(isPad ? .headline.bold() : .subheadline.bold())
                                 .foregroundColor(.white)
-                                .frame(width: 250, height: 55)
-                                .background(RoundedRectangle(cornerRadius: 20).fill(Color.red.opacity(0.8)))
+                                .frame(width: isPad ? 250 : 200, height: isPad ? 55 : 45)
+                                .background(RoundedRectangle(cornerRadius: 15).fill(Color.red.opacity(0.8)))
                                 .shadow(radius: 5)
                             }
                             
@@ -843,10 +843,10 @@ struct ColoringCanvasView: View {
                             } label: {
                                 VStack(spacing: 10) {
                                     ZStack {
-                                        Circle().fill(Color.white).frame(width: 100, height: 100)
+                                        Circle().fill(Color.white).frame(width: isPad ? 100 : 80, height: isPad ? 100 : 80)
                                         Image(systemName: "xmark.circle.fill")
                                             .resizable()
-                                            .frame(width: 80, height: 80)
+                                            .frame(width: isPad ? 80 : 60, height: isPad ? 80 : 60)
                                             .foregroundColor(.red)
                                     }
                                     .shadow(color: .black.opacity(0.2), radius: 10)
