@@ -323,7 +323,7 @@ struct ColoringCanvasView: View {
             // 2. Brushes for the Active Category
             VStack(spacing: 0) {
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: isPro ? 12 : 15) {
+                    VStack(spacing: isPad ? (isPro ? 12 : 15) : 12) {
                         let currentCat = activeCategory ?? filteredCategories.first ?? "Basic"
                         let tools = ColoringCanvasView.toolGroups[currentCat] ?? []
                         
@@ -346,14 +346,42 @@ struct ColoringCanvasView: View {
                                 AudioManager.shared.playPop()
                             }
                         }
+                        
+                        // iPhone Kids Tools: Color & Size directly below brushes
+                        if !isPad && (ageConfig.ageGroup == .toddlers || ageConfig.ageGroup == .kids) {
+                            VStack(spacing: 15) {
+                                Divider().frame(width: 30).background(Color.white.opacity(0.3))
+                                colorPickerButton(size: 44)
+                                
+                                VStack(spacing: 18) {
+                                    ForEach([15, 65], id: \.self) { size in
+                                        Button {
+                                            currentWidth = CGFloat(size)
+                                            updateTool()
+                                            AudioManager.shared.playPop()
+                                        } label: {
+                                            let dotSize = CGFloat(size == 15 ? 18 : 32)
+                                            Circle()
+                                                .fill(selectedColor.opacity(currentWidth == CGFloat(size) ? 1.0 : 0.6))
+                                                .frame(width: dotSize, height: dotSize)
+                                                .overlay(Circle().stroke(Color.white, lineWidth: currentWidth == CGFloat(size) ? 3 : 0))
+                                                .overlay(Circle().stroke(Color.black.opacity(0.8), lineWidth: 1.5))
+                                        }
+                                    }
+                                }
+                                .padding(10)
+                                .background(Capsule().fill(Color.black.opacity(0.04)))
+                            }
+                            .padding(.top, 10)
+                        }
                     }
-                    .padding(.vertical, 20)
+                    .padding(.vertical, isPad ? 20 : 10)
                 }
             }
             .frame(width: brushWidth + (isPad ? (isPro ? 10 : 20) : 5))
             .offset(x: isPad ? (isPro ? 0 : -15) : 0) 
         }
-        .frame(width: isPad ? (isPro ? 115 : 150) : (isPro ? 85 : 100))
+        .frame(width: isPad ? (isPro ? 115 : 150) : (isPro ? 85 : ((!isPad && (ageConfig.ageGroup == .toddlers || ageConfig.ageGroup == .kids)) ? 115 : 100)))
         .onAppear {
             if activeCategory == nil {
                 activeCategory = filteredCategories.first
@@ -457,13 +485,15 @@ struct ColoringCanvasView: View {
                 
                 // 2. Primary Tools (Color & Eraser)
                 if !isPad || ageConfig.ageGroup == .toddlers || ageConfig.ageGroup == .kids {
-                    colorPickerButton(size: bSize)
+                    if isPad || (ageConfig.ageGroup != .toddlers && ageConfig.ageGroup != .kids) {
+                        colorPickerButton(size: bSize)
+                    }
                     eraserButton(size: bSize)
                     Divider().frame(width: 25).background(Color.white.opacity(0.3))
                 }
                 
-                // 3. Size Dots (Grouped with tools)
-                if !isPro {
+                // 3. Size Dots (Grouped with tools) - Hidden on iPhone Kids (Moved to Left)
+                if !isPro && (isPad || (ageConfig.ageGroup != .toddlers && ageConfig.ageGroup != .kids)) {
                     VStack(spacing: 20) {
                         ForEach([8, 28, 65], id: \.self) { size in
                             Button {
